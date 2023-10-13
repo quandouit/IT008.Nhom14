@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyChiTieu.View;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,11 @@ namespace QuanLyChiTieu
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            base.OnStartup(e);
+        }
     }
 }
