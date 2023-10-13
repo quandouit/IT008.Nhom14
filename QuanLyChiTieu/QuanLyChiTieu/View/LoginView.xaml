@@ -10,10 +10,70 @@
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize"
         WindowStyle="None"
-        Title="LoginView" 
-        Height="480"
-        Width="400">
+        Title="Login" 
+        Height="720"
+        Width="1080" Foreground="Black">
     <Grid>
-        
+        <Border Width="500" Height="720" 
+                Margin="0,0,580,0" 
+                CornerRadius="0, 50, 50, 0" AllowDrop="True">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF052073" Offset="1"/>
+                    <GradientStop Color="#FF5546FF" Offset="0.33"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Width="350" Height="40" 
+                Margin="620,320,110,360" 
+                BorderThickness="1" 
+                BorderBrush="#FF373737"
+                CornerRadius="5"></Border>
+        <Border Width="350" Height="40" 
+                Margin="620,390,110,260" 
+                BorderThickness="1" 
+                BorderBrush="#FF373737"
+                CornerRadius="5"></Border>
+
+        <TextBlock Text="Tên đăng nhập"
+                   Width="150"
+                   Height="50"
+                   FontSize="20"
+                   FontFamily="Tahoma"
+                   Margin="635,290,295,380" Foreground="Black"></TextBlock>
+        <TextBlock Text="Mật khẩu"
+                   Width="150"
+                   Height="50"
+                   FontSize="20"
+                   Margin="635,375,295,295" FontFamily="Tahoma"/>
+        <Button Width="150" Height="40"
+                Margin="820,506,110,174">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="45" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF221294"/>
+                    <GradientStop Color="#FF5B2494" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Content>
+                <TextBlock 
+                    FontSize="21"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Foreground="White"
+                    FontFamily="Tahoma">
+                    <Bold>Đăng nhập</Bold>
+
+                </TextBlock>
+            </Button.Content>
+
+        </Button>
     </Grid>
 </Window>
