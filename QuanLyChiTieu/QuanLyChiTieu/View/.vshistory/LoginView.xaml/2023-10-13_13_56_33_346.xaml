@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:QuanLyChiTieu.View"
         mc:Ignorable="d"
         
+        xmlns:controltop="clr-namespace:QuanLyChiTieu.Component.Control2Button"
+        
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize"
         WindowStyle="None"
