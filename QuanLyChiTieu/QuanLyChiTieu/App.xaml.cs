@@ -16,9 +16,11 @@ namespace QuanLyChiTieu
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            LoginView loginView = new LoginView();
-            loginView.Show();
-            base.OnStartup(e);
+            //LoginView loginView = new LoginView();
+            //loginView.Show();
+            //base.OnStartup(e);
+            MainWindow = new MainWindow();
+            MainWindow.Show();
         }
     }
 }
