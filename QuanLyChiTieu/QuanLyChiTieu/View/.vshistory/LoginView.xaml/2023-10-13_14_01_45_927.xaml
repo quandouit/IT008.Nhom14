@@ -14,6 +14,6 @@
         Height="480"
         Width="400">
     <Grid>
-        
+        <>
     </Grid>
 </Window>

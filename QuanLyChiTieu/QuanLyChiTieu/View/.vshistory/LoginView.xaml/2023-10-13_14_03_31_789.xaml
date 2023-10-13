@@ -14,6 +14,8 @@
         Height="480"
         Width="400">
     <Grid>
-        
+        <controltop:Control2Button>
+            
+        </controltop:Control2Button>
     </Grid>
 </Window>
