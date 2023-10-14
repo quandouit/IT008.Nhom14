@@ -18,8 +18,8 @@ namespace QuanLyChiTieu
         {
             LoginView loginView = new LoginView();
             loginView.Show();
-            MainWindow = new MainWindow();
-            MainWindow.Show();
+            //MainWindow = new MainWindow();
+            //MainWindow.Show();
 
             base.OnStartup(e);
         }
