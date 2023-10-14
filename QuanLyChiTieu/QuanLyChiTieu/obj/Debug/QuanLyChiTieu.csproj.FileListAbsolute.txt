@@ -17,9 +17,7 @@ C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Deb
 C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\View\LoginView.baml
 C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\Component\Control2Button.g.cs
 C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\Component\Control2Button.baml
-C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\Component\GeneralControlBar.g.cs
-C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\Component\GeneralControlBar.baml
-C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\Style\MenuButtonStyle.baml
 C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\bin\Debug\FontAwesome.Sharp.dll
 C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\App.baml
 C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\QuanLyChiTieu.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\IT008.Nhom14\QuanLyChiTieu\QuanLyChiTieu\obj\Debug\Style\ButtonStyle.baml
