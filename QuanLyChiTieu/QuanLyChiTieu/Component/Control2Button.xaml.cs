@@ -22,7 +22,6 @@ namespace QuanLyChiTieu.Component
     {
         public Control2Button()
         {
-            InitializeComponent();
         }
     }
 }

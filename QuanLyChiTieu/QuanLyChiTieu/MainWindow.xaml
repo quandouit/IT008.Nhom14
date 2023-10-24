@@ -46,7 +46,7 @@
     
     <Border
         CornerRadius="10"
-        BorderBrush="#3da8ff"
+        BorderBrush="{StaticResource darkBorder}"
         BorderThickness="1">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -54,7 +54,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Border Background="#1f7ecc"
+            <Border Background="{StaticResource darkBackground}"
                     CornerRadius="10, 0, 0, 10"
                     Grid.Column="0">
                 <StackPanel>
@@ -65,7 +65,7 @@
                         <Image Source="/Images/Asset 1.png" Height="30"/>
                         <TextBlock 
                             Text="NoNameProject"
-                            Foreground="#c5ebff"
+                            Foreground="{StaticResource lightFont}"
                             FontSize="20"
                             FontFamily="Montserrat"
                             FontWeight="Medium"
@@ -75,7 +75,7 @@
 
                     <RadioButton 
                         Style="{StaticResource menuButton}"
-                        Tag="White"
+                        Tag="{StaticResource lightFont}"
                         Command="{Binding ShowHomeViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Home" Style="{StaticResource menuIconButton}"/>
@@ -85,7 +85,7 @@
 
                     <RadioButton 
                         Style="{StaticResource menuButton}"
-                        Tag="White"
+                        Tag="{StaticResource lightFont}"
                         Command="{Binding ShowHistoryViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="SquarePollHorizontal" Style="{StaticResource menuIconButton}"/>
@@ -95,7 +95,7 @@
 
                     <RadioButton 
                         Style="{StaticResource menuButton}"
-                        Tag="White"
+                        Tag="{StaticResource lightFont}"
                         Command="{Binding ShowTransactionViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CartPlus" Style="{StaticResource menuIconButton}"/>
@@ -105,7 +105,7 @@
 
                     <RadioButton 
                         Style="{StaticResource menuButton}"
-                        Tag="White"
+                        Tag="{StaticResource lightFont}"
                         Command="{Binding ShowPlanViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Wallet" Style="{StaticResource menuIconButton}"/>
@@ -115,7 +115,7 @@
 
                     <RadioButton 
                         Style="{StaticResource menuButton}"
-                        Tag="White"
+                        Tag="{StaticResource lightFont}"
                         Command="{Binding ShowGoalViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Coins" Style="{StaticResource menuIconButton}"/>
@@ -125,7 +125,7 @@
 
                     <RadioButton 
                         Style="{StaticResource menuButton}"
-                        Tag="White"
+                        Tag="{StaticResource lightFont}"
                         Command="{Binding ShowUserViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserAlt" Style="{StaticResource menuIconButton}"/>
@@ -138,7 +138,7 @@
             <Border
                 CornerRadius="0, 10, 10, 0"
                 Grid.Column="1"
-                Background="#05014a">
+                Background="{StaticResource lightBackground}">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -152,27 +152,27 @@
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
-                                Margin="0, 0, 5, 0"
+                                Margin="5, 0, 5, 0"
                                 MouseLeftButtonDown="winCtrBar_LButtonDown"
                                 MouseEnter="winCtrBar_MouseEnter">
 
                         <Button x:Name="winCloseButton"
                                 Style="{StaticResource winCtrButton}"
-                                Tag="#ef2d38"
+                                Tag="{StaticResource redUI}"
                                 Click="winClose_Click">
                             <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
                         </Button>
 
                         <Button x:Name="winMaxButton"
                             Style="{StaticResource winCtrButton}"
-                            Tag="#ffffff"
+                            Tag="{StaticResource middleFont}"
                             Click="winMax_Click">
                             <fa:IconImage Icon="Square" Style="{StaticResource winCtrIcon}"/>
                         </Button>
 
                         <Button x:Name="winMinButton"
                             Style="{StaticResource winCtrButton}"
-                            Tag="#ffffff"
+                            Tag=""
                             Click="winMin_Click">
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource winCtrIcon}"/>
                         </Button>
@@ -187,14 +187,14 @@
                         <StackPanel Grid.Column="0"
                                     Orientation="Horizontal"
                                     VerticalAlignment="Center">
-                            <fa:IconImage Icon="Home"
-                                          Height="20"
-                                          Width="20"
-                                          Foreground="White"
+                            <fa:IconImage Icon="{Binding ChildIcon}"
+                                          Height="24"
+                                          Width="24"
+                                          Foreground="{StaticResource darkFont}"
                                           Margin="35,0,10,0"/>
-                            <TextBlock Text="Trang chủ"
-                                       Foreground="White"
-                                       FontSize="16"
+                            <TextBlock Text="{Binding ChildCaption}"
+                                       Foreground="{StaticResource darkFont}"
+                                       FontSize="20"
                                        FontFamily="Montserrat"
                                        FontWeight="Medium"
                                        VerticalAlignment="Center"/>
@@ -208,14 +208,14 @@
 
                             <TextBlock Text="User0"
                                        Margin="10,0,0,0"
-                                       Foreground="White"
+                                       Foreground="{StaticResource darkFont}"
                                        FontFamily="Monserrat"
                                        FontSize="12"
                                        VerticalAlignment="Center"/>
 
                             <Ellipse Height="35"
                                      Width="35"
-                                     Stroke="LightBlue"
+                                     Stroke="{StaticResource lightBorder}"
                                      StrokeThickness="2"
                                      Margin="10,0,10,0">
                                 <Ellipse.Fill>
@@ -228,7 +228,7 @@
 
                     <ContentControl Content="{Binding CurrentChildView}" 
                           Grid.Row="2"
-                          Margin="20"/>
+                          Margin="15"/>
                 </Grid>
             </Border>
         </Grid>

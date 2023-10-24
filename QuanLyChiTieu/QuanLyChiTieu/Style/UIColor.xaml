@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Menu Panel Color-->
+    <SolidColorBrush x:Key="panelInactivate">#5C469C</SolidColorBrush>
+    <SolidColorBrush x:Key="panelActivate">#8C37EC</SolidColorBrush>
+    <SolidColorBrush x:Key="panelHover">#BF75FF</SolidColorBrush>
+    <SolidColorBrush x:Key="lightPanelInactivate">#E7CFFC</SolidColorBrush>
+    <SolidColorBrush x:Key="lightPanelActivate">#B981F7</SolidColorBrush>
+    <SolidColorBrush x:Key="lightPanelHover">#F4ECFF</SolidColorBrush>
+
+    <!--Background Color-->
+    <SolidColorBrush x:Key="darkBackground">#5C469C</SolidColorBrush>
+    <SolidColorBrush x:Key="lightBackground">#F3EBFF</SolidColorBrush>
+    <SolidColorBrush x:Key="lightBackgroundHightlight">#D3B6FF</SolidColorBrush>
+    <SolidColorBrush x:Key="darkBorder">#33005F</SolidColorBrush>
+    <SolidColorBrush x:Key="lightBorder">#D79EEC</SolidColorBrush>
+    <SolidColorBrush x:Key="middleBackground">#E7CFFC</SolidColorBrush>
+    
+    <!--Font Color-->
+    <SolidColorBrush x:Key="lightFont">#ffffff</SolidColorBrush>
+    <SolidColorBrush x:Key="lightFontInactivate">#78FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="darkFont">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="middleFont">#5C469C</SolidColorBrush>
+    <SolidColorBrush x:Key="middleFontHightlight">#8B69EC</SolidColorBrush>
+    
+    <!--Special Color-->
+    <SolidColorBrush x:Key="greenUI">#38e54d</SolidColorBrush>
+    <SolidColorBrush x:Key="redUI">#ef2d38</SolidColorBrush>
+    
+    
+</ResourceDictionary>
