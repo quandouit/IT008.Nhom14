@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 
 namespace QuanLyChiTieu
 {
@@ -16,6 +17,8 @@ namespace QuanLyChiTieu
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppDomain.CurrentDomain.SetData("DataDirectory", Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory));
+
             LoginView loginView = new LoginView();
             loginView.Show();
             MainWindow = new MainWindow();

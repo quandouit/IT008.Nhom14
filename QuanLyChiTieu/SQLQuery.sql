@@ -36,6 +36,7 @@ note text,
 created_at smalldatetime,
 constraint FK_userID_GiaoDich foreign key (userID) references User_info(ID),
 constraint FK_categoryID_Category foreign key (categoryID) references Category(ID),
+)
 
 insert into User_info (ID, username, pass, phone, balance)
 values 
@@ -58,4 +59,3 @@ values
 ('G01' , '01' , 'CT01' , 'An toi cung gia dinh' , '400000' , null , null , '2023-10-24'),
 ('G02' , '01' , 'CT03' , 'Luong thang 10' , '2000000' , null , null , '2023-10-31'),
 ('GT03', '02' , 'CT02' , 'Mua dong phuc mua dong' , '500000' , null , null , '2022-09-01');
-)

@@ -74,11 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Component\Control2Button.xaml.cs" />
-    <Compile Include="DBconnection.cs" />
-    <Compile Include="Component\Control2Button.xaml.cs">
-      <DependentUpon>Control2Button.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Data\DBconnection.cs" />
     <Compile Include="ViewModel\GoalViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
@@ -179,8 +175,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="Data\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -190,10 +187,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBase_QLTC.mdf">
+    <Content Include="Data\DataBase_QLTC.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DataBase_QLTC_log.ldf">
+    <Content Include="Data\DataBase_QLTC_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DataBase_QLTC.mdf</DependentUpon>
     </Content>
