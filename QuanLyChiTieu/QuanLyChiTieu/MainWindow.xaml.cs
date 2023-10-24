@@ -14,17 +14,55 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Data.SqlClient;
+using System.Data;
+using System.Data.SqlTypes;
+using System.Windows.Markup.Localizer;
 
 namespace QuanLyChiTieu
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
+    public class Test : DBConnection
+    {
+        //Ke thua va bo sung them phuong thuc truy xuat ra man hinh
+        public void ThongBao()
+        {
+            OpenConn();
+            SqlCommand sqlCmd = new SqlCommand();
+            sqlCmd.CommandType = CommandType.Text;
+            sqlCmd.CommandText = "select * from User_info";
+            sqlCmd.Connection = sqlCon;
+
+            string data = "";
+            SqlDataReader reader = sqlCmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string ID = reader.GetString(0);
+                string username = reader.GetString(1);
+                string password = reader.GetString(2);
+                string phone = reader.GetString(3);
+                SqlMoney balance = reader.GetSqlMoney(4);
+                
+                data = data + " " + ID + " " + username + " " + " " + password + " " + phone;
+                data = data + " " + balance.ToString(); 
+                data = data + "\n";
+            }
+            reader.Close();
+            MessageBox.Show(data);
+        }
+    }
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            
+            //Ket noi thu database
+            Test test = new Test();
+            test.ThongBao();
         }
 
         [DllImport("user32.dll")]
