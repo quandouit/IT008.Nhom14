@@ -74,14 +74,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< HEAD
     <Compile Include="Component\Control2Button.xaml.cs" />
-=======
     <Compile Include="DBconnection.cs" />
     <Compile Include="Component\Control2Button.xaml.cs">
       <DependentUpon>Control2Button.xaml</DependentUpon>
     </Compile>
->>>>>>> 53cc471df77b348f3a0a500396d9f199ec048b4a
     <Compile Include="ViewModel\GoalViewModel.cs" />
     <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
