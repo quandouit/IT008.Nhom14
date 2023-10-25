@@ -23,17 +23,15 @@ namespace QuanLyChiTieu.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Admin\\Documents\\Git" +
-            "Hub\\IT008.Nhom14\\QuanLyChiTieu\\QuanLyChiTieu\\DataBase_QLTC.mdf\";Integrated Secur" +
-            "ity=True")]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\uit\\year 2\\LapTrinhTrucQu" +
+            "an\\IT008.Nhom14\\QuanLyChiTieu\\QuanLyChiTieu\\Data\\DataBase_QLTC.mdf\";Integrated S" +
+            "ecurity=True")]
         public string stringConn {
             get {
                 return ((string)(this["stringConn"]));
-            }
-            set {
-                this["stringConn"] = value;
             }
         }
     }
