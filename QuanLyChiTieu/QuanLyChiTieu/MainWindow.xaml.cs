@@ -33,7 +33,7 @@ namespace QuanLyChiTieu
             OpenConn();
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.CommandText = "select * from User_info";
+            sqlCmd.CommandText = "select * from NGUOIDUNG";
             sqlCmd.Connection = sqlCon;
 
             string data = "";

@@ -1,5 +1,4 @@
-﻿use QLTC
-
+﻿
 create table NGUOIDUNG
 (
 ID char(6) primary key,
@@ -8,6 +7,7 @@ MATKHAU varchar(20),
 SDT varchar(20),
 TONGTIEN money,
 )
+go
 
 create table NGANSACH
 (
@@ -18,6 +18,7 @@ TIENNS money,
 HSD smalldatetime,
 constraint FK_ID_NGANSACH foreign key (ID) references NGUOIDUNG(ID),
 )
+go
 
 create table LOAIGIAODICH
 (
@@ -25,6 +26,7 @@ MALOAIGD char(6) primary key,
 TENLOAIGD varchar(40),
 TRANGTHAI varchar(40),
 )
+go
 
 create table GIAODICH
 (
@@ -39,11 +41,7 @@ NGAYTAO smalldatetime,
 constraint FK_ID_GIAODICH foreign key (ID) references NGUOIDUNG(ID),
 constraint FK_MALOAIGD_GIAODICH foreign key (MALOAIGD) references LOAIGIAODICH(MALOAIGD),
 )
-
-delete NGANSACH
-delete GIAODICH
-delete LOAIGIAODICH
-delete NGUOIDUNG
+go
 
 insert into NGUOIDUNG (ID, TAIKHOAN, MATKHAU, SDT, TONGTIEN)
 values 
