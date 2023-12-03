@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyChiTieu"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
         xmlns:local1="clr-namespace:QuanLyChiTieu.View"
         mc:Ignorable="d"
         
@@ -23,20 +24,12 @@
             <local1:HomeView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewmodel:HistoryViewModel}">
-            <local1:HistoryView/>
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type viewmodel:TransactionViewModel}">
-            <local1:TransactionView/>
+        <DataTemplate DataType="{x:Type viewmodel:ManageViewModel}">
+            <local1:ManageView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewmodel:PlanViewModel}">
             <local1:PlanView/>
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type viewmodel:GoalViewModel}">
-            <local1:GoalView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewmodel:UserViewModel}">
@@ -87,20 +80,10 @@
                     <RadioButton 
                         Style="{StaticResource menuButton}"
                         Tag="{StaticResource lightFont}"
-                        Command="{Binding ShowHistoryViewCommand}">
+                        Command="{Binding ShowManageViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="SquarePollHorizontal" Style="{StaticResource menuIconButton}"/>
-                            <TextBlock Text="Lịch sử giao dịch" Style="{StaticResource menuIconText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton 
-                        Style="{StaticResource menuButton}"
-                        Tag="{StaticResource lightFont}"
-                        Command="{Binding ShowTransactionViewCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="CartPlus" Style="{StaticResource menuIconButton}"/>
-                            <TextBlock Text="Tạo giao dịch mới" Style="{StaticResource menuIconText}"/>
+                            <TextBlock Text="Quản lý giao dịch" Style="{StaticResource menuIconText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -111,16 +94,6 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Wallet" Style="{StaticResource menuIconButton}"/>
                             <TextBlock Text="Kế hoạch tài chính" Style="{StaticResource menuIconText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton 
-                        Style="{StaticResource menuButton}"
-                        Tag="{StaticResource lightFont}"
-                        Command="{Binding ShowGoalViewCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Coins" Style="{StaticResource menuIconButton}"/>
-                            <TextBlock Text="Mục tiêu tiết kiệm" Style="{StaticResource menuIconText}"/>
                         </StackPanel>
                     </RadioButton>
 

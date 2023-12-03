@@ -54,19 +54,15 @@ namespace QuanLyChiTieu.ViewModel
             }
         }
         public ICommand ShowHomeViewCommand { get; }
-        public ICommand ShowHistoryViewCommand { get; }
-        public ICommand ShowTransactionViewCommand { get; }
+        public ICommand ShowManageViewCommand { get; }
         public ICommand ShowPlanViewCommand { get; }
-        public ICommand ShowGoalViewCommand { get; }
         public ICommand ShowUserViewCommand { get; }
         
         public MainViewModel() 
         {
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
-            ShowHistoryViewCommand = new ViewModelCommand(ExecuteShowHistoryViewCommand);
-            ShowTransactionViewCommand = new ViewModelCommand(ExecuteShowTransactionViewCommand);
+            ShowManageViewCommand = new ViewModelCommand(ExecuteShowManageViewCommand);
             ShowPlanViewCommand = new ViewModelCommand(ExecuteShowPlanViewCommand);
-            ShowGoalViewCommand = new ViewModelCommand(ExecuteShowGoalViewCommand);
             ShowUserViewCommand = new ViewModelCommand(ExecuteShowUserViewCommand);
 
             //default
@@ -80,18 +76,11 @@ namespace QuanLyChiTieu.ViewModel
             ChildIcon = IconChar.Home;
         }
 
-        private void ExecuteShowHistoryViewCommand(object obj)
+        private void ExecuteShowManageViewCommand(object obj)
         {
             CurrentChildView = new UserViewModel();
-            ChildCaption = "Lịch sử giao dịch";
+            ChildCaption = "Quản lý giao dịch";
             ChildIcon = IconChar.SquarePollHorizontal;
-        }
-
-        private void ExecuteShowTransactionViewCommand(object obj)
-        {
-            CurrentChildView = new TransactionViewModel();
-            ChildCaption = "Tạo giao dịch mới";
-            ChildIcon = IconChar.CartPlus;
         }
 
         private void ExecuteShowPlanViewCommand(object obj)
@@ -99,13 +88,6 @@ namespace QuanLyChiTieu.ViewModel
             CurrentChildView = new PlanViewModel();
             ChildCaption = "Kế hoạch tài chính";
             ChildIcon = IconChar.Wallet;
-        }
-
-        private void ExecuteShowGoalViewCommand(object obj)
-        {
-            CurrentChildView = new GoalViewModel();
-            ChildCaption = "Mục tiêu tiết kiệm";
-            ChildIcon = IconChar.Coins;
         }
 
         private void ExecuteShowUserViewCommand(object obj)
