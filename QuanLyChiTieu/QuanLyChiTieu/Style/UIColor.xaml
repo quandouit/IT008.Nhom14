@@ -11,7 +11,7 @@
 
     <!--Background Color-->
     <SolidColorBrush x:Key="darkBackground">#5C469C</SolidColorBrush>
-    <SolidColorBrush x:Key="lightBackground">#F3EBFF</SolidColorBrush>
+    <SolidColorBrush x:Key="lightBackground">#e5dcf2</SolidColorBrush>
     <SolidColorBrush x:Key="lightBackgroundHightlight">#D3B6FF</SolidColorBrush>
     <SolidColorBrush x:Key="darkBorder">#33005F</SolidColorBrush>
     <SolidColorBrush x:Key="lightBorder">#D79EEC</SolidColorBrush>
@@ -20,13 +20,24 @@
     <!--Font Color-->
     <SolidColorBrush x:Key="lightFont">#ffffff</SolidColorBrush>
     <SolidColorBrush x:Key="lightFontInactivate">#78FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="darkFont">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="darkFont">#33005F</SolidColorBrush>
     <SolidColorBrush x:Key="middleFont">#5C469C</SolidColorBrush>
     <SolidColorBrush x:Key="middleFontHightlight">#8B69EC</SolidColorBrush>
     
     <!--Special Color-->
     <SolidColorBrush x:Key="greenUI">#38e54d</SolidColorBrush>
     <SolidColorBrush x:Key="redUI">#ef2d38</SolidColorBrush>
+
+    <!--Button Color-->
+    <SolidColorBrush x:Key="darkButtonBackground">#67289e</SolidColorBrush>
+    <SolidColorBrush x:Key="darkButtonOver">#9b3feb</SolidColorBrush>
+    <SolidColorBrush x:Key="darkButtonPress">#4c018c</SolidColorBrush>
     
+    <SolidColorBrush x:Key="lightButtonBackground">#F3EBFF</SolidColorBrush>
+    <SolidColorBrush x:Key="lightButtonOver">#edcdfa</SolidColorBrush>
+    <SolidColorBrush x:Key="lightButtonPress">#d09dfc</SolidColorBrush>
+
+    <SolidColorBrush x:Key="darkButtonBorder">#4c018c</SolidColorBrush>
+    <SolidColorBrush x:Key="lightButtonBorder">#b196d6</SolidColorBrush>
     
 </ResourceDictionary>

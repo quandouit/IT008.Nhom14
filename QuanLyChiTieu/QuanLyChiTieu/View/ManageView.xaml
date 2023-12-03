@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1000">
     <Grid>
-        <Border Background="Olive"
-        Width="200"
-        Height="200"/>
+        <Button Style="{StaticResource lightButtonStyle}"
+                Content="Test button"
+                FontSize="20"/>
     </Grid>
 </UserControl>

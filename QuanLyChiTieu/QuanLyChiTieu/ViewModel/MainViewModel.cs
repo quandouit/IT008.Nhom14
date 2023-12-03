@@ -78,7 +78,7 @@ namespace QuanLyChiTieu.ViewModel
 
         private void ExecuteShowManageViewCommand(object obj)
         {
-            CurrentChildView = new UserViewModel();
+            CurrentChildView = new ManageViewModel();
             ChildCaption = "Quản lý giao dịch";
             ChildIcon = IconChar.SquarePollHorizontal;
         }
