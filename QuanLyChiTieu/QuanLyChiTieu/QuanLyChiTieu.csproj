@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\DBconnection.cs" />
+    <Compile Include="Data\DTO\GiaoDichDTO.cs" />
+    <Compile Include="Data\DTO\LoaiGiaoDichDTO.cs" />
+    <Compile Include="Data\DTO\NganSachDTO.cs" />
+    <Compile Include="Data\DTO\NguoiDungDTO.cs" />
     <Compile Include="ViewModel\ManageViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -193,6 +197,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\BUS\" />
+    <Folder Include="Data\DAO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
