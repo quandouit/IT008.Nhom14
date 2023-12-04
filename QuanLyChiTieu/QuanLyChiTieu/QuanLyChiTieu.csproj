@@ -74,7 +74,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\DBconnection.cs" />
+    <Compile Include="Data\BUS\GiaoDichBUS.cs" />
+    <Compile Include="Data\BUS\LoaiGiaoDichBUS.cs" />
+    <Compile Include="Data\BUS\LoginBUS.cs" />
+    <Compile Include="Data\BUS\NganSachBUS.cs" />
+    <Compile Include="Data\BUS\NguoiDungBUS.cs" />
+    <Compile Include="Data\DAO\GiaoDichDAO.cs" />
+    <Compile Include="Data\DAO\LoaiGiaoDichDAO.cs" />
+    <Compile Include="Data\DAO\LoginDAO.cs" />
+    <Compile Include="Data\DAO\NganSachDAO.cs" />
+    <Compile Include="Data\DAO\NguoiDungDAO.cs" />
+    <Compile Include="Data\DAO\DBconnection.cs" />
     <Compile Include="Data\DTO\GiaoDichDTO.cs" />
     <Compile Include="Data\DTO\LoaiGiaoDichDTO.cs" />
     <Compile Include="Data\DTO\NganSachDTO.cs" />
@@ -198,9 +208,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\BUS\" />
-    <Folder Include="Data\DAO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
