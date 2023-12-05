@@ -192,6 +192,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DataBase_QLTC.mdf</DependentUpon>
     </Content>
+    <Content Include="Data\SQLQuery.sql" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Asset 1.png" />
