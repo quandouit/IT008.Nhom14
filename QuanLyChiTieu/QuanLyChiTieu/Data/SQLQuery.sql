@@ -9,6 +9,10 @@ TONGTIEN money,
 )
 go
 
+alter table NGUOIDUNG
+alter column TONGTIEN decimal;
+go
+
 create table NGANSACH
 (
 MANS char(6) primary key,
@@ -28,6 +32,10 @@ TRANGTHAI varchar(40),
 )
 go
 
+alter table NGANSACH
+alter column TIENNS decimal;
+go
+
 create table GIAODICH
 (
 MAGD char(6) primary key,
@@ -41,6 +49,10 @@ NGAYTAO smalldatetime,
 constraint FK_ID_GIAODICH foreign key (ID) references NGUOIDUNG(ID),
 constraint FK_MALOAIGD_GIAODICH foreign key (MALOAIGD) references LOAIGIAODICH(MALOAIGD),
 )
+go
+
+alter table GIAODICH
+alter column TIEN decimal;
 go
 
 insert into NGUOIDUNG (ID, TAIKHOAN, MATKHAU, SDT, TONGTIEN)
@@ -83,4 +95,3 @@ values
 ('GD008' , '005' , 'C03' , 'Tien thuong tet' , '2000000' , null , null , '2023-02-01'),
 ('GD009' , '004' , null , 'Tien dien thang 10' , '688000' , null , 'Thanh toan tien mat' , '2023-11-04'),
 ('GD010' , '004' , 'C05' , 'Spotify prenium Month 12' , '60000' , null , '//Tu dong thanh toan' , '2022-12-01');
-
