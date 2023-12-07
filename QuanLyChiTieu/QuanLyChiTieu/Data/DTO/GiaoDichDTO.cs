@@ -17,6 +17,5 @@ namespace QuanLyChiTieu.Data.DTO
         public string MinhHoa { get; set; }
         public string GhiChu { get; set; }
         public DateTime NgayTao { get; set; }
-
     }
 }

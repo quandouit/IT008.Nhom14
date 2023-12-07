@@ -32,13 +32,13 @@
                     <Grid 
                         SnapsToDevicePixels="true" 
                         Background="Transparent">
-                        <Border Padding="0,4">
+                        <Border Padding="5 4">
                             <Track
                                 x:Name="PART_Track" 
                                 Grid.Row="1"
                                 IsDirectionReversed="True"
                                 IsEnabled="{TemplateBinding IsMouseOver}"
-                                Width="6"
+                                Width="10"
                                 HorizontalAlignment="Center">
                                 <Track.DecreaseRepeatButton>
                                     <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageUpCommand}"/>

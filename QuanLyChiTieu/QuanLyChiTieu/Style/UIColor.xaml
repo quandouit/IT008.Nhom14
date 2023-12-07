@@ -16,13 +16,16 @@
     <SolidColorBrush x:Key="darkBorder">#33005F</SolidColorBrush>
     <SolidColorBrush x:Key="lightBorder">#D79EEC</SolidColorBrush>
     <SolidColorBrush x:Key="middleBackground">#E7CFFC</SolidColorBrush>
-    
+    <SolidColorBrush x:Key="lightBorderShadow">#cec5db</SolidColorBrush>
+    <SolidColorBrush x:Key="darkBorderShadow">#8c8499</SolidColorBrush> 
+
     <!--Font Color-->
     <SolidColorBrush x:Key="lightFont">#ffffff</SolidColorBrush>
     <SolidColorBrush x:Key="lightFontInactivate">#78FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="darkFont">#33005F</SolidColorBrush>
     <SolidColorBrush x:Key="middleFont">#5C469C</SolidColorBrush>
     <SolidColorBrush x:Key="middleFontHightlight">#8B69EC</SolidColorBrush>
+    <SolidColorBrush x:Key="greyFont">#c2b3c7</SolidColorBrush>
     
     <!--Special Color-->
     <SolidColorBrush x:Key="greenUI">#38e54d</SolidColorBrush>

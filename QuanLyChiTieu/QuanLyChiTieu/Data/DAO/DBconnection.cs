@@ -8,7 +8,7 @@ namespace QuanLyChiTieu
     public class DBConnection
     {
         protected string strcon = Properties.Settings.Default.stringConn;
-        protected SqlConnection sqlCon = null;
+        protected static SqlConnection sqlCon = null;
 
         //Ham ket noi csdl
         protected void OpenConn()
