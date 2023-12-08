@@ -44,7 +44,7 @@ namespace QuanLyChiTieu
                 string username = reader.GetString(1);
                 string password = reader.GetString(2);
                 string phone = reader.GetString(3);
-                SqlMoney balance = reader.GetSqlMoney(4);
+                SqlMoney balance = reader.GetDecimal(4);
                 
                 data = data + " " + ID + " " + username + " " + " " + password + " " + phone;
                 data = data + " " + balance.ToString(); 
