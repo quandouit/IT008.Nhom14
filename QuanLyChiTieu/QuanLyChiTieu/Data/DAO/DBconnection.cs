@@ -7,11 +7,11 @@ namespace QuanLyChiTieu
     //Lop ke thua viec ket noi database
     public class DBConnection
     {
-        protected string strcon = Properties.Settings.Default.stringConn;
+        protected static string strcon = Properties.Settings.Default.stringConn;
         protected static SqlConnection sqlCon = null;
 
         //Ham ket noi csdl
-        protected void OpenConn()
+        protected static void OpenConn()
         {
             if (sqlCon == null)
             {
@@ -23,7 +23,7 @@ namespace QuanLyChiTieu
             }
         }
         //Ham dong ket noi csdl
-        protected void CloseConn()
+        protected static void CloseConn()
         {
             if (sqlCon.State == ConnectionState.Open && sqlCon != null)
             {

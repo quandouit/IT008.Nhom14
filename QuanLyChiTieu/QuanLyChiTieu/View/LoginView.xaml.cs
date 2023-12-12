@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using QuanLyChiTieu.Data.BUS;
+using QuanLyChiTieu.Data.DTO;
 
 namespace QuanLyChiTieu.View
 {
@@ -60,10 +62,20 @@ namespace QuanLyChiTieu.View
 
         private void bt_signin_Click(object sender, RoutedEventArgs e)
         {
-            if(tb_email.Text == "admin" && pb_pass.Password == "123")
+            //Tạo thông tin người dùng đăng nhập
+            NguoiDungDTO user = new NguoiDungDTO();
+            user.TaiKhoan = tb_email.Text;
+            user.MatKhau = pb_pass.Password;
+
+            //Tạo thông tin trả về khi kiểm tra người dùng có tồn tại hay không
+            NguoiDungDTO userLogin = LoginBUS.Try_Login(user);
+            QuanLyChiTieu.SourceClass.mainUser = userLogin;
+
+            if(userLogin.ID != null) 
             {
                 MainWindow main = new MainWindow();
                 main.Show();
+                
             }
             else
             {

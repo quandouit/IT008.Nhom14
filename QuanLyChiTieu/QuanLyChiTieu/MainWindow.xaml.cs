@@ -18,13 +18,21 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Data.SqlTypes;
 using System.Windows.Markup.Localizer;
+using QuanLyChiTieu.Data.DTO;
 
 namespace QuanLyChiTieu
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-
+    
+    //biến mainUser lưu trữ thông tin người dùng
+    //sử dụng phạm vi toàn chương trình
+    //gọi bằng QuanLyChiTieu.SourceClass.mainUser
+    public class SourceClass
+    {
+        public static NguoiDungDTO mainUser;
+    }
     public class Test : DBConnection
     {
         //Ke thua va bo sung them phuong thuc truy xuat ra man hinh
@@ -44,13 +52,14 @@ namespace QuanLyChiTieu
                 string username = reader.GetString(1);
                 string password = reader.GetString(2);
                 string phone = reader.GetString(3);
-                SqlMoney balance = reader.GetDecimal(4);
+                Decimal balance = reader.GetDecimal(4);
                 
                 data = data + " " + ID + " " + username + " " + " " + password + " " + phone;
                 data = data + " " + balance.ToString(); 
                 data = data + "\n";
             }
             reader.Close();
+            CloseConn();
             MessageBox.Show(data);
         }
     }
@@ -59,10 +68,10 @@ namespace QuanLyChiTieu
         public MainWindow()
         {
             InitializeComponent();
-            
+
             //Ket noi thu database
-            Test test = new Test();
-            test.ThongBao();
+            //Test test = new Test();
+            //test.ThongBao();
         }
 
         [DllImport("user32.dll")]
