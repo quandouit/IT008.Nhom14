@@ -198,6 +198,8 @@
       <DependentUpon>DataBase_QLTC.mdf</DependentUpon>
     </Content>
     <Content Include="Data\SQLQuery.sql" />
+    <Resource Include="Images\pass.png" />
+    <Resource Include="Images\user.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Asset 1.png" />
