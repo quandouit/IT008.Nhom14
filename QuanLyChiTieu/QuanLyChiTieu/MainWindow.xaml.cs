@@ -105,5 +105,10 @@ namespace QuanLyChiTieu
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtUserName.Text = SourceClass.mainUser.TaiKhoan;
+        }
     }
 }
