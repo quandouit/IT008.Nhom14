@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
+using System.Windows.Forms;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -19,8 +21,7 @@ namespace QuanLyChiTieu.Data.DAO
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
-                sqlCmd.CommandText = "select * from GIAODICH where ID = @ID";
-
+                sqlCmd.CommandText = "select TENGD, TENLOAIGD, FORMAT(NGAYTAO, 'dd/MM/yyyy') AS NGAYTAO, TIEN from GIAODICH GD, LOAIGIAODICH LGD where ID = @ID and GD.MALOAIGD = LGD.MALOAIGD";
                 SqlParameter parameterTK = new SqlParameter("@ID", QuanLyChiTieu.SourceClass.mainUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
                 

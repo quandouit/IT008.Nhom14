@@ -9,7 +9,7 @@
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Border
                         SnapsToDevicePixels="True"
-                        Background="{StaticResource darkBackground}"
+                        Background="{StaticResource lightBackground}"
                         CornerRadius="3"
                         Height="{TemplateBinding Height}"
                         Width="{TemplateBinding Width}"/>

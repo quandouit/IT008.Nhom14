@@ -29,7 +29,14 @@
     
     <!--Special Color-->
     <SolidColorBrush x:Key="greenUI">#38e54d</SolidColorBrush>
+    <SolidColorBrush x:Key="lighterGreen">#77fc87</SolidColorBrush>
+    <SolidColorBrush x:Key="darkerGreen">#279c35</SolidColorBrush>
+    <SolidColorBrush x:Key="blurGreen">#74b07b</SolidColorBrush>
+    
     <SolidColorBrush x:Key="redUI">#ef2d38</SolidColorBrush>
+    <SolidColorBrush x:Key="lighterRed">#f77980</SolidColorBrush>
+    <SolidColorBrush x:Key="darkerRed">#b3121b</SolidColorBrush>
+    <SolidColorBrush x:Key="blurRed">#c47e82</SolidColorBrush>
 
     <!--Button Color-->
     <SolidColorBrush x:Key="darkButtonBackground">#67289e</SolidColorBrush>
