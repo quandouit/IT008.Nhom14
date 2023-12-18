@@ -14,15 +14,16 @@ namespace QuanLyChiTieu.Data.DAO
         {
             try
             {
-                if (sqlCon.State != ConnectionState.Open)
-                {
-                    sqlCon.Open();
-                }
+                OpenConn();
 
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.CommandText = "select * from GIAODICH";
                 sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "select * from GIAODICH where ID = @ID";
+
+                SqlParameter parameterTK = new SqlParameter("@ID", QuanLyChiTieu.SourceClass.mainUser.ID);
+                sqlCmd.Parameters.Add(parameterTK);
+                
 
                 var reader = sqlCmd.ExecuteReader();
 
@@ -38,7 +39,7 @@ namespace QuanLyChiTieu.Data.DAO
             }
             finally
             {
-                sqlCon.Close();
+                CloseConn();
             }
         }
     }

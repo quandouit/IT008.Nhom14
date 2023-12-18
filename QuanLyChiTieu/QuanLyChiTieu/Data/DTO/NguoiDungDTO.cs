@@ -13,5 +13,6 @@ namespace QuanLyChiTieu.Data.DTO
         public string TaiKhoan { get; set; }
         public string MatKhau { get; set; }
         public string Sdt { get; set; }
+        public decimal TongTien { get; set; }
     }
 }
