@@ -57,23 +57,6 @@ namespace QuanLyChiTieu
             this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
         }
 
-        private void winClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void winMax_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-                this.WindowState = WindowState.Maximized;
-            else this.WindowState = WindowState.Normal;
-        }
-
-        private void winMin_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtUserName.Text = SourceClass.mainUser.TaiKhoan;

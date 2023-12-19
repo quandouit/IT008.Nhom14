@@ -21,11 +21,11 @@
 
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource greenButtonStyle}"
+                <Button Style="{StaticResource darkButtonStyle}"
                         Content="Thêm mới"
                         FontSize="18"
                         Margin="20 0"/>
-                <Button Style="{StaticResource redButtonStyle}"
+                <Button Style="{StaticResource darkButtonStyle}"
                         Content="Xóa đã chọn"
                         FontSize="18"/>
             </StackPanel>
@@ -62,11 +62,14 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Width="Auto">
-                                <Button Style="{StaticResource greenButtonStyle}"
+                                <Button Style="{StaticResource mixedButtonStyle}"
                                         Content="Chi tiết"
-                                        Margin="3 0"/>
-                                <Button Style="{StaticResource redButtonStyle}"
-                                        Content="Xóa"/>
+                                        Margin="-5 0 0 0"
+                                        Padding="6 4"/>
+                                <Button Style="{StaticResource mixedButtonStyle}"
+                                        Content="Xóa"
+                                        Margin="3 0"
+                                        Padding="6 4"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

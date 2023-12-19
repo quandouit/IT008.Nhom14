@@ -73,9 +73,8 @@ namespace QuanLyChiTieu.View
 
             if (userLogin.ID != 0) 
             {
-                MainWindow main = new MainWindow();
-                main.Show();
-                
+                Application.Current.MainWindow = new MainWindow();
+                Application.Current.MainWindow.Show();
             }
             else
             {

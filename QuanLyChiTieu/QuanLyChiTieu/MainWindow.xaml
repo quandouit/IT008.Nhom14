@@ -36,7 +36,7 @@
             <local1:UserView/>
         </DataTemplate>
     </Window.Resources>
-    
+
     <Border
         CornerRadius="10"
         BorderBrush="{StaticResource darkBorder}"
@@ -133,34 +133,35 @@
                         <Button x:Name="winCloseButton"
                                 Style="{StaticResource winCtrButton}"
                                 Tag="{StaticResource redUI}"
-                                Click="winClose_Click">
+                                Command="{Binding CloseCommand}">
                             <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
                         </Button>
 
                         <Button x:Name="winMaxButton"
                             Style="{StaticResource winCtrButton}"
                             Tag="{StaticResource middleFont}"
-                            Click="winMax_Click">
+                            Command="{Binding MaximizeCommand}">
                             <fa:IconImage Icon="Square" Style="{StaticResource winCtrIcon}"/>
                         </Button>
 
                         <Button x:Name="winMinButton"
                             Style="{StaticResource winCtrButton}"
                             Tag=""
-                            Click="winMin_Click">
+                                Command="{Binding MinimizeCommand}">
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource winCtrIcon}"/>
                         </Button>
                     </StackPanel>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="339*"/>
+                            <ColumnDefinition Width="175*"/>
+                            <ColumnDefinition Width="514*"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0"
                                     Orientation="Horizontal"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Grid.ColumnSpan="2">
                             <fa:IconImage Icon="{Binding ChildIcon}"
                                           Height="24"
                                           Width="24"
@@ -174,7 +175,7 @@
                                        VerticalAlignment="Center"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1"
+                        <StackPanel Grid.Column="2"
                                     Orientation="Horizontal"
                                     FlowDirection="RightToLeft"
                                     VerticalAlignment="Center"

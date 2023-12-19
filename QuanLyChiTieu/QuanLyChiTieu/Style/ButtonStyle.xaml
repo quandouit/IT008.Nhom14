@@ -399,7 +399,7 @@
     <Style x:Key="greenButtonStyle" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Padding" Value="6 4"/>
         <Setter Property="BorderBrush" Value="{StaticResource blurGreen}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Width" Value="Auto"/>
@@ -447,7 +447,7 @@
     <Style x:Key="redButtonStyle" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Padding" Value="6 4"/>
         <Setter Property="BorderBrush" Value="{StaticResource blurRed}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Width" Value="Auto"/>

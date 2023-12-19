@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
+using System.Windows;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -57,16 +58,44 @@ namespace QuanLyChiTieu.ViewModel
         public ICommand ShowManageViewCommand { get; }
         public ICommand ShowPlanViewCommand { get; }
         public ICommand ShowUserViewCommand { get; }
-        
+        public ICommand MaximizeCommand { get; }
+        public ICommand MinimizeCommand { get; }
+        public ICommand CloseCommand { get; }
+
         public MainViewModel() 
         {
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowManageViewCommand = new ViewModelCommand(ExecuteShowManageViewCommand);
             ShowPlanViewCommand = new ViewModelCommand(ExecuteShowPlanViewCommand);
             ShowUserViewCommand = new ViewModelCommand(ExecuteShowUserViewCommand);
+            MaximizeCommand = new ViewModelCommand(ExecuteMaximizeCommand);
+            MinimizeCommand = new ViewModelCommand(ExecuteMinimizeCommand);
+            CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
 
             //default
             ExecuteShowHomeViewCommand(null);
+        }
+
+        private void ExecuteCloseCommand(object obj)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void ExecuteMinimizeCommand(object obj)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        private void ExecuteMaximizeCommand(object obj)
+        {
+            if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            }
         }
 
         private void ExecuteShowHomeViewCommand(object obj)
@@ -96,5 +125,6 @@ namespace QuanLyChiTieu.ViewModel
             ChildCaption = "Tài khoản";
             ChildIcon = IconChar.UserAlt;
         }
+        
     }
 }
