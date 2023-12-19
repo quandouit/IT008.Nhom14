@@ -3,11 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:QuanLyChiTieu.View"
              mc:Ignorable="d" 
-             d:DesignHeight="630" d:DesignWidth="1000">
-    <Border Background="White"
-                Width="200"
-                Height="200">
+             d:DesignHeight="500" d:DesignWidth="600">
+
+    <Border CornerRadius="10"
+    BorderBrush="{StaticResource lightBorder}"
+    BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.RowSpan="3" 
+            Background="{StaticResource lightBackground}" 
+            CornerRadius="10"/>
+
+            <Grid Grid.Row="0">
+                <Button HorizontalAlignment="Right"
+                    Style="{StaticResource winCtrButton}"
+                    Tag="{StaticResource middleFont}"
+                    Margin="5 0"
+                    Width="30" Height="30">
+                    <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
+                </Button>
+            </Grid>
+
+            <Button Grid.Row="2" 
+            Style="{StaticResource darkButtonStyle}"
+            Content="Xác nhận"
+            FontSize="16"
+            Padding="10 5"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="15 15 0 15">
+                    <StackPanel Margin="30 0 30 15">
+                        <TextBlock Text="Tên giao dịch" Style="{StaticResource typeIconText}" Margin="0 5"/>
+                        <TextBox Style="{StaticResource aLineTextBox}" Tag="Trường bắt buộc" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="30 15">
+                        <TextBlock Text="Loại giao dịch" Style="{StaticResource typeIconText}" Margin="0 5"/>
+                        <ComboBox Margin="0 5 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="30 15">
+                        <TextBlock Text="Số tiền" Tag="Trường bắt buộc" Style="{StaticResource typeIconText}" Margin="0 5"/>
+                        <TextBox Style="{StaticResource aLineTextBox}" Height="20"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="30 15">
+                        <TextBlock Text="Ghi chú" Style="{StaticResource typeIconText}" Margin="0 5"/>
+                        <TextBox Style="{StaticResource aLineTextBox}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="10 10 45 10">
+                    <TextBlock Text="Ngày tạo" Style="{StaticResource typeIconText}" Margin="0 10"/>
+                    <Calendar Height="Auto" Margin="0 10"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Border>
 </UserControl>

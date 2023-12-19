@@ -11,7 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="MainWindow" Height="600" Width="400">
+        Title="MainWindow" Height="Auto" Width="500">
     <Border CornerRadius="10"
             BorderBrush="{StaticResource lightBorder}"
             BorderThickness="1">
@@ -19,9 +19,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.RowSpan="2" 
+            <Border Grid.RowSpan="3" 
                     Background="{StaticResource lightBackground}" 
                     CornerRadius="10"/>
 
@@ -48,8 +49,47 @@
                         Tag="{StaticResource middleFont}"
                         Margin="5 0">
                     <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
-                 </Button>
+                </Button>
             </Grid>
+
+            <Button Grid.Row="2" 
+                    Style="{StaticResource darkButtonStyle}"
+                    Content="Xác nhận"
+                    FontSize="16"
+                    Padding="10 5"/>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="15">
+
+                <StackPanel Margin="30 10" Orientation="Horizontal">
+                    <TextBlock Text="Tên giao dịch" Style="{StaticResource typeIconText}" Width="120"/>
+
+                    <TextBlock x:Name="tengiaodich" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                </StackPanel>
+
+                <StackPanel Margin="30 10" Orientation="Horizontal">
+                    <TextBlock Text="Loại giao dịch" Style="{StaticResource typeIconText}" Width="120"/>
+
+                    <TextBlock x:Name="loaigiaodich" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                </StackPanel>
+
+                <StackPanel Margin="30 10" Orientation="Horizontal">
+                    <TextBlock Text="Số tiền" Style="{StaticResource typeIconText}" Width="120"/>
+
+                    <TextBlock x:Name="sotien" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                </StackPanel>
+
+                <StackPanel Margin="30 10" Orientation="Horizontal">
+                    <TextBlock Text="Ngày tạo" Style="{StaticResource typeIconText}" Width="120"/>
+
+                    <TextBlock x:Name="ngaytao" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                </StackPanel>
+
+                <StackPanel Margin="30 10" Orientation="Horizontal">
+                    <TextBlock Text="Ghi chú" Style="{StaticResource typeIconText}" Width="120"/>
+
+                    <TextBlock x:Name="ghichu" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

@@ -111,9 +111,6 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
-
-
-
     <!--Menu Button Style-->
     <Style x:Key="menuButton" TargetType="RadioButton">
         <Setter Property="Height" Value="50"/>
@@ -139,6 +136,7 @@
                 <Setter Property="Background" Value="{StaticResource panelHover}"/>
                 <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource lightFont}"/>
             </Trigger>
 
             <Trigger Property="IsChecked" Value="True">
@@ -146,6 +144,8 @@
                 <Setter Property="Background" Value="{StaticResource panelActivate}"/>
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource lightFont}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -153,6 +153,7 @@
     <!--Menu Button Icon-->
     <Style x:Key="menuIconButton" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+        <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
         <Setter Property="Height" Value="22"/>
         <Setter Property="Width" Value="22"/>
         <Setter Property="Margin" Value="35, 0, 20, 0"/>
@@ -161,6 +162,7 @@
     <!--Menu Button Text Style-->
     <Style x:Key="menuIconText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+        <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="13.5"/>

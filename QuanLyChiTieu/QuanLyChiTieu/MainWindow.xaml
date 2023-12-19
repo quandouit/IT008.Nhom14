@@ -146,7 +146,7 @@
 
                         <Button x:Name="winMinButton"
                             Style="{StaticResource winCtrButton}"
-                            Tag=""
+                            Tag="{StaticResource middleFont}"
                                 Command="{Binding MinimizeCommand}">
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource winCtrIcon}"/>
                         </Button>

@@ -388,4 +388,73 @@
         </Setter>
     </Style>
 
+    <!--A line text box style-->
+    <Style x:Key="aLineTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{StaticResource lightBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource darkFont}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource darkBorderShadow}"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="MaxHeight" Value="800"/>
+        <Setter Property="MaxWidth" Value="800"/>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            MaxHeight="{TemplateBinding MaxHeight}"
+                            MaxWidth="{TemplateBinding MaxWidth}"
+                            SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="-2 0"/>
+                            <Label x:Name="InitText"
+                                   Content="{TemplateBinding Tag}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Visibility="Collapsed"
+                                   Foreground="{StaticResource greyFont}"
+                                   Padding="{TemplateBinding Padding}"/>
+                        </Grid>
+                    </Border>
+                    
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="InitText" Value="Visible"/>
+                        </MultiTrigger>
+                        
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource darkButtonOver}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource darkBorder}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>

@@ -59,7 +59,7 @@
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="Auto" Binding="{Binding STT}"/>
                 <DataGridTextColumn Header="Tên giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENGD}"/>
                 <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENLOAIGD}"/>
-                <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding TIEN}">
+                <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding TIEN, StringFormat={}{0:N0}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -77,24 +77,25 @@
                 <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NGAYTAO, StringFormat=dd/MM/yyyy}"/>
 
                 <DataGridTemplateColumn Header="Chức năng"    
-                                        IsReadOnly="True"  
-                                        Width="Auto">
+                        IsReadOnly="True"  
+                        Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Width="Auto">
                                 <Button Style="{StaticResource mixedButtonStyle}"
-                                        Content="Chi tiết"
-                                        Margin="-5 0 0 0"
-                                        Padding="6 4"/>
+                        Content="Chi tiết"
+                        Command="{Binding DataContext.ShowInfoBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        Margin="-5 0 0 0"
+                        Padding="6 4"/>
                                 <Button Style="{StaticResource mixedButtonStyle}"
-                                        Content="Xóa"
-                                        Margin="3 0"
-                                        Padding="6 4"/>
+                        Content="Xóa"
+                        Command="{Binding DataContext.DeleteSingleBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        Margin="3 0"
+                        Padding="6 4"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
