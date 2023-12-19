@@ -51,6 +51,16 @@
                 Grid.Row="0">
         </Border>
 
+        <Button x:Name="winCloseButton"
+        Style="{StaticResource winCtrButton}"
+        Tag="{StaticResource redUI}"
+        Command="{Binding CloseCommand}"
+        Grid.Row="0"
+        Grid.Column="1"
+        HorizontalAlignment="Right">
+        <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
+        </Button>
+
         <Grid>
             <Canvas>
                 <Polygon

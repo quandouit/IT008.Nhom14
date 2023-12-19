@@ -75,6 +75,7 @@ namespace QuanLyChiTieu.View
             {
                 Application.Current.MainWindow = new MainWindow();
                 Application.Current.MainWindow.Show();
+                this.Close();
             }
             else
             {
