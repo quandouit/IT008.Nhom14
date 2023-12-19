@@ -9,6 +9,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1000">
 
+    <UserControl.DataContext>
+        <viewmodel:ManageViewModel/>
+    </UserControl.DataContext>
+    
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </UserControl.Resources>
@@ -23,10 +27,12 @@
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource darkButtonStyle}"
                         Content="Thêm mới"
+                        Command="{Binding AddNewBillCommand}"
                         FontSize="18"
                         Margin="20 0"/>
                 <Button Style="{StaticResource darkButtonStyle}"
                         Content="Xóa đã chọn"
+                        Command="{Binding DeleteChoosenBillCommand}"
                         FontSize="18"/>
             </StackPanel>
         </Grid>
