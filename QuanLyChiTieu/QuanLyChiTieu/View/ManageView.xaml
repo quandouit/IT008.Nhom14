@@ -14,16 +14,34 @@
     </UserControl.Resources>
 
     <Grid Background="{StaticResource lightBackground}">
-        <DataGrid x:Name="ManageDataGrid"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource greenButtonStyle}"
+                        Content="Thêm mới"
+                        FontSize="18"
+                        Margin="20 0"/>
+                <Button Style="{StaticResource redButtonStyle}"
+                        Content="Xóa đã chọn"
+                        FontSize="18"/>
+            </StackPanel>
+        </Grid>
+
+        <DataGrid Grid.Row="1"
+                  x:Name="ManageDataGrid"
                   ItemsSource="{Binding GiaoDichData}"
-                  Style="{DynamicResource ManageDataGridStyle}"
-                  CellStyle="{DynamicResource ManageDataGridCellStyle}" 
-                  ColumnHeaderStyle="{DynamicResource ManageDataGridColumnHeaderStyle}"
-                  RowStyle="{DynamicResource ManageDataGridRowStyle}"
+                  Style="{StaticResource ManageDataGridStyle}"
+                  CellStyle="{StaticResource ManageDataGridCellStyle}" 
+                  ColumnHeaderStyle="{StaticResource ManageDataGridColumnHeaderStyle}"
+                  RowStyle="{StaticResource ManageDataGridRowStyle}"
                   Width="Auto">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn CanUserResize="False" 
-                                        Width="Auto" 
+                                        Width="Auto"
                                         ElementStyle="{StaticResource ManageDataGridCheckBoxStyle}">
                     <DataGridCheckBoxColumn.HeaderTemplate>
                         <DataTemplate>
@@ -34,20 +52,21 @@
 
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="Auto" Binding="{Binding STT}"/>
                 <DataGridTextColumn Header="Tên giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENGD}"/>
-                <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding MALOAIGD}"/>
+                <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENLOAIGD}"/>
                 <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding TIEN}"/>
                 <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NGAYTAO}"/>
 
                 <DataGridTemplateColumn Header="Chức năng"    
                                         IsReadOnly="True"  
-                                        Width="*">
+                                        Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource darkButtonStyle}"
-                                        Content="Edit"/>
-                                <Button Style="{StaticResource darkButtonStyle}"
-                                        Content="Remove"/>
+                            <StackPanel Orientation="Horizontal" Width="Auto">
+                                <Button Style="{StaticResource greenButtonStyle}"
+                                        Content="Chi tiết"
+                                        Margin="3 0"/>
+                                <Button Style="{StaticResource redButtonStyle}"
+                                        Content="Xóa"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

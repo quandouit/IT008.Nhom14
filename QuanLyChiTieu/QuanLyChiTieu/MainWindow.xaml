@@ -98,7 +98,6 @@
                     </RadioButton>
 
                     <RadioButton 
-                        Name="btnAccount"
                         Style="{StaticResource menuButton}"
                         Tag="{StaticResource lightFont}"
                         Command="{Binding ShowUserViewCommand}">
@@ -181,7 +180,7 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
 
-                            <TextBlock x:Name="txtUserName" Text="User0" 
+                            <TextBlock x:Name="txtUserName" Text="UsernameHere"
                                        Margin="10,0,0,0"
                                        Foreground="{StaticResource darkFont}"
                                        FontFamily="Monserrat"
@@ -201,9 +200,9 @@
 
                     </Grid>
 
-                    <ContentControl Content="{Binding CurrentChildView}" 
-                          Grid.Row="2"
-                          Margin="15"/>
+                    <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="15"/>
                 </Grid>
             </Border>
         </Grid>

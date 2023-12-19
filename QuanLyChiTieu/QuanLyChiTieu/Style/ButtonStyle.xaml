@@ -394,4 +394,100 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--Set Green button-->
+    <Style x:Key="greenButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="BorderBrush" Value="{StaticResource blurGreen}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                    x:Name="lightButtonBorder"
+                    CornerRadius="5"
+                    Background="{StaticResource greenUI}"
+                    Width="{TemplateBinding Width}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Padding="{TemplateBinding Padding}">
+
+                        <ContentPresenter
+                        Focusable="False"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        Margin="{TemplateBinding Padding}"
+                        RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                            Property="Background"
+                            Value="{StaticResource lighterGreen}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                            Property="Background"
+                            Value="{StaticResource darkerGreen}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Set Red button-->
+    <Style x:Key="redButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="BorderBrush" Value="{StaticResource blurRed}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                    x:Name="lightButtonBorder"
+                    CornerRadius="5"
+                    Background="{StaticResource redUI}"
+                    Width="{TemplateBinding Width}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Padding="{TemplateBinding Padding}">
+
+                        <ContentPresenter
+                        Focusable="False"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        Margin="{TemplateBinding Padding}"
+                        RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                            Property="Background"
+                            Value="{StaticResource lighterRed}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                            Property="Background"
+                            Value="{StaticResource darkerRed}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary> 
