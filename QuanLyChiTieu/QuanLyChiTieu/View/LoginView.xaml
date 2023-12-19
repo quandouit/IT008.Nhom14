@@ -26,18 +26,42 @@
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
 
-        <Border CornerRadius="10,0, 0, 10" 
-                Background="{DynamicResource darkBackground}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="0,0, 0, 10" 
+                Background="{DynamicResource darkBackground}"
+                Grid.Row="1"/>
+
+        <Border CornerRadius="10,0, 0, 0" 
+                Background="{DynamicResource darkBackground}"
+                Grid.Row="0"/>
 
         <Border Background="{StaticResource lightBackground}"
                 Grid.Column="1"
-                CornerRadius="0, 10, 10, 0">
+                CornerRadius="0, 0, 10, 0"
+                Grid.Row="1">
+        </Border>
+
+        <Border Background="{StaticResource lightBackground}"
+                Grid.Column="1"
+                CornerRadius="0, 10, 0, 0"
+                Grid.Row="0">
         </Border>
 
         <Grid>
             <Canvas>
                 <Polygon
-                    Points="0, 20, 230, 140, 0, 270" Canvas.Left="38" Canvas.Top="100" RenderTransformOrigin="0.5,0.5" Fill="#FF6E55B5" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    Points="0, 20, 230, 140, 0, 270" 
+                    Canvas.Left="38" 
+                    Canvas.Top="100" 
+                    RenderTransformOrigin="0.5,0.5" 
+                    Fill="#FF6E55B5" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Top"
+                    Grid.Row="1">
                     <Polygon.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -48,16 +72,27 @@
                     </Polygon.RenderTransform>
                 </Polygon>
                 <Polygon
-                    Points="100, 400, 200, 370, 180, 470" Fill="#FF6D52BB" HorizontalAlignment="Left" Canvas.Left="185" VerticalAlignment="Center" Canvas.Top="23"/>
+                    Points="100, 400, 200, 370, 180, 470" 
+                    Fill="#FF6D52BB" 
+                    HorizontalAlignment="Left" 
+                    Canvas.Left="185" 
+                    VerticalAlignment="Center" 
+                    Canvas.Top="23"
+                    Grid.Row="1"/>
                 <Ellipse
                     Width="40" Height="40"
-                    Fill="#FF6F55B9" Canvas.Left="97" Canvas.Top="523">
-
+                    Fill="#FF6F55B9" 
+                    Canvas.Left="97" 
+                    Canvas.Top="523"
+                    Grid.Row="1">
                 </Ellipse>
+
+
             </Canvas>
         </Grid>
 
-        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+        <StackPanel Grid.Column="0" VerticalAlignment="Center"
+                    Grid.Row="1">
             <TextBlock Text="ĐĂNG KÍ"
                        Foreground = "White"
                        FontFamily="Tahoma"
@@ -71,7 +106,9 @@
                        HorizontalAlignment="Center"
                        LineHeight="60"/>
 
-            <Button Content="ĐĂNG KÍ" Style="{StaticResource buttonSignUp}"/>
+            <Button Content="ĐĂNG KÍ" 
+                    Style="{StaticResource buttonSignUp}"
+                    Grid.Row="1"/>
 
         </StackPanel>
 
@@ -83,11 +120,14 @@
             FontWeight="Bold"
             HorizontalAlignment="Center"
             Margin="0, 70, 0, 550"
-            Foreground="{StaticResource darkBackground}">
+            Foreground="{StaticResource darkBackground}"
+            Grid.Row="1">
 
             </TextBlock>
 
-            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <StackPanel Grid.Column="1" 
+                        VerticalAlignment="Center"
+                        Grid.Row="1">
 
                 <Border 
                 BorderThickness="0.7"
