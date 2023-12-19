@@ -28,7 +28,7 @@
     <SolidColorBrush x:Key="greyFont">#c2b3c7</SolidColorBrush>
     
     <!--Special Color-->
-    <SolidColorBrush x:Key="greenUI">#38e54d</SolidColorBrush>
+    <SolidColorBrush x:Key="greenUI">#02c702</SolidColorBrush>
     <SolidColorBrush x:Key="lighterGreen">#77fc87</SolidColorBrush>
     <SolidColorBrush x:Key="darkerGreen">#279c35</SolidColorBrush>
     <SolidColorBrush x:Key="blurGreen">#74b07b</SolidColorBrush>

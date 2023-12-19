@@ -284,6 +284,7 @@
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Width" Value="Auto"/>
         <Setter Property="ValidationErrorTemplate">
             <Setter.Value>

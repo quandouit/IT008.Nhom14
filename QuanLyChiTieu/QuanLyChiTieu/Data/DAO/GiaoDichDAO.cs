@@ -21,10 +21,9 @@ namespace QuanLyChiTieu.Data.DAO
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
-                sqlCmd.CommandText = "select TENGD, TENLOAIGD, FORMAT(NGAYTAO, 'dd/MM/yyyy') AS NGAYTAO, TIEN from GIAODICH GD, LOAIGIAODICH LGD where ID = @ID and GD.MALOAIGD = LGD.MALOAIGD";
+                sqlCmd.CommandText = "SELECT ROW_NUMBER() OVER (ORDER BY NGAYTAO DESC) AS STT, TENGD, TENLOAIGD, NGAYTAO, TIEN, TRANGTHAI FROM GIAODICH GD, LOAIGIAODICH LGD WHERE ID = @ID AND GD.MALOAIGD = LGD.MALOAIGD"; ;
                 SqlParameter parameterTK = new SqlParameter("@ID", QuanLyChiTieu.SourceClass.mainUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
-                
 
                 var reader = sqlCmd.ExecuteReader();
 

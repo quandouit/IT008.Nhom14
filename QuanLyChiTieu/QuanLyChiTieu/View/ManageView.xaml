@@ -59,8 +59,22 @@
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="Auto" Binding="{Binding STT}"/>
                 <DataGridTextColumn Header="Tên giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENGD}"/>
                 <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENLOAIGD}"/>
-                <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding TIEN}"/>
-                <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NGAYTAO}"/>
+                <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding TIEN}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding TRANGTHAI}" Value="IN">
+                                    <Setter Property="Foreground" Value="{StaticResource greenUI}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding TRANGTHAI}" Value="OUT">
+                                    <Setter Property="Foreground" Value="{StaticResource redUI}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NGAYTAO, StringFormat=dd/MM/yyyy}"/>
 
                 <DataGridTemplateColumn Header="Chức năng"    
                                         IsReadOnly="True"  
