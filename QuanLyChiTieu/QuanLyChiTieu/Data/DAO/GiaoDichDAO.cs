@@ -21,8 +21,8 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.Connection = sqlCon;
                 sqlCmd.CommandText = "select * from GIAODICH where ID = @ID";
 
-                SqlParameter parameterTK = new SqlParameter("@ID", QuanLyChiTieu.SourceClass.mainUser.ID);
-                sqlCmd.Parameters.Add(parameterTK);
+                SqlParameter parameterID = new SqlParameter("@ID", QuanLyChiTieu.SourceClass.mainUser.ID);
+                sqlCmd.Parameters.Add(parameterID);
                 
 
                 var reader = sqlCmd.ExecuteReader();

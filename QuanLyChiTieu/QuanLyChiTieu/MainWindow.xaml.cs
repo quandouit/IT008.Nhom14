@@ -19,6 +19,8 @@ using System.Data;
 using System.Data.SqlTypes;
 using System.Windows.Markup.Localizer;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View;
+using QuanLyChiTieu.ViewModel;
 
 namespace QuanLyChiTieu
 {
@@ -33,45 +35,11 @@ namespace QuanLyChiTieu
     {
         public static NguoiDungDTO mainUser;
     }
-    public class Test : DBConnection
-    {
-        //Ke thua va bo sung them phuong thuc truy xuat ra man hinh
-        public void ThongBao()
-        {
-            OpenConn();
-            SqlCommand sqlCmd = new SqlCommand();
-            sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.CommandText = "select * from NGUOIDUNG";
-            sqlCmd.Connection = sqlCon;
-
-            string data = "";
-            SqlDataReader reader = sqlCmd.ExecuteReader();
-            while (reader.Read())
-            {
-                string ID = reader.GetString(0);
-                string username = reader.GetString(1);
-                string password = reader.GetString(2);
-                string phone = reader.GetString(3);
-                Decimal balance = reader.GetDecimal(4);
-                
-                data = data + " " + ID + " " + username + " " + " " + password + " " + phone;
-                data = data + " " + balance.ToString(); 
-                data = data + "\n";
-            }
-            reader.Close();
-            CloseConn();
-            MessageBox.Show(data);
-        }
-    }
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-
-            //Ket noi thu database
-            //Test test = new Test();
-            //test.ThongBao();
         }
 
         [DllImport("user32.dll")]

@@ -35,7 +35,7 @@ namespace QuanLyChiTieu.Data.DAO
                     {
                         while (reader.Read())
                         {
-                            rt.ID = reader.GetString(0);
+                            rt.ID = reader.GetInt32(0);
                             rt.TaiKhoan = reader.GetString(1);
                             rt.MatKhau = reader.GetString(2);
                             rt.Sdt = reader.GetString(3);
@@ -44,7 +44,7 @@ namespace QuanLyChiTieu.Data.DAO
                     }   
                     else
                     {
-                        rt.ID = null;
+                        rt.ID = 0;
                         rt.TaiKhoan = null;
                         rt.MatKhau = null;
                         rt.Sdt = null;

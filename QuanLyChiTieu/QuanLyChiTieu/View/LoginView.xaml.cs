@@ -71,7 +71,7 @@ namespace QuanLyChiTieu.View
             NguoiDungDTO userLogin = LoginBUS.Try_Login(user);
             QuanLyChiTieu.SourceClass.mainUser = userLogin;
 
-            if(userLogin.ID != null) 
+            if (userLogin.ID != 0) 
             {
                 MainWindow main = new MainWindow();
                 main.Show();
