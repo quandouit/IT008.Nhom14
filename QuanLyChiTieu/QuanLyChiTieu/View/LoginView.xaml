@@ -16,6 +16,7 @@
         Title="Login" 
         Height="720"
         Width="1080" Foreground="Black">
+    
     <Window.DataContext>
         <viewmodel:LoginViewModel/>
     </Window.DataContext>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuanLyChiTieu.View"             
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
+             xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1000">
 
@@ -38,23 +38,32 @@
         </Grid>
 
         <DataGrid Grid.Row="1"
-                  x:Name="ManageDataGrid"
-                  ItemsSource="{Binding GiaoDichData}"
-                  Style="{StaticResource ManageDataGridStyle}"
-                  CellStyle="{StaticResource ManageDataGridCellStyle}" 
-                  ColumnHeaderStyle="{StaticResource ManageDataGridColumnHeaderStyle}"
-                  RowStyle="{StaticResource ManageDataGridRowStyle}"
-                  Width="Auto">
+          x:Name="ManageDataGrid"
+          ItemsSource="{Binding GiaoDichData}"
+          Style="{StaticResource ManageDataGridStyle}"
+          CellStyle="{StaticResource ManageDataGridCellStyle}" 
+          ColumnHeaderStyle="{StaticResource ManageDataGridColumnHeaderStyle}"
+          RowStyle="{StaticResource ManageDataGridRowStyle}"
+          Width="Auto">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn CanUserResize="False" 
-                                        Width="Auto"
-                                        ElementStyle="{StaticResource ManageDataGridCheckBoxStyle}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox x:Name="HeaderCheckBox"
+                                  Style="{StaticResource ManageDataGridCheckBoxStyle}"
+                                  IsChecked="{Binding DataContext.IsAllSelected, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}"
+                                  Command="{Binding DataContext.UpdateIsAllSelectedCommand,  RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    </DataGridTemplateColumn.Header>
+                    
+                    <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Style="{StaticResource ManageDataGridCheckBoxStyle}"/>
+                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Style="{StaticResource ManageDataGridCheckBoxStyle}"
+                                      Command="{Binding DataContext.UpdateIsAllSelectedCommand,  RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                      CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
                         </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="Auto" Binding="{Binding STT}"/>
                 <DataGridTextColumn Header="Tên giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENGD}"/>
@@ -77,21 +86,21 @@
                 <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NGAYTAO, StringFormat=dd/MM/yyyy}"/>
 
                 <DataGridTemplateColumn Header="Chức năng"    
-                        IsReadOnly="True"  
-                        Width="Auto">
+                IsReadOnly="True"  
+                Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Width="Auto">
                                 <Button Style="{StaticResource mixedButtonStyle}"
-                        Content="Chi tiết"
-                        Command="{Binding DataContext.ShowInfoBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                        Margin="-5 0 0 0"
-                        Padding="6 4"/>
+                Content="Chi tiết"
+                Command="{Binding DataContext.ShowInfoBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Margin="-5 0 0 0"
+                Padding="6 4"/>
                                 <Button Style="{StaticResource mixedButtonStyle}"
-                        Content="Xóa"
-                        Command="{Binding DataContext.DeleteSingleBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                        Margin="3 0"
-                        Padding="6 4"/>
+                Content="Xóa"
+                Command="{Binding DataContext.DeleteSingleBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Margin="3 0"
+                Padding="6 4"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

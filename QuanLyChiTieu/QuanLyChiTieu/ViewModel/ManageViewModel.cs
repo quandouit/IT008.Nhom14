@@ -6,17 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QuanLyChiTieu.ViewModel
 {
     public class ManageViewModel : ViewModelBase
     {
+        public bool IsAllSelected { get; set; }
         public DataTable GiaoDichData { get; set; }
         public ICommand AddNewBillCommand { get; }
         public ICommand DeleteChoosenBillCommand { get; }
         public ICommand ShowInfoBillCommand { get; }
         public ICommand DeleteSingleBillCommand { get; }
+        public ICommand UpdateIsAllSelectedCommand { get; set; }
+
         public ManageViewModel()
         {
             LoadGiaoDichData();
@@ -25,12 +29,18 @@ namespace QuanLyChiTieu.ViewModel
             DeleteChoosenBillCommand = new ViewModelCommand(ExecuteDeleteChoosenBillCommand);
             ShowInfoBillCommand = new ViewModelCommand(ExecuteShowInfoBillCommand);
             DeleteSingleBillCommand = new ViewModelCommand(ExecuteDeleteSingleBillCommand);
+            
+            UpdateIsAllSelectedCommand = new ViewModelCommand(ExecuteUpdateIsAllSelectedCommand);
         }
 
         public void LoadGiaoDichData()
         {
             GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
-            OnPropertyChanged(nameof(GiaoDichData));
+            DataColumn isCheckedColumn = new DataColumn("IsChecked", typeof(bool))
+            {
+                DefaultValue = false
+            };
+            GiaoDichData.Columns.Add(isCheckedColumn);
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
@@ -47,6 +57,23 @@ namespace QuanLyChiTieu.ViewModel
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
             MessageBox.Show("Thuc hien xoa giao dich nay");
+        }
+        private void ExecuteUpdateIsAllSelectedCommand(object obj)
+        {
+            CheckBox checkBox = obj as CheckBox;
+            if (checkBox.Name == "HeaderCheckBox")
+            {
+                foreach (DataRow row in GiaoDichData.Rows)
+                {
+                    row["IsChecked"] = IsAllSelected;
+                }
+                OnPropertyChanged(nameof(IsAllSelected));
+            }
+            else
+            {
+                IsAllSelected = GiaoDichData.Rows.Cast<DataRow>().All(row => (bool)row["IsChecked"]);
+                OnPropertyChanged(nameof(IsAllSelected));
+            }
         }
     }
 }
