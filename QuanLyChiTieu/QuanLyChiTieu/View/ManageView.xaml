@@ -84,12 +84,14 @@
                             <StackPanel Orientation="Horizontal" Width="Auto">
                                 <Button Style="{StaticResource mixedButtonStyle}"
                         Content="Chi tiết"
-                        Command="{Binding DataContext.ShowInfoBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        Command="{Binding DataContext.ShowInfoBillCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding}"
                         Margin="-5 0 0 0"
                         Padding="6 4"/>
                                 <Button Style="{StaticResource mixedButtonStyle}"
                         Content="Xóa"
-                        Command="{Binding DataContext.DeleteSingleBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        Command="{Binding DataContext.DeleteSingleBillCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding}"
                         Margin="3 0"
                         Padding="6 4"/>
                             </StackPanel>

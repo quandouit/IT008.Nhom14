@@ -31,7 +31,23 @@ namespace QuanLyChiTieu.Data.BUS
 
             return sortedTable;
         }
+        public static void ThemGiaoDich(GiaoDichDTO obj)
+        {
+            if (GiaoDichDAO.ThemGiaoDich(obj) == 0)
+                MessageBox.Show("Them moi giao dich thanh cong!");
+            else
+                MessageBox.Show("Them moi giao dich that bai!");
+        }
+        public static void XoaGiaoDich(object MAGD)
+        {
+            if (GiaoDichDAO.XoaGiaoDich(MAGD) == 0)
+                MessageBox.Show("Xoa giao dich thanh cong!");
+            else
+                MessageBox.Show("Xoa giao dich that bai!");
+        }
+        public static void HienThiChiTietGiaoDich(object obj)
+        {
+            GiaoDichDAO.HienThiChiTietGiaoDich(obj);
+        }
     }
-
-
 }

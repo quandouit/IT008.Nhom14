@@ -1,4 +1,5 @@
 ﻿using QuanLyChiTieu.Data.BUS;
+using QuanLyChiTieu.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,6 +36,11 @@ namespace QuanLyChiTieu.ViewModel
         private void ExecuteAddNewBillCommand(object obj)
         {
             MessageBox.Show("Thuc hien Them moi giao dich");
+            /*
+            GiaoDichDTO gd = new GiaoDichDTO();
+            GiaoDichBUS.ThemGiaoDich(gd);
+            LoadGiaoDichData();
+            */
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
@@ -42,11 +48,18 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteShowInfoBillCommand(object obj)
         {
-            MessageBox.Show("Hien thi thong tin chi tiet giao dich");
+            if(obj is DataRowView selectedRow)
+            {
+                GiaoDichBUS.HienThiChiTietGiaoDich(selectedRow[0]);
+            }
         }
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
-            MessageBox.Show("Thuc hien xoa giao dich nay");
+            if (obj is DataRowView selectedRow)
+            {
+                GiaoDichBUS.XoaGiaoDich(selectedRow[0]);
+            }
+            LoadGiaoDichData();
         }
     }
 }

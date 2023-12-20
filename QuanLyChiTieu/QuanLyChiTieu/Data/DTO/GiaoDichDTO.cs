@@ -9,9 +9,9 @@ namespace QuanLyChiTieu.Data.DTO
     public class GiaoDichDTO
     {
         public GiaoDichDTO() { }
-        public string MaGD { get; set; }
-        public string ID { get; set; }
-        public string MaLoaiGD { get; set; }
+        public int MaGD { get; set; }
+        public int ID { get; set; }
+        public int MaLoaiGD { get; set; }
         public string TenGD { get; set; }
         public decimal Tien { get; set; }
         public string MinhHoa { get; set; }
