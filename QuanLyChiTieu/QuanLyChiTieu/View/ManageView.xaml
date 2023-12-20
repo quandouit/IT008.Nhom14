@@ -86,21 +86,21 @@
                 <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NGAYTAO, StringFormat=dd/MM/yyyy}"/>
 
                 <DataGridTemplateColumn Header="Chức năng"    
-                IsReadOnly="True"  
-                Width="Auto">
+                                        IsReadOnly="True"  
+                                        Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Width="Auto">
                                 <Button Style="{StaticResource mixedButtonStyle}"
-                Content="Chi tiết"
-                Command="{Binding DataContext.ShowInfoBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                Margin="-5 0 0 0"
-                Padding="6 4"/>
+                                        Content="Chi tiết"
+                                        Command="{Binding DataContext.ShowInfoBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        Margin="-5 0 0 0"
+                                        Padding="6 4"/>
                                 <Button Style="{StaticResource mixedButtonStyle}"
-                Content="Xóa"
-                Command="{Binding DataContext.DeleteSingleBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                Margin="3 0"
-                Padding="6 4"/>
+                                        Content="Xóa"
+                                        Command="{Binding DataContext.DeleteSingleBillCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        Margin="3 0"
+                                        Padding="6 4"/> 
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
