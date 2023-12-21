@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:QuanLyChiTieu.View"
-        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
+        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         
         WindowStartupLocation="CenterScreen" 
@@ -156,6 +156,7 @@
                                Text="Tên đăng nhập" Style="{StaticResource hintText}"/>
                         <TextBox x:Name="tb_email"
                              TextChanged="tb_email_TextChanged"
+                             Text="{Binding Username}"
                              Style="{StaticResource textBox}"/>
                     </Grid>
 
@@ -179,20 +180,28 @@
                         MouseDown="text_pass_MouseDown"
                         Text="Mật khẩu" Style="{StaticResource hintText}" />
                         <PasswordBox x:Name="pb_pass"
-                             PasswordChanged="pb_pass_PasswordChanged"
-                             Style="{StaticResource passBox}"/>
+                                 Style="{StaticResource passBox}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                           CommandParameter="{Binding ElementName=pb_pass}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
                     </Grid>
 
+                    
                 </Border>
-                <Button
+            <Button
                 Content="ĐĂNG NHẬP"
                 x:Name="bt_signin" 
                 Click="bt_signin_Click"
                 Style="{StaticResource buttonSignIn}"
                 HorizontalAlignment="Right"
-                Margin="0, 0, 120, 0"/>
+                Margin="0, 0, 120, 0"
+                Command="{Binding LoginCommand}"/>
 
-            </StackPanel>
+        </StackPanel>
     </Grid>
 
 </Window>

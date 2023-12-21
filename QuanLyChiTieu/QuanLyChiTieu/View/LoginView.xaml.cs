@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using QuanLyChiTieu.Data.BUS;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.ViewModel;
 
 namespace QuanLyChiTieu.View
 {
@@ -24,6 +25,7 @@ namespace QuanLyChiTieu.View
         public LoginView()
         {
             InitializeComponent();
+           
         }
 
         private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
