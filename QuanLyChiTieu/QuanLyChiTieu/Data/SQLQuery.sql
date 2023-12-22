@@ -13,9 +13,9 @@ create table NGANSACH
 (
 MANS int identity(1,1) primary key,
 ID int,
-TENNS varchar(40),
+TENNS nvarchar(40),
 TIENNS decimal,
-HSD smalldatetime,
+HSD date,
 constraint FK_ID_NGANSACH foreign key (ID) references NGUOIDUNG(ID),
 )
 go
@@ -23,7 +23,7 @@ go
 create table LOAIGIAODICH
 (
 MALOAIGD int identity(1,1) primary key,
-TENLOAIGD varchar(40),
+TENLOAIGD nvarchar(40),
 TRANGTHAI varchar(40),
 )
 go
@@ -33,11 +33,10 @@ create table GIAODICH
 MAGD int identity(1,1) primary key,
 ID int,
 MALOAIGD int,
-TENGD varchar(40),
+TENGD nvarchar(40),
 TIEN decimal,
-MINHHOA text,
-GHICHU text,
-NGAYTAO smalldatetime,
+GHICHU nvarchar(200),
+NGAYTAO date,
 constraint FK_ID_GIAODICH foreign key (ID) references NGUOIDUNG(ID),
 constraint FK_MALOAIGD_GIAODICH foreign key (MALOAIGD) references LOAIGIAODICH(MALOAIGD),
 )
@@ -55,49 +54,49 @@ go
 
 insert into NGANSACH (ID, TENNS, TIENNS, HSD)
 values
-('1' , 'Ngan sach thang 10/23' , '6000000' , '2023-10-01'),
-('5' , 'Ngan sach thang 11/23' , '10000000' , '2023-11-01'),
-('4' , 'Ngan sach thang 10/23' , '20000000' , '2023-10-01'),
-('3' , 'Ngan sach thang 10/23' , '4600000' , '2023-10-01'),
-('2' , 'Ngan sach thang 09/23' , '3500000' , '2023-09-01'),
-('3' , 'Ngan sach thang 12/23' , '1200000' , '2023-12-01'),
-('6' , 'Ngan sach thang 10/23' , '1000000' , '2023-10-01'),
-('4' , 'Ngan sach thang 11/23' , '15000000' , '2023-11-01');
+('1' , N'Ngân sách tháng 10/23' , '6000000' , '2023-10-01'),
+('5' , N'Ngân sách tháng 11/23' , '10000000' , '2023-11-01'),
+('4' , N'Ngân sách tháng 10/23' , '20000000' , '2023-10-01'),
+('3' , N'Ngân sách tháng 10/23' , '4600000' , '2023-10-01'),
+('2' , N'Ngân sách tháng 09/23' , '3500000' , '2023-09-01'),
+('3' , N'Ngân sách tháng 12/23' , '1200000' , '2023-12-01'),
+('6' , N'Ngân sách tháng 10/23' , '1000000' , '2023-10-01'),
+('4' , N'Ngân sách tháng 11/23' , '15000000' , '2023-11-01');
 go
 
 insert into LOAIGIAODICH(TENLOAIGD, TRANGTHAI)
 values
-('An uong' , 'OUT'),
-('Mua sam' , 'OUT'),
-('Luong thuong' , 'IN'),
-('Hoc tap' , 'OUT'),
-('Phat sinh' , 'OUT');
+(N'Ăn uống' , 'OUT'),
+(N'Mua sắm' , 'OUT'),
+(N'Lương thưởng' , 'IN'),
+(N'Học tập' , 'OUT'),
+(N'Phát sinh' , 'OUT');
 go
 
-insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, MINHHOA, GHICHU, NGAYTAO)
+insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, GHICHU, NGAYTAO)
 values
-('2' , '4' , 'Hoc phi thang 10' , '2500000' , null , null , '2023-10-01'),
-('1' , '1' , 'Dam cuoi anh Ba' , '500000' , null , null , '2023-11-06'),
-('1' , '3' , 'Luong thang 9' , '12000000' , null , 'Cong 500000 thuong them gio' , '2023-10-05'),
-('5' , '5' , 'Phat vuot den do' , '200000' , null , 'Nop tai cong an phuong' , '2023-08-22'),
-('6' , '5' , 'Vien phi' , '3000000' , null , null , '2023-10-16'),
-('3' , '2' , 'Quan ao tet' , '1760000' , null , null , '2023-01-30'),
-('3' , null , 'Ung ho lu lut' , '300000' , null , null , '2023-07-25'),
-('5' , '3' , 'Tien thuong tet' , '2000000' , null , null , '2023-02-01'),
-('4' , null , 'Tien dien thang 10' , '688000' , null , 'Thanh toan tien mat' , '2023-11-04'),
-('4' , '5' , 'Spotify prenium Month 12' , '60000' , null , '//Tu dong thanh toan' , '2022-12-01');
+('2' , '4' , N'Học phí tháng 10' , '2500000', null , '2023-10-01'),
+('1' , '1' , N'Đám cưới anh Ba' , '500000', null , '2023-11-06'),
+('1' , '3' , N'Lương tháng 9' , '12000000', N'Cộng 500000 làm thêm giờ' , '2023-10-05'),
+('5' , '5' , N'Phạt vượt đèn đỏ' , '200000', N'Nộp tại công an phường' , '2023-08-22'),
+('6' , '5' , N'Viện phí' , '3000000', null , '2023-10-16'),
+('3' , '2' , N'Quần áo tết' , '1760000', null , '2023-01-30'),
+('3' , null , N'Ủng hộ lũ lụt' , '300000' , null , '2023-07-25'),
+('5' , '3' , N'Tiền thưởng tết' , '2000000' , null , '2023-02-01'),
+('4' , null , N'Tiền điện tháng 10' , '688000' , N'Thanh toán tiền mặt' , '2023-11-04'),
+('4' , '5' , N'Spotify prenium Month 12' , '60000' , N'//Tự động thanh toán' , '2022-12-01');
 go
 
-insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, MINHHOA, GHICHU, NGAYTAO)
+insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, GHICHU, NGAYTAO)
 values
-('6', '3', 'Thuong tet 2023', '1000000', null, null, '2023-12-20'),
-('6', '1', 'An toi', '50000', null, null, '2023-12-19'),
-('6', '2', 'Mua trai cay cung', '140000', null, null, '2023-12-15'),
-('6', '4', 'Mua SGK', '480000', null, null, '2023-09-12'),
-('6', '5', 'Sua dong ho', '250000', null, null, '2023-11-30'),
-('6', null, 'Mua hang tu thien', '50000', null, null, '2023-12-01'),
-('6', '3', 'Tien tang ca', '1000000', null, null, '2023-12-02'),
-('6', '5', 'Bo Tiet kiem', '200000', null, null, '2023-11-27'),
-('6', '2', 'Sam do tet', '720000', null, null, '2024-01-20'),
-('6', '1', 'Di cho', '176000', null, null, '2023-12-19');
+('6', '3', N'Thưởng 2023', '1000000', null, '2023-12-20'),
+('6', '1', N'Ăn tối', '50000', null, '2023-12-19'),
+('6', '2', N'Mua trái cây cúng', '140000', null, '2023-12-15'),
+('6', '4', N'Mua SGK', '480000', null, '2023-09-12'),
+('6', '5', N'Sửa đồng hồ', '250000', null, '2023-11-30'),
+('6', null, N'Mua hàng từ thiện', '50000', null, '2023-12-01'),
+('6', '3', N'Tiền tăng ca', '1000000', null, '2023-12-02'),
+('6', '5', N'Bỏ tiết kiệm', '200000', null, '2023-11-27'),
+('6', '2', N'Sắm đồ tết', '720000', null, '2024-01-20'),
+('6', '1', N'Đi chợ', '176000', null, '2023-12-19');
 go

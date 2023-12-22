@@ -1,8 +1,10 @@
 ﻿using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View.CustomDialog;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,8 +33,26 @@ namespace QuanLyChiTieu.Data.BUS
 
             return sortedTable;
         }
-        public static void ThemGiaoDich(GiaoDichDTO obj)
+        public static void ThemGiaoDich()
         {
+            GiaoDichDTO obj = new GiaoDichDTO();
+            //EditDialog editDialog = new EditDialog();
+            /*
+             Khởi tạo dữ liệu giao dịch tạm thười test tính năng thêm 
+             ID = 6; MALOAIGD = 1; TENGD = An uong test; TIEN = 100000; 
+             MINHHOA, GHICHU = null;
+             NGAYTAO = 22/12/2023;
+            */
+
+            obj.ID = SourceClass.mainUser.ID;
+            obj.MaLoaiGD = 1;
+            obj.TenGD = "An uong test";
+            obj.Tien = 100000;
+            obj.GhiChu = "null";
+            obj.MinhHoa = "null";
+            string date = "2023-12-22";
+            obj.NgayTao = DateTime.ParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
             if (GiaoDichDAO.ThemGiaoDich(obj) == 0)
                 MessageBox.Show("Them moi giao dich thanh cong!");
             else

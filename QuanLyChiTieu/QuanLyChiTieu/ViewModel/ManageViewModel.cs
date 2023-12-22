@@ -45,12 +45,8 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
-            MessageBox.Show("Thuc hien Them moi giao dich");
-            /*
-            GiaoDichDTO gd = new GiaoDichDTO();
-            GiaoDichBUS.ThemGiaoDich(gd);
-            LoadGiaoDichData();
-            */
+            GiaoDichBUS.ThemGiaoDich();
+            GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
@@ -69,7 +65,8 @@ namespace QuanLyChiTieu.ViewModel
             {
                 GiaoDichBUS.XoaGiaoDich(selectedRow[0]);
             }
-            LoadGiaoDichData();
+
+            GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
         }
         private void ExecuteUpdateIsAllSelectedCommand(object obj)
         {

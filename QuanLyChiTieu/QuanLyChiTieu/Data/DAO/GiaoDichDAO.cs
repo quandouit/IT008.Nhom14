@@ -54,7 +54,7 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
 
-                sqlCmd.CommandText = "insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, MINHHOA, GHICHU, NGAYTAO)\r\nvalues\r\n('@ID' , '@MALOAIGD' , '@TENGD' , '@TIEN' , @MINHHOA , '@GHICHU' , '@NGAYTAO');";
+                sqlCmd.CommandText = "insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, GHICHU, NGAYTAO)\r\nvalues\r\n(@ID , @MALOAIGD , @TENGD , @TIEN , @GHICHU , @NGAYTAO);";
                 SqlParameter parameter0 = new SqlParameter("@ID", obj.ID);
                 sqlCmd.Parameters.Add(parameter0);
                 SqlParameter parameter1 = new SqlParameter("@MALOAIGD", obj.MaLoaiGD);
@@ -63,18 +63,17 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.Parameters.Add(parameter2);
                 SqlParameter parameter3 = new SqlParameter("@TIEN", obj.Tien);
                 sqlCmd.Parameters.Add(parameter3);
-                SqlParameter parameter4 = new SqlParameter("@MINHHOA", obj.MinhHoa);
+                SqlParameter parameter4 = new SqlParameter("@GHICHU", obj.GhiChu);
                 sqlCmd.Parameters.Add(parameter4);
-                SqlParameter parameter5 = new SqlParameter("@GHICHU", obj.GhiChu);
+                SqlParameter parameter5 = new SqlParameter("@NGAYTAO", obj.NgayTao);
                 sqlCmd.Parameters.Add(parameter5);
-                SqlParameter parameter6 = new SqlParameter("@NGAYTAO", obj.NgayTao);
-                sqlCmd.Parameters.Add(parameter6);
 
                 sqlCmd.ExecuteNonQuery();
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return 1;
             }
             finally
@@ -92,16 +91,17 @@ namespace QuanLyChiTieu.Data.DAO
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
-
+                
                 sqlCmd.CommandText = "BEGIN TRANSACTION;\r\nDELETE FROM GIAODICH\r\nWHERE MAGD = @MAGD;\r\nCOMMIT;";
                 SqlParameter parameter0 = new SqlParameter("@MAGD", MAGD);
                 sqlCmd.Parameters.Add(parameter0);
-
+                
                 sqlCmd.ExecuteNonQuery();
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return 1;
             }
             finally
