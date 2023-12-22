@@ -1,7 +1,12 @@
 ﻿using QuanLyChiTieu.Data.BUS;
+using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.Model;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -15,7 +20,7 @@ namespace QuanLyChiTieu.ViewModel
     public class ManageViewModel : ViewModelBase
     {
         public bool IsAllSelected { get; set; }
-        public DataTable GiaoDichData { get; set; }
+        public BindingList<GiaoDichModel> GiaoDichData { get; set; }
         public ICommand AddNewBillCommand { get; }
         public ICommand DeleteChoosenBillCommand { get; }
         public ICommand ShowInfoBillCommand { get; }
@@ -37,11 +42,6 @@ namespace QuanLyChiTieu.ViewModel
         public void LoadGiaoDichData()
         {
             GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
-            DataColumn isCheckedColumn = new DataColumn("IsChecked", typeof(bool))
-            {
-                DefaultValue = false
-            };
-            GiaoDichData.Columns.Add(isCheckedColumn);
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
@@ -54,11 +54,14 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteShowInfoBillCommand(object obj)
         {
-            if(obj is DataRowView selectedRow)
+            if (obj is GiaoDichModel selectedRow)
             {
-                GiaoDichBUS.HienThiChiTietGiaoDich(selectedRow[0]);
+                DetailDialogViewModel viewModel = new DetailDialogViewModel(selectedRow);
+                DetailDialog detailDialog = new DetailDialog { DataContext = viewModel };
+                detailDialog.ShowDialog();
             }
         }
+
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
             if (obj is DataRowView selectedRow)
@@ -73,15 +76,15 @@ namespace QuanLyChiTieu.ViewModel
             CheckBox checkBox = obj as CheckBox;
             if (checkBox.Name == "HeaderCheckBox")
             {
-                foreach (DataRow row in GiaoDichData.Rows)
+                foreach (GiaoDichModel row in GiaoDichData)
                 {
-                    row["IsChecked"] = IsAllSelected;
+                    row.IsChecked = IsAllSelected;
+                    row.OnPropertyChanged(nameof(row.IsChecked));
                 }
-                OnPropertyChanged(nameof(IsAllSelected));
             }
             else
             {
-                IsAllSelected = GiaoDichData.Rows.Cast<DataRow>().All(row => (bool)row["IsChecked"]);
+                IsAllSelected = GiaoDichData.All(gd => gd.IsChecked);
                 OnPropertyChanged(nameof(IsAllSelected));
             }
         }

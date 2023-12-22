@@ -1,10 +1,10 @@
 ﻿using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
-using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,45 +14,32 @@ namespace QuanLyChiTieu.Data.BUS
 {
     public class GiaoDichBUS
     {
-        public static DataTable LietKeGiaoDich()
+        public static BindingList<GiaoDichModel> LietKeGiaoDich()
         {
+            BindingList<GiaoDichModel> result = new BindingList<GiaoDichModel>();
             var giaoDichData = GiaoDichDAO.LietKeGiaoDich();
-            if (giaoDichData == null)
+
+            for (int i=0; i < giaoDichData.Rows.Count; i++)
             {
-                return null;
+                GiaoDichModel temp = new GiaoDichModel();
+                temp.STT = int.Parse(giaoDichData.Rows[i]["STT"].ToString());
+                temp.MaGD = int.Parse(giaoDichData.Rows[i]["MAGD"].ToString());
+                temp.ID = int.Parse(giaoDichData.Rows[i]["ID"].ToString());
+                temp.TenLoaiGD = giaoDichData.Rows[i]["TENLOAIGD"].ToString();
+                temp.Tien = decimal.Parse(giaoDichData.Rows[i]["TIEN"].ToString());
+                temp.TrangThai = giaoDichData.Rows[i]["TRANGTHAI"].ToString();
+                temp.MinhHoa = null;
+                temp.TenGD = giaoDichData.Rows[i]["TENGD"].ToString();
+                temp.GhiChu = null;
+                temp.NgayTao = DateTime.Parse(giaoDichData.Rows[i]["NGAYTAO"].ToString());
+                temp.IsChecked = false;
+
+                result.Add(temp);
             }
-
-            IEnumerable<DataRow> giaoDichDataEnumerable = giaoDichData.AsEnumerable();
-
-            var sortedRows = giaoDichDataEnumerable
-                .Where(gd => gd["NGAYTAO"] != DBNull.Value)
-                .OrderByDescending(gd => Convert.ToDateTime(gd["NGAYTAO"]))
-                .ToList();
-
-            DataTable sortedTable = sortedRows.CopyToDataTable();
-
-            return sortedTable;
+            return result;
         }
-        public static void ThemGiaoDich()
+        public static void ThemGiaoDich(GiaoDichDTO obj)
         {
-            GiaoDichDTO obj = new GiaoDichDTO();
-            //EditDialog editDialog = new EditDialog();
-            /*
-             Khởi tạo dữ liệu giao dịch tạm thười test tính năng thêm 
-             ID = 6; MALOAIGD = 1; TENGD = An uong test; TIEN = 100000; 
-             MINHHOA, GHICHU = null;
-             NGAYTAO = 22/12/2023;
-            */
-
-            obj.ID = SourceClass.mainUser.ID;
-            obj.MaLoaiGD = 1;
-            obj.TenGD = "An uong test";
-            obj.Tien = 100000;
-            obj.GhiChu = "null";
-            obj.MinhHoa = "null";
-            string date = "2023-12-22";
-            obj.NgayTao = DateTime.ParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
             if (GiaoDichDAO.ThemGiaoDich(obj) == 0)
                 MessageBox.Show("Them moi giao dich thanh cong!");
             else

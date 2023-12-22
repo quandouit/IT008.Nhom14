@@ -36,10 +36,10 @@
                         FontSize="18"/>
             </StackPanel>
         </Grid>
-
+ 
         <DataGrid Grid.Row="1"
           x:Name="ManageDataGrid"
-          ItemsSource="{Binding GiaoDichData}"
+          ItemsSource="{Binding GiaoDichData, Mode=TwoWay}"
           Style="{StaticResource ManageDataGridStyle}"
           CellStyle="{StaticResource ManageDataGridCellStyle}" 
           ColumnHeaderStyle="{StaticResource ManageDataGridColumnHeaderStyle}"
@@ -66,16 +66,16 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="Auto" Binding="{Binding STT}"/>
-                <DataGridTextColumn Header="Tên giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENGD}"/>
-                <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TENLOAIGD}"/>
-                <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding TIEN, StringFormat={}{0:N0}}">
+                <DataGridTextColumn Header="Tên giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TenGD}"/>
+                <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TenGD}"/>
+                <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding Tien, StringFormat={}{0:N0}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding TRANGTHAI}" Value="IN">
+                                <DataTrigger Binding="{Binding TrangThai}" Value="IN">
                                     <Setter Property="Foreground" Value="{StaticResource greenUI}"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding TRANGTHAI}" Value="OUT">
+                                <DataTrigger Binding="{Binding TrangThai}" Value="OUT">
                                     <Setter Property="Foreground" Value="{StaticResource redUI}"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -83,7 +83,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NGAYTAO, StringFormat=dd/MM/yyyy}"/>
+                <DataGridTextColumn Header="Ngày phát sinh" IsReadOnly="True" Width="*" Binding="{Binding NgayTao, StringFormat=dd/MM/yyyy}"/>
 
                 <DataGridTemplateColumn Header="Chức năng"    
                 IsReadOnly="True"  
