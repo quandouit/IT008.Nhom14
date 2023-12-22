@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel"
         xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
         mc:Ignorable="d"
         
@@ -12,7 +13,11 @@
         AllowsTransparency="True"
         Background="Transparent"
         Title="MainWindow" Height="500" Width="600">
-    
+
+    <Window.DataContext>
+        <viewmodel:EditDialogViewModel/>
+    </Window.DataContext>
+
     <Border CornerRadius="10"
         BorderBrush="{StaticResource lightBorder}"
         BorderThickness="1">
@@ -32,7 +37,9 @@
                         Style="{StaticResource winCtrButton}"
                         Tag="{StaticResource middleFont}"
                         Margin="5 0"
-                        Width="30" Height="30">
+                        Width="30" Height="30"
+                        Command="{Binding CloseCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
                         <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
                 </Button>
             </Grid>
@@ -57,7 +64,10 @@
 
                     <StackPanel Margin="30 15">
                         <TextBlock Text="Loại giao dịch" Style="{StaticResource typeIconText}" Margin="0 5"/>
-                        <ComboBox x:Name="cbbLoaiGD" Margin="0 5 0 0"/>
+                        <ComboBox x:Name="cbbLoaiGD"
+                                  Margin="0 5 0 0"
+                                  DisplayMemberPath="TENLOAIGD"
+                                  ItemsSource="{Binding LoaiGiaoDichData.DefaultView}"/>
                     </StackPanel>
 
                     <StackPanel Margin="30 15">

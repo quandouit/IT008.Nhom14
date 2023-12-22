@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel" 
         xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
         mc:Ignorable="d"
         
@@ -11,7 +12,12 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="MainWindow" Height="Auto" Width="500">
+        Height="Auto" Width="500">
+
+    <Window.DataContext>
+        <viewmodel:DetailDialogViewModel/>
+    </Window.DataContext>
+    
     <Border CornerRadius="10"
             BorderBrush="{StaticResource lightBorder}"
             BorderThickness="1">
@@ -37,7 +43,8 @@
                         Style="{StaticResource winCtrButton}"
                         Tag="{StaticResource middleFont}"
                         Width="20" Height="20"
-                        Margin="15 0">
+                        Margin="15 0"
+                        >
                     <fa:IconImage Icon="Pencil" 
                                   Style="{StaticResource winCtrIcon}" 
                                   Width="20" Height="20"/>
@@ -46,14 +53,19 @@
                 <Button Grid.Column="1"
                         HorizontalAlignment="Right"
                         Style="{StaticResource winCtrButton}"
+                        Command="{Binding CloseCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
                         Tag="{StaticResource middleFont}"
-                        Margin="5 0">
+                        Margin="5 0"
+                        Height="35">
                     <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
                 </Button>
             </Grid>
 
             <Button Grid.Row="2" 
                     Style="{StaticResource darkButtonStyle}"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
                     Content="Xác nhận"
                     FontSize="16"
                     Padding="10 5"/>
@@ -61,33 +73,54 @@
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="15">
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Tên giao dịch" Style="{StaticResource typeIconText}" Width="120"/>
+                    <TextBlock Text="Tên giao dịch" 
+                               Style="{StaticResource typeIconText}" 
+                               Width="120"/>
 
-                    <TextBlock x:Name="tengiaodich" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                    <TextBlock Style="{StaticResource typeIconText}" 
+                               FontWeight="Normal"
+                               Text="{Binding Path=GiaoDich.TenGD}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Loại giao dịch" Style="{StaticResource typeIconText}" Width="120"/>
+                    <TextBlock Text="Loại giao dịch" 
+                               Style="{StaticResource typeIconText}" 
+                               Width="120"/>
 
-                    <TextBlock x:Name="loaigiaodich" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                    <TextBlock Style="{StaticResource typeIconText}" 
+                               FontWeight="Normal"
+                               Text="{Binding Path=GiaoDich.TenLoaiGD}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Số tiền" Style="{StaticResource typeIconText}" Width="120"/>
+                    <TextBlock Text="Số tiền" 
+                               Style="{StaticResource typeIconText}" 
+                               Width="120"/>
 
-                    <TextBlock x:Name="sotien" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                    <TextBlock Style="{StaticResource typeIconText}" 
+                               FontWeight="Normal"
+                               Text="{Binding Path=GiaoDich.Tien}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Ngày tạo" Style="{StaticResource typeIconText}" Width="120"/>
+                    <TextBlock Text="Ngày tạo" 
+                               Style="{StaticResource typeIconText}" 
+                               Width="120"/>
 
-                    <TextBlock x:Name="ngaytao" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                    <TextBlock x:Name="ngaytao" 
+                               Style="{StaticResource typeIconText}" 
+                               FontWeight="Normal"
+                               Text="{Binding Path=GiaoDich.NgayTao}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Ghi chú" Style="{StaticResource typeIconText}" Width="120"/>
+                    <TextBlock Text="Ghi chú" 
+                               Style="{StaticResource typeIconText}" 
+                               Width="120"/>
 
-                    <TextBlock x:Name="ghichu" Style="{StaticResource typeIconText}" FontWeight="Normal"/>
+                    <TextBlock Style="{StaticResource typeIconText}" 
+                               FontWeight="Normal"
+                               Text="{Binding Path=GiaoDich.GhiChu}"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

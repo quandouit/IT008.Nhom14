@@ -1,7 +1,9 @@
 ﻿using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -12,24 +14,29 @@ namespace QuanLyChiTieu.Data.BUS
 {
     public class GiaoDichBUS
     {
-        public static DataTable LietKeGiaoDich()
+        public static BindingList<GiaoDichModel> LietKeGiaoDich()
         {
+            BindingList<GiaoDichModel> result = new BindingList<GiaoDichModel>();
             var giaoDichData = GiaoDichDAO.LietKeGiaoDich();
-            if (giaoDichData == null)
+
+            for (int i=0; i < giaoDichData.Rows.Count; i++)
             {
-                return null;
+                GiaoDichModel temp = new GiaoDichModel();
+                temp.STT = int.Parse(giaoDichData.Rows[i]["STT"].ToString());
+                temp.MaGD = int.Parse(giaoDichData.Rows[i]["MAGD"].ToString());
+                temp.ID = int.Parse(giaoDichData.Rows[i]["ID"].ToString());
+                temp.TenLoaiGD = giaoDichData.Rows[i]["TENLOAIGD"].ToString();
+                temp.Tien = decimal.Parse(giaoDichData.Rows[i]["TIEN"].ToString());
+                temp.TrangThai = giaoDichData.Rows[i]["TRANGTHAI"].ToString();
+                temp.MinhHoa = null;
+                temp.TenGD = giaoDichData.Rows[i]["TENGD"].ToString();
+                temp.GhiChu = null;
+                temp.NgayTao = DateTime.Parse(giaoDichData.Rows[i]["NGAYTAO"].ToString());
+                temp.IsChecked = false;
+
+                result.Add(temp);
             }
-
-            IEnumerable<DataRow> giaoDichDataEnumerable = giaoDichData.AsEnumerable();
-
-            var sortedRows = giaoDichDataEnumerable
-                .Where(gd => gd["NGAYTAO"] != DBNull.Value)
-                .OrderByDescending(gd => Convert.ToDateTime(gd["NGAYTAO"]))
-                .ToList();
-
-            DataTable sortedTable = sortedRows.CopyToDataTable();
-
-            return sortedTable;
+            return result;
         }
         public static void ThemGiaoDich(GiaoDichDTO obj)
         {
