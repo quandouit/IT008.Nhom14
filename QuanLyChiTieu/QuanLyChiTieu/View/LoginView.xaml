@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:QuanLyChiTieu.View"
-        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
+        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
         mc:Ignorable="d"
         
         WindowStartupLocation="CenterScreen" 
@@ -116,64 +116,57 @@
                 CornerRadius="5"
                 BorderBrush="Black"
                 Margin="0, 50, 0, 10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="/Images/user.png" Height="40"/>
-                        <TextBlock x:Name="textEmail" 
-                                
-                               Text="Tên đăng nhập" Style="{StaticResource hintText}"/>
-                        <TextBox x:Name="tb_email"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Images/user.png" Height="40"/>
+
+                    <TextBox x:Name="tb_email"
                              Text="{Binding Username}"
-                             Style="{StaticResource textBox}"
-                             DataContext="{Binding EmailTextChangedCommand}"/>
-                    </Grid>
+                             Style="{StaticResource usernameTextBox}"
+                             Tag="Tên đăng nhập">
+                    </TextBox>
+                </Grid>
+            </Border>
 
-
-                </Border>
-
-                <Border 
-                BorderThickness="0.7"
-                Width="400"
-                CornerRadius="5"
-                BorderBrush="Black"
-                Margin="0, 0 , 0 , 20">
+                <Border BorderThickness="0.7"
+                        Width="400"
+                        CornerRadius="5"
+                        BorderBrush="Black"
+                        Margin="0, 0 , 0 , 20">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Images/pass.png" Height="40"/>
-                        <TextBlock 
-                        x:Name="text_pass"
-                        
-                        Text="Mật khẩu" Style="{StaticResource hintText}" />
-                        <PasswordBox x:Name="pb_pass"
-                             PasswordChanged="pb_pass_PasswordChanged"
-                                 
-                             Style="{StaticResource passBox}"/>
-                    </Grid>
+                        <Image Source="/Images/pass.png"
+                               Height="40"/>
+                    <PasswordBox x:Name="pb_pass" 
+                                 viewmodel:PasswordBoxHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 Style="{StaticResource passBox}"/>
+                </Grid>
 
-                </Border>
-                <Button
-                Content="ĐĂNG NHẬP"
-                x:Name="bt_signin" 
-                Style="{StaticResource buttonSignIn}"
-                HorizontalAlignment="Right"
-                Margin="0, 0, 120, 0"
-                Command="{Binding SignInButtonCommand}"/>
+            </Border>
+            <Button Content="ĐĂNG NHẬP"
+                    x:Name="bt_signin" 
+                    Style="{StaticResource buttonSignIn}"
+                    HorizontalAlignment="Right"
+                    Margin="0, 0, 120, 0"
+                    Command="{Binding SignInButtonCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
 
-            </StackPanel>
+        </StackPanel>
 
         <Button x:Name="winCloseButton"
-        Style="{StaticResource winCtrButton}"
-        Tag="{StaticResource redUI}"
-        Command="{Binding CloseCommand}"
-        Grid.Column="1"
-        Grid.Row="0"
-        HorizontalAlignment="Right">
+                Style="{StaticResource winCtrButton}"
+                Tag="{StaticResource redUI}"
+                Command="{Binding CloseCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                Grid.Column="1"
+                Grid.Row="0"
+                HorizontalAlignment="Right">
             <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
         </Button>
     </Grid>

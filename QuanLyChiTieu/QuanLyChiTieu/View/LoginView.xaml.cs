@@ -26,58 +26,6 @@ namespace QuanLyChiTieu.View
         public LoginView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
         }
-
-        private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            tb_email.Focus();
-        }
-
-        //private void tb_email_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    if(!string.IsNullOrEmpty(tb_email.Text) && tb_email.Text.Length > 0) 
-        //    {
-        //        textEmail.Visibility = Visibility.Collapsed;
-        //    }
-        //    else
-        //    {
-        //        textEmail.Visibility = Visibility.Visible;
-        //    }
-        //}
-
-        private void pb_pass_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
-        private void text_pass_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            pb_pass.Focus();
-        }
-
-        //private void bt_signin_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //Tạo thông tin người dùng đăng nhập
-        //    NguoiDungDTO user = new NguoiDungDTO();
-        //    user.TaiKhoan = tb_email.Text;
-        //    user.MatKhau = pb_pass.Password;
-
-        //    //Tạo thông tin trả về khi kiểm tra người dùng có tồn tại hay không
-        //    NguoiDungDTO userLogin = LoginBUS.Try_Login(user);
-        //    QuanLyChiTieu.SourceClass.mainUser = userLogin;
-
-        //    if (userLogin.ID != 0) 
-        //    {
-        //        Application.Current.MainWindow = new MainWindow();
-        //        Application.Current.MainWindow.Show();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Ten dang nhap hoac mat khau khong dung!");
-        //        pb_pass.Password = "";
-        //        text_pass.Visibility = Visibility.Visible;
-        //    }
-        //}
     }
 }

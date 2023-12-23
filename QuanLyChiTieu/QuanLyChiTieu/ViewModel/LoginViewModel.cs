@@ -8,70 +8,80 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media.Media3D;
+using System.Windows.Controls;
+using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.Data.BUS;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 
 namespace QuanLyChiTieu.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
         public bool IsLogin;
-        private string _user;
-        private string _password;
-
-        public string Username { get; set; }
-        public string Password { get; set; }    
+        private NguoiDungDTO loginUser;
+        private NguoiDungDTO currentUser;
+        public string Username
+        {
+            get { return loginUser.TaiKhoan; }
+            set
+            {
+                loginUser.TaiKhoan = value;
+                OnPropertyChanged("Username");
+            }
+        }
+        public string Password
+        {
+            get { return loginUser.MatKhau; }
+            set
+            {
+                loginUser.MatKhau = value;
+                OnPropertyChanged("Password");
+            }
+        }
 
         public ICommand CloseCommand { get; }
-        public ICommand EmailTextChangedCommand { get; }
-        public ICommand EmailMouseDownCommand { get; }
-        public ICommand PassWordTextChangedCommand { get; }
-        public ICommand PassWordMouseDownCommand { get; }
         public ICommand SignInButtonCommand { get; }
 
         public LoginViewModel()
         {
+            loginUser = new NguoiDungDTO();
+            currentUser = new NguoiDungDTO();
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
-            EmailTextChangedCommand = new ViewModelCommand(ExecuteEmailTextChangedCommand);
-            EmailMouseDownCommand = new ViewModelCommand(ExecuteEmailMouseDownCommand);
-            PassWordMouseDownCommand = new ViewModelCommand(ExecutePassWordMouseDownCommand);
-            PassWordTextChangedCommand = new ViewModelCommand(ExecutePassWordTextChangedCommand);
             SignInButtonCommand = new ViewModelCommand(ExecuteSignInButtonCommand);
-        }
-
-        private void ExecutePassWordTextChangedCommand(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ExecuteEmailMouseDownCommand(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ExecutePassWordMouseDownCommand(object obj)
-        {
-            throw new NotImplementedException();
         }
 
         private void ExecuteSignInButtonCommand(object obj)
         {
-            if(Username == "admin" && Password == "123")
+            if (loginUser.MatKhau == null)
             {
-                MessageBox.Show("DAng nhap thanh cong");
+                MessageBox.Show("null");
+                return;
+            }
+            currentUser = LoginBUS.Try_Login(loginUser);
+            if (currentUser.ID != 0)
+            {
+                MainViewModel viewModel = new MainViewModel(currentUser);
+                MainWindow mainWindow = new MainWindow { DataContext = viewModel };
+                Application.Current.MainWindow = mainWindow;
+                mainWindow.Show();
+
+                var loginWindow = obj as Window;
+                loginWindow.Close();
             }
             else
             {
                 MessageBox.Show("Ten dang nhap hoac mat khau sai");
+                Password = "";
             }
-        }
-
-        private void ExecuteEmailTextChangedCommand(object obj)
-        {
-            //throw new NotImplementedException();
         }
 
         private void ExecuteCloseCommand(object obj)
         {
-            Application.Current.Shutdown();
+            if (obj is Window window)
+            {
+                window.Close();
+            }
         }
 
     }

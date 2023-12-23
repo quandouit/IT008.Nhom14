@@ -24,17 +24,6 @@ using QuanLyChiTieu.ViewModel;
 
 namespace QuanLyChiTieu
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    
-    //biến mainUser lưu trữ thông tin người dùng
-    //sử dụng phạm vi toàn chương trình
-    //gọi bằng QuanLyChiTieu.SourceClass.mainUser
-    public class SourceClass
-    {
-        public static NguoiDungDTO mainUser;
-    }
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -55,11 +44,6 @@ namespace QuanLyChiTieu
         {
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            txtUserName.Text = SourceClass.mainUser.TaiKhoan;
         }
     }
 }

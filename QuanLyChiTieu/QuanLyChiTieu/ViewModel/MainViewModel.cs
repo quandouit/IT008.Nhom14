@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
+using QuanLyChiTieu.Data.DTO;
 
 namespace QuanLyChiTieu.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        public static NguoiDungDTO currentUser { get; set; }
         private ViewModelBase childcurrent;
         private string childcaption;
         private IconChar childicon;
@@ -62,8 +64,10 @@ namespace QuanLyChiTieu.ViewModel
         public ICommand MinimizeCommand { get; }
         public ICommand CloseCommand { get; }
 
-        public MainViewModel() 
+        public MainViewModel(NguoiDungDTO input) 
         {
+            currentUser = input;
+
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowManageViewCommand = new ViewModelCommand(ExecuteShowManageViewCommand);
             ShowPlanViewCommand = new ViewModelCommand(ExecuteShowPlanViewCommand);
@@ -75,6 +79,7 @@ namespace QuanLyChiTieu.ViewModel
             //default
             ExecuteShowHomeViewCommand(null);
         }
+        public MainViewModel() { }
 
         private void ExecuteCloseCommand(object obj)
         {

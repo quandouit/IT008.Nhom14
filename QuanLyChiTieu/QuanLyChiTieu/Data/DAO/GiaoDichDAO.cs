@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -24,7 +25,7 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
                 sqlCmd.CommandText = "SELECT ID, MAGD, ROW_NUMBER() OVER (ORDER BY NGAYTAO DESC) AS STT, TENGD, TENLOAIGD, NGAYTAO, TIEN, GHICHU, TRANGTHAI FROM GIAODICH GD, LOAIGIAODICH LGD WHERE ID = @ID AND GD.MALOAIGD = LGD.MALOAIGD"; ;
-                SqlParameter parameterTK = new SqlParameter("@ID", QuanLyChiTieu.SourceClass.mainUser.ID);
+                SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
 
                 var reader = sqlCmd.ExecuteReader();

@@ -13,7 +13,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded">
+        Title="MainWindow" Height="720" Width="1280">
 
     <Window.DataContext>
         <viewmodel:MainViewModel/>
@@ -181,7 +181,7 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
 
-                            <TextBlock x:Name="txtUserName" Text="UsernameHere"
+                            <TextBlock x:Name="txtUserName" Text="{Binding currentUser.TaiKhoan}"
                                        Margin="10,0,0,0"
                                        Foreground="{StaticResource darkFont}"
                                        FontFamily="Monserrat"
