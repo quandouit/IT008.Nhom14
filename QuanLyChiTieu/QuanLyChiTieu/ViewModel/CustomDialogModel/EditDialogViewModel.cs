@@ -15,6 +15,8 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
     public class EditDialogViewModel : ViewModelBase
     {
+        public static bool _isUserInput;
+        public static bool _isAutoFill;
         public GiaoDichDTO GiaoDichMoi { get; set; }
         private LoaiGiaoDichModel _selectedLoaiGD;
         public LoaiGiaoDichModel SelectedLoaiGD
@@ -43,6 +45,9 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 NgayTao = DateTime.Today,
                 GhiChu = ""
             };
+            _isUserInput = false;
+            _isAutoFill = false;
+
             AutoFillNameCommand = new ViewModelCommand(ExecuteAutoFillNameCommand);
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
@@ -54,10 +59,11 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         }
         private void ExecuteAutoFillNameCommand(object obj)
         {
-            if (GiaoDichMoi.TenGD == "")
+            if (!_isUserInput)
             {
+                _isAutoFill = true;
                 GiaoDichMoi.TenGD = SelectedLoaiGD.TenLoaiGD;
-                GiaoDichMoi.OnPropertyChanged("TenGD");
+                _isAutoFill = false;
             }
         }
         private void ExecuteCloseCommand(object obj)

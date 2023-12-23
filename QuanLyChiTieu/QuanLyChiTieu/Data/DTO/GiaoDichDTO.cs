@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLyChiTieu.ViewModel;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 
 namespace QuanLyChiTieu.Data.DTO
 {
@@ -19,7 +21,23 @@ namespace QuanLyChiTieu.Data.DTO
         public int MaGD { get; set; }
         public int ID { get; set; }
         public int MaLoaiGD { get; set; }
-        public string TenGD { get; set; }
+        private string _tenGD;
+        public string TenGD
+        {
+            get { return _tenGD; }
+            set
+            {
+                if (_tenGD != value)
+                {
+                    _tenGD = value;
+                    if (!EditDialogViewModel._isAutoFill)
+                    {
+                        EditDialogViewModel._isUserInput = true;
+                    }
+                    OnPropertyChanged(nameof(TenGD));
+                }
+            }
+        }
         public decimal Tien { get; set; }
         public string GhiChu { get; set; }
         public DateTime NgayTao { get; set; }
