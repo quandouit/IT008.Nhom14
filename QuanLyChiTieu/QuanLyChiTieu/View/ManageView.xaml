@@ -67,7 +67,7 @@
 
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="Auto" Binding="{Binding STT}"/>
                 <DataGridTextColumn Header="Tên giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TenGD}"/>
-                <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TenGD}"/>
+                <DataGridTextColumn Header="Loại giao dịch" IsReadOnly="True" Width="*" Binding="{Binding TenLoaiGD}"/>
                 <DataGridTextColumn Header="Số tiền" IsReadOnly="True" Width="*" Binding="{Binding Tien, StringFormat={}{0:N0}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
