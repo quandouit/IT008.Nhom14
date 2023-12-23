@@ -18,6 +18,7 @@ namespace QuanLyChiTieu.Model
         public GiaoDichModel() { }
         public int MaGD { get; set; }
         public int ID { get; set; }
+        public int MaLoaiGD { get; set; }
         public string TenLoaiGD { get; set; }
         public string TenGD { get; set; }
         public decimal Tien { get; set; }

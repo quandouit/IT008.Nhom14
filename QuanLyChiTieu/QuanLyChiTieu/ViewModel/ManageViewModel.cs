@@ -60,11 +60,7 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
-            foreach (GiaoDichModel row in GiaoDichData)
-            {
-                if (row.IsChecked == true)
-                    GiaoDichBUS.XoaGiaoDich(row.MaGD);
-            }
+            GiaoDichBUS.XoaNhieuGiaoDich(GiaoDichData);
             LoadGiaoDichData();
         }
         private void ExecuteShowInfoBillCommand(object obj)
@@ -75,6 +71,7 @@ namespace QuanLyChiTieu.ViewModel
                 DetailDialog detailDialog = new DetailDialog { DataContext = viewModel };
                 detailDialog.ShowDialog();
             }
+            LoadGiaoDichData();
         }
         private void ExecuteDeleteSingleBillCommand(object obj)
         {

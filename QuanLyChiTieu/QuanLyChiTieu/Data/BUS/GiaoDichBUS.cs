@@ -19,11 +19,12 @@ namespace QuanLyChiTieu.Data.BUS
             BindingList<GiaoDichModel> result = new BindingList<GiaoDichModel>();
             var giaoDichData = GiaoDichDAO.LietKeGiaoDich();
 
-            for (int i=0; i < giaoDichData.Rows.Count; i++)
+            for (int i = 0; i < giaoDichData.Rows.Count; i++)
             {
                 GiaoDichModel temp = new GiaoDichModel();
                 temp.STT = int.Parse(giaoDichData.Rows[i]["STT"].ToString());
                 temp.MaGD = int.Parse(giaoDichData.Rows[i]["MAGD"].ToString());
+                temp.MaLoaiGD = int.Parse(giaoDichData.Rows[i]["MALOAIGD"].ToString());
                 temp.ID = int.Parse(giaoDichData.Rows[i]["ID"].ToString());
                 temp.TenLoaiGD = giaoDichData.Rows[i]["TENLOAIGD"].ToString();
                 temp.Tien = decimal.Parse(giaoDichData.Rows[i]["TIEN"].ToString());
@@ -50,6 +51,28 @@ namespace QuanLyChiTieu.Data.BUS
                 MessageBox.Show("Xoa giao dich thanh cong!");
             else
                 MessageBox.Show("Xoa giao dich that bai!");
+        }
+        public static void XoaNhieuGiaoDich(BindingList<GiaoDichModel> GiaoDichData)
+        {
+            bool success = true;
+            foreach (GiaoDichModel row in GiaoDichData)
+            {
+                if (row.IsChecked == true)
+                {
+                    if (GiaoDichDAO.XoaGiaoDich(row.MaGD) != 0)
+                    {
+                        success = false;
+                    }
+                }
+            }
+            if (success)
+            {
+                MessageBox.Show("Xoa giao dich thanh cong!");
+            }
+            else
+            {
+                MessageBox.Show("Xoa giao dich that bai!");
+            }
         }
         public static void SuaGiaoDich(GiaoDichDTO obj)
         {

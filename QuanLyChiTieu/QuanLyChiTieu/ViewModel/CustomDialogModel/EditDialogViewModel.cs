@@ -17,6 +17,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
     {
         public static bool _isUserInput;
         public static bool _isAutoFill;
+        private bool _isEditing;
         public GiaoDichDTO GiaoDichMoi { get; set; }
         private LoaiGiaoDichModel _selectedLoaiGD;
         public LoaiGiaoDichModel SelectedLoaiGD
@@ -27,8 +28,12 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 if (_selectedLoaiGD != value)
                 {
                     _selectedLoaiGD = value;
+                    GiaoDichMoi.MaLoaiGD = _selectedLoaiGD.MaLoaiGD;
                     OnPropertyChanged("SelectedLoaiGD");
-                    ExecuteAutoFillNameCommand(null);
+                    if (!_isUserInput)
+                    {
+                        ExecuteAutoFillNameCommand(null);
+                    }
                 }
             }
         }
@@ -36,8 +41,13 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         public ICommand AutoFillNameCommand { get; set; }
         public ICommand CloseCommand { get; }
         public ICommand AddCommand { get; set; }
+        public ICommand EditCommand { get; set; }
+
         public EditDialogViewModel()
         {
+            _isUserInput = false;
+            _isAutoFill = false;
+            _isEditing = false;
             GiaoDichMoi = new GiaoDichDTO
             {
                 ID = MainViewModel.currentUser.ID,
@@ -45,14 +55,33 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 NgayTao = DateTime.Today,
                 GhiChu = ""
             };
-            _isUserInput = false;
-            _isAutoFill = false;
-
             AutoFillNameCommand = new ViewModelCommand(ExecuteAutoFillNameCommand);
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
             LoadLoaiGiaoDichData();
         }
+        public EditDialogViewModel(GiaoDichModel input)
+        {
+            _isUserInput = true;
+            _isAutoFill = false;
+            _isEditing = true;
+            GiaoDichMoi = new GiaoDichDTO
+            {
+                MaGD = input.MaGD,
+                TenGD = input.TenGD,
+                MaLoaiGD = input.MaLoaiGD,
+                Tien = input.Tien,
+                NgayTao = input.NgayTao,
+                GhiChu = input.GhiChu
+            };
+            AutoFillNameCommand = null;
+            CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
+            AddCommand = new ViewModelCommand(ExecuteAddCommand);
+            LoadLoaiGiaoDichData();
+
+            SelectedLoaiGD = LoaiGiaoDichData.FirstOrDefault(x => x.MaLoaiGD == GiaoDichMoi.MaLoaiGD);
+        }
+
         public void LoadLoaiGiaoDichData()
         {
             LoaiGiaoDichData = LoaiGiaoDichBUS.LietKeLoaiGiaoDich();
@@ -77,8 +106,14 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         {
             if (obj is Window window)
             {
-                GiaoDichDTO output = GiaoDichMoi;
-                GiaoDichBUS.ThemGiaoDich(output);
+                if (_isEditing)
+                {
+                    GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                }
+                else
+                {
+                    GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                }
                 window.Close();
             }
         }
