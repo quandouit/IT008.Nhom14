@@ -18,9 +18,7 @@ namespace QuanLyChiTieu.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
-        public bool IsLogin;
         private NguoiDungDTO loginUser;
-        private NguoiDungDTO currentUser;
         public string Username
         {
             get { return loginUser.TaiKhoan; }
@@ -46,19 +44,13 @@ namespace QuanLyChiTieu.ViewModel
         public LoginViewModel()
         {
             loginUser = new NguoiDungDTO();
-            currentUser = new NguoiDungDTO();
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             SignInButtonCommand = new ViewModelCommand(ExecuteSignInButtonCommand);
         }
 
         private void ExecuteSignInButtonCommand(object obj)
         {
-            if (loginUser.MatKhau == null)
-            {
-                MessageBox.Show("null");
-                return;
-            }
-            currentUser = LoginBUS.Try_Login(loginUser);
+            NguoiDungDTO currentUser = LoginBUS.Try_Login(loginUser);
             if (currentUser.ID != 0)
             {
                 MainViewModel viewModel = new MainViewModel(currentUser);
