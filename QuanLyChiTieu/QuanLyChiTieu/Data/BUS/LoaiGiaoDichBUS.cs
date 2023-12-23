@@ -1,19 +1,35 @@
 ﻿using QuanLyChiTieu.Data.DAO;
+using QuanLyChiTieu.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace QuanLyChiTieu.Data.BUS
 {
     public class LoaiGiaoDichBUS
     {
-        public static DataTable LietKeLoaiGiaoDich()
+        public static BindingList<LoaiGiaoDichModel> LietKeLoaiGiaoDich()
         {
-            return LoaiGiaoDichDAO.LietKeLoaiGiaoDich();
+            BindingList<LoaiGiaoDichModel> result = new BindingList<LoaiGiaoDichModel>();
+            var giaoDichData = LoaiGiaoDichDAO.LietKeLoaiGiaoDich();
+
+            for (int i = 0; i < giaoDichData.Rows.Count; i++)
+            {
+                LoaiGiaoDichModel temp = new LoaiGiaoDichModel
+                {
+                    TenLoaiGD = giaoDichData.Rows[i]["TENLOAIGD"].ToString(),
+                    MaLoaiGD = int.Parse(giaoDichData.Rows[i]["MALOAIGD"].ToString())
+                };
+
+                result.Add(temp);
+            }
+            return result;
         }
     }
 }

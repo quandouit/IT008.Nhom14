@@ -161,6 +161,7 @@
     <Compile Include="Data\DTO\NganSachDTO.cs" />
     <Compile Include="Data\DTO\NguoiDungDTO.cs" />
     <Compile Include="Model\GiaoDichModel.cs" />
+    <Compile Include="Model\LoaiGiaoDichModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\EditDialogViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
