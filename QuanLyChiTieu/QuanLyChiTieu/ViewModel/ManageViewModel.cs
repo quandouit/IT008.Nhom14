@@ -45,8 +45,8 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
-            GiaoDichBUS.ThemGiaoDich();
-            GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
+            //Phai chinh lai
+            MessageBox.Show("Thuc hien them giao dich moi");
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
@@ -61,14 +61,13 @@ namespace QuanLyChiTieu.ViewModel
                 detailDialog.ShowDialog();
             }
         }
-
+        //Quan dang lam cai nay
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
             if (obj is DataRowView selectedRow)
             {
                 GiaoDichBUS.XoaGiaoDich(selectedRow[0]);
             }
-
             GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
         }
         private void ExecuteUpdateIsAllSelectedCommand(object obj)
