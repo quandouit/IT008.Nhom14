@@ -36,15 +36,15 @@
                         FontSize="18"/>
             </StackPanel>
         </Grid>
- 
+
         <DataGrid Grid.Row="1"
-          x:Name="ManageDataGrid"
-          ItemsSource="{Binding GiaoDichData, Mode=TwoWay}"
-          Style="{StaticResource ManageDataGridStyle}"
-          CellStyle="{StaticResource ManageDataGridCellStyle}" 
-          ColumnHeaderStyle="{StaticResource ManageDataGridColumnHeaderStyle}"
-          RowStyle="{StaticResource ManageDataGridRowStyle}"
-          Width="Auto">
+                  x:Name="ManageDataGrid"
+                  ItemsSource="{Binding GiaoDichData, Mode=TwoWay}"
+                  Style="{StaticResource ManageDataGridStyle}"
+                  CellStyle="{StaticResource ManageDataGridCellStyle}" 
+                  ColumnHeaderStyle="{StaticResource ManageDataGridColumnHeaderStyle}"
+                  RowStyle="{StaticResource ManageDataGridRowStyle}"
+                  Width="Auto">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.Header>

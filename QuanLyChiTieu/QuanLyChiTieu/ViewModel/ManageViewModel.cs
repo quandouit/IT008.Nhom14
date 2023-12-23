@@ -20,7 +20,16 @@ namespace QuanLyChiTieu.ViewModel
     public class ManageViewModel : ViewModelBase
     {
         public bool IsAllSelected { get; set; }
-        public BindingList<GiaoDichModel> GiaoDichData { get; set; }
+        private BindingList<GiaoDichModel> _giaoDichData;
+        public BindingList<GiaoDichModel> GiaoDichData
+        {
+            get { return _giaoDichData; }
+            set
+            {
+                _giaoDichData = value;
+                OnPropertyChanged(nameof(GiaoDichData));
+            }
+        }
         public ICommand AddNewBillCommand { get; }
         public ICommand DeleteChoosenBillCommand { get; }
         public ICommand ShowInfoBillCommand { get; }
@@ -41,12 +50,13 @@ namespace QuanLyChiTieu.ViewModel
 
         public void LoadGiaoDichData()
         {
-            GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
+            GiaoDichData = new BindingList<GiaoDichModel>(GiaoDichBUS.LietKeGiaoDich());
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
-            //Phai chinh lai
-            MessageBox.Show("Thuc hien them giao dich moi");
+            EditDialog newBillDialog = new EditDialog();
+            newBillDialog.ShowDialog();
+            LoadGiaoDichData();
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
@@ -61,7 +71,6 @@ namespace QuanLyChiTieu.ViewModel
                 detailDialog.ShowDialog();
             }
         }
-        //Quan dang lam cai nay
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
             if (obj is GiaoDichModel selectedRow)

@@ -55,7 +55,7 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
 
-                sqlCmd.CommandText = "insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, GHICHU, NGAYTAO)\r\nvalues\r\n(@ID , @MALOAIGD , @TENGD , @TIEN , @GHICHU , @NGAYTAO);";
+                sqlCmd.CommandText = "BEGIN TRANSACTION insert into GIAODICH (ID, MALOAIGD, TENGD, TIEN, GHICHU, NGAYTAO)\r\nvalues\r\n(@ID , @MALOAIGD , @TENGD , @TIEN , @GHICHU , @NGAYTAO) COMMIT;";
                 SqlParameter parameter0 = new SqlParameter("@ID", obj.ID);
                 sqlCmd.Parameters.Add(parameter0);
                 SqlParameter parameter1 = new SqlParameter("@MALOAIGD", obj.MaLoaiGD);
