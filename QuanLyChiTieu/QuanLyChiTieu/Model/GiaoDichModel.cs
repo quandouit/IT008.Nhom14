@@ -21,7 +21,6 @@ namespace QuanLyChiTieu.Model
         public string TenLoaiGD { get; set; }
         public string TenGD { get; set; }
         public decimal Tien { get; set; }
-        public string MinhHoa { get; set; }
         public string GhiChu { get; set; }
         public DateTime NgayTao { get; set; }
         public bool IsChecked { get; set; }

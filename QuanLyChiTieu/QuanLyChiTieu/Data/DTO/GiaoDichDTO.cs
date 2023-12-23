@@ -14,7 +14,6 @@ namespace QuanLyChiTieu.Data.DTO
         public int MaLoaiGD { get; set; }
         public string TenGD { get; set; }
         public decimal Tien { get; set; }
-        public string MinhHoa { get; set; }
         public string GhiChu { get; set; }
         public DateTime NgayTao { get; set; }
     }

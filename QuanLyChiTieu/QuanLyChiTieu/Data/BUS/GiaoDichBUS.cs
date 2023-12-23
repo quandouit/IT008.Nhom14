@@ -28,9 +28,8 @@ namespace QuanLyChiTieu.Data.BUS
                 temp.TenLoaiGD = giaoDichData.Rows[i]["TENLOAIGD"].ToString();
                 temp.Tien = decimal.Parse(giaoDichData.Rows[i]["TIEN"].ToString());
                 temp.TrangThai = giaoDichData.Rows[i]["TRANGTHAI"].ToString();
-                temp.MinhHoa = null;
                 temp.TenGD = giaoDichData.Rows[i]["TENGD"].ToString();
-                temp.GhiChu = null;
+                temp.GhiChu = giaoDichData.Rows[i]["GHICHU"].ToString();
                 temp.NgayTao = DateTime.Parse(giaoDichData.Rows[i]["NGAYTAO"].ToString());
                 temp.IsChecked = false;
 
@@ -51,10 +50,6 @@ namespace QuanLyChiTieu.Data.BUS
                 MessageBox.Show("Xoa giao dich thanh cong!");
             else
                 MessageBox.Show("Xoa giao dich that bai!");
-        }
-        public static void HienThiChiTietGiaoDich(object obj)
-        {
-            GiaoDichDAO.HienThiChiTietGiaoDich(obj);
         }
     }
 }
