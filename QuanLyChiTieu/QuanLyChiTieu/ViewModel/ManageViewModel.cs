@@ -73,11 +73,11 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
-            if (obj is DataRowView selectedRow)
+            if (obj is GiaoDichModel selectedRow)
             {
-                GiaoDichBUS.XoaGiaoDich(selectedRow[0]);
+                GiaoDichBUS.XoaGiaoDich(selectedRow.MaGD);
             }
-            GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
+            LoadGiaoDichData();
         }
         private void ExecuteUpdateIsAllSelectedCommand(object obj)
         {

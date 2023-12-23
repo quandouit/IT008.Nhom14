@@ -83,7 +83,7 @@ namespace QuanLyChiTieu.Data.DAO
             }
             return 0;
         }
-        public static int XoaGiaoDich(object MAGD)
+        public static int XoaGiaoDich(int MAGD)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
                 
-                sqlCmd.CommandText = "BEGIN TRANSACTION;\r\nDELETE FROM GIAODICH\r\nWHERE MAGD = @MAGD;\r\nCOMMIT;";
+                sqlCmd.CommandText = "DELETE FROM GIAODICH WHERE MAGD = @MAGD"; 
                 SqlParameter parameter0 = new SqlParameter("@MAGD", MAGD);
                 sqlCmd.Parameters.Add(parameter0);
                 

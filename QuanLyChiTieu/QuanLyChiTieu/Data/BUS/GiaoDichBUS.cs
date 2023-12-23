@@ -44,7 +44,7 @@ namespace QuanLyChiTieu.Data.BUS
             else
                 MessageBox.Show("Them moi giao dich that bai!");
         }
-        public static void XoaGiaoDich(object MAGD)
+        public static void XoaGiaoDich(int MAGD)
         {
             if (GiaoDichDAO.XoaGiaoDich(MAGD) == 0)
                 MessageBox.Show("Xoa giao dich thanh cong!");
