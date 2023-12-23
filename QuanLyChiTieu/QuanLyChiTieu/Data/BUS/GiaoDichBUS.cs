@@ -51,5 +51,12 @@ namespace QuanLyChiTieu.Data.BUS
             else
                 MessageBox.Show("Xoa giao dich that bai!");
         }
+        public static void SuaGiaoDich(GiaoDichDTO obj)
+        {
+            if (GiaoDichDAO.SuaGiaoDich(obj) == 0)
+                MessageBox.Show("Sua doi thong tin giao dich thanh cong!");
+            else
+                MessageBox.Show("Sua doi thong tin giao dich that bai!");
+        }
     }
 }

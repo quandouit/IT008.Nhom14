@@ -54,13 +54,18 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
-            EditDialog newBillDialog = new EditDialog();
+            EditDialog newBillDialog = new EditDialog(); 
             newBillDialog.ShowDialog();
             LoadGiaoDichData();
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
-            MessageBox.Show("Thuc hien xoa cac giao dich da chon");
+            foreach (GiaoDichModel row in GiaoDichData)
+            {
+                if (row.IsChecked == true)
+                    GiaoDichBUS.XoaGiaoDich(row.MaGD);
+            }
+            LoadGiaoDichData();
         }
         private void ExecuteShowInfoBillCommand(object obj)
         {

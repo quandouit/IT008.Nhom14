@@ -111,5 +111,42 @@ namespace QuanLyChiTieu.Data.DAO
             }
             return 0;
         }
+        public static int SuaGiaoDich(GiaoDichDTO obj)
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "UPDATE GIAODICH\r\nSET MALOAIGD = @MALOAIGD, TENGD = @TENGD, TIEN = @TIEN, GHICHU = @GHICHU, NGAYTAO = @NGAYTAO\r\nWHERE MAGD = @MAGD;";
+
+                SqlParameter parameter1 = new SqlParameter("@MALOAIGD", obj.MaLoaiGD);
+                sqlCmd.Parameters.Add(parameter1);
+                SqlParameter parameter2 = new SqlParameter("@TENGD", obj.TenGD);
+                sqlCmd.Parameters.Add(parameter2);
+                SqlParameter parameter3 = new SqlParameter("@TIEN", obj.Tien);
+                sqlCmd.Parameters.Add(parameter3);
+                SqlParameter parameter4 = new SqlParameter("@GHICHU", obj.GhiChu);
+                sqlCmd.Parameters.Add(parameter4);
+                SqlParameter parameter5 = new SqlParameter("@NGAYTAO", obj.NgayTao);
+                sqlCmd.Parameters.Add(parameter5);
+
+                sqlCmd.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return 0;
+        }
     }
 }
