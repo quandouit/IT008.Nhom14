@@ -6,16 +6,43 @@
              xmlns:local="clr-namespace:QuanLyChiTieu.View"
              xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
              mc:Ignorable="d" 
-             d:DesignHeight="630" d:DesignWidth="1000">
+             d:DesignHeight="630" d:DesignWidth="1000"
+             Background="Wheat">
 
     <UserControl.DataContext>
         <viewmodel:UserViewModel/>
     </UserControl.DataContext>
 
-    <Border Background="Wheat">
-        <Button Content="Đăng xuất" Width="100" Height="30" Margin="5" 
-                Command="{Binding LogOut}" 
-                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
-    </Border>
+    <Grid>
+        <StackPanel Margin="20">
+
+            <!-- Label và TextBox cho Tài khoản -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Label Content="Tài khoản:" Width="80" VerticalAlignment="Center"/>
+                <TextBox Name="accountTextBox" Text="{Binding getUser.TaiKhoan}"
+                         Width="200"/>
+            </StackPanel>
+
+            <!-- Label và TextBox cho Tiền -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Label Content="Tiền:" Width="80" VerticalAlignment="Center"/>
+                <TextBox Name="moneyTextBox" Text="{Binding getUser.TongTien}"
+                         Width="200"/>
+            </StackPanel>
+
+            <!-- Label và TextBox cho Số điện thoại -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Label Content="Số điện thoại:" Width="80" VerticalAlignment="Center"/>
+                <TextBox Name="phoneTextBox" Text="{Binding getUser.Sdt}"
+                         Width="200"/>
+            </StackPanel>
+
+            <!-- Button Đăng xuất -->
+            <Button Content="Đăng xuất" Width="100" Height="30" 
+                    Command="{Binding LogOut}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        </StackPanel>
+    </Grid>
+            
 
 </UserControl>

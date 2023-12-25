@@ -1,4 +1,5 @@
-﻿using QuanLyChiTieu.View;
+﻿using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,17 @@ namespace QuanLyChiTieu.ViewModel
 {
     public class UserViewModel : ViewModelBase
     {
+        private NguoiDungDTO user;
+        public NguoiDungDTO getUser
+        {
+            get { return user; }
+        }
         public ICommand LogOut { get; }
         public UserViewModel()
         {
+            user = new NguoiDungDTO();
+            user = MainViewModel.currentUser;
+
             LogOut = new ViewModelCommand(ExecuteLogOut);
         }
 
