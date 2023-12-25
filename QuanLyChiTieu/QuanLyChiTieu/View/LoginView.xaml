@@ -15,7 +15,7 @@
         Background="Transparent"
         Title="Login" 
         Height="720"
-        Width="1080" Foreground="Black">
+        Width="1080" Foreground="{StaticResource darkFont}">
     
     <Window.DataContext>
         <viewmodel:LoginViewModel/>
@@ -78,13 +78,13 @@
         <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
             <TextBlock Text="ĐĂNG KÍ"
                        Foreground = "White"
-                       FontFamily="Tahoma"
+                       FontFamily="Montserrat"
                        FontSize="40"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"/>
             <TextBlock Text="Tạo một tài khoản mới để sử dụng phần mềm"
                        Foreground = "White"
-                       FontFamily="Tahoma"
+                       FontFamily="Montserrat"
                        FontSize="18"
                        HorizontalAlignment="Center"
                        LineHeight="60"/>
@@ -97,7 +97,7 @@
             Grid.Column="1"
             Grid.Row="1"
             Text="ĐĂNG NHẬP"
-            FontFamily="Tahoma"
+            FontFamily="Montserrat"
             FontSize="48"
             FontWeight="Bold"
             HorizontalAlignment="Center"

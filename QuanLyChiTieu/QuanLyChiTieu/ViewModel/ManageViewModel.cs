@@ -50,11 +50,13 @@ namespace QuanLyChiTieu.ViewModel
 
         public void LoadGiaoDichData()
         {
-            GiaoDichData = new BindingList<GiaoDichModel>(GiaoDichBUS.LietKeGiaoDich());
+            GiaoDichData = new BindingList<GiaoDichModel>();
+            GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
-            EditDialog newBillDialog = new EditDialog(); 
+            EditDialogViewModel viewModel = new EditDialogViewModel();
+            EditDialog newBillDialog = new EditDialog { DataContext = viewModel };
             newBillDialog.ShowDialog();
             LoadGiaoDichData();
         }

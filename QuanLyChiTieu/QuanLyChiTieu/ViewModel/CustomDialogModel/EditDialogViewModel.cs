@@ -45,9 +45,6 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 
         public EditDialogViewModel()
         {
-            _isUserInput = false;
-            _isAutoFill = false;
-            _isEditing = false;
             GiaoDichMoi = new GiaoDichDTO
             {
                 ID = MainViewModel.currentUser.ID,
@@ -55,6 +52,9 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 NgayTao = DateTime.Today,
                 GhiChu = ""
             };
+            _isUserInput = false;
+            _isAutoFill = false;
+            _isEditing = false;
             AutoFillNameCommand = new ViewModelCommand(ExecuteAutoFillNameCommand);
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
@@ -62,9 +62,6 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         }
         public EditDialogViewModel(GiaoDichModel input)
         {
-            _isUserInput = true;
-            _isAutoFill = false;
-            _isEditing = true;
             GiaoDichMoi = new GiaoDichDTO
             {
                 MaGD = input.MaGD,
@@ -74,7 +71,9 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 NgayTao = input.NgayTao,
                 GhiChu = input.GhiChu
             };
-            AutoFillNameCommand = null;
+            _isUserInput = true;
+            _isAutoFill = false;
+            _isEditing = true;
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
             LoadLoaiGiaoDichData();
@@ -88,7 +87,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         }
         private void ExecuteAutoFillNameCommand(object obj)
         {
-            if (!_isUserInput)
+            if (!_isUserInput && !_isEditing)
             {
                 _isAutoFill = true;
                 GiaoDichMoi.TenGD = SelectedLoaiGD.TenLoaiGD;
