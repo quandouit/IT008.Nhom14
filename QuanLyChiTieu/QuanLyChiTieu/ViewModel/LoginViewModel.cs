@@ -37,7 +37,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged("Password");
             }
         }
-
         public ICommand CloseCommand { get; }
         public ICommand SignInButtonCommand { get; }
 
@@ -67,7 +66,6 @@ namespace QuanLyChiTieu.ViewModel
                 Password = "";
             }
         }
-
         private void ExecuteCloseCommand(object obj)
         {
             if (obj is Window window)
@@ -75,6 +73,5 @@ namespace QuanLyChiTieu.ViewModel
                 window.Close();
             }
         }
-
     }
 }

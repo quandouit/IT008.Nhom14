@@ -5,7 +5,7 @@
 
     <!--Signup button-->
     <Style x:Key="buttonSignUp" TargetType="Button">
-        <Setter Property="FontFamily" Value="Tahoma"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Width" Value="170"/>
         <Setter Property="Height" Value="60"/>
@@ -38,7 +38,7 @@
     
     <!--SignIn button-->
     <Style x:Key="buttonSignIn" TargetType="Button">
-        <Setter Property="FontFamily" Value="Tahoma"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Width" Value="170"/>
         <Setter Property="Height" Value="60"/>
