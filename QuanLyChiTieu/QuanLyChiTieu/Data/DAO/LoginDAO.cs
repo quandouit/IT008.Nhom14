@@ -54,8 +54,9 @@ namespace QuanLyChiTieu.Data.DAO
                 }    
             }
 
-            catch (Exception)
+            catch (Exception  ex)
             {
+                MessageBox.Show(ex.Message);
                 return null;
             }
             finally
