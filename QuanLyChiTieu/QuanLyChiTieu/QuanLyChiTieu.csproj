@@ -161,6 +161,7 @@
     <Compile Include="Data\DTO\NganSachDTO.cs" />
     <Compile Include="Data\DTO\NguoiDungDTO.cs" />
     <Compile Include="Model\GiaoDichModel.cs" />
+    <Compile Include="ViewModel\CustomDialogModel\AddingNewPlanViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\EditDialogViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -172,6 +173,9 @@
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelCommand.cs" />
+    <Compile Include="View\CustomDialog\AddingNewPlan.xaml.cs">
+      <DependentUpon>AddingNewPlan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CustomDialog\DetailDialog.xaml.cs">
       <DependentUpon>DetailDialog.xaml</DependentUpon>
     </Compile>
@@ -193,6 +197,7 @@
     <Compile Include="View\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Xceed\Wpf.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -218,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\UIColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomDialog\AddingNewPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

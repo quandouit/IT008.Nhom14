@@ -369,7 +369,105 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!--Set dark button create plan-->
 
+    <Style x:Key="ConfirmButton" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="12, 6, 12, 6"/>
+        <Setter Property="BorderBrush" Value="{StaticResource lightButtonBorder}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="lightButtonBorder"
+                        CornerRadius="5"
+                        Background="{StaticResource darkerGreen}"
+                        Width="{TemplateBinding Width}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+
+                        <ContentPresenter
+                            Focusable="False"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                                Property="Background"
+                                Value="{StaticResource darkButtonOver}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                                Property="Background"
+                                Value="{StaticResource darkButtonPress}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Set cancelation button-->
+    <Style x:Key="CancelButton" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource lightFont}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="12, 6, 12, 6"/>
+        <Setter Property="BorderBrush" Value="{StaticResource lightButtonBorder}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="lightButtonBorder"
+                        CornerRadius="5"
+                        Background="{StaticResource darkButtonBackground}"
+                        Width="{TemplateBinding Width}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+
+                        <ContentPresenter
+                            Focusable="False"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                                Property="Background"
+                                Value="{StaticResource darkButtonOver}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="lightButtonBorder"
+                                Property="Background"
+                                Value="{StaticResource darkButtonPress}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Set Light button-->
     <!--Set Light button-->
     <Style x:Key="lightButtonStyle" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource darkFont}"/>
@@ -384,33 +482,33 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border
-                        x:Name="lightButtonBorder"
-                        CornerRadius="5"
-                        Background="{StaticResource lightButtonBackground}"
-                        Width="{TemplateBinding Width}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Padding="{TemplateBinding Padding}">
+                    x:Name="lightButtonBorder"
+                    CornerRadius="5"
+                    Background="{StaticResource lightButtonBackground}"
+                    Width="{TemplateBinding Width}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Padding="{TemplateBinding Padding}">
 
                         <ContentPresenter
-                            Focusable="False"
-                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                            Margin="{TemplateBinding Padding}"
-                            RecognizesAccessKey="True"/>
+                        Focusable="False"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        Margin="{TemplateBinding Padding}"
+                        RecognizesAccessKey="True"/>
                     </Border>
-                    
+
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="lightButtonBorder"
-                            Property="Background"
-                            Value="{StaticResource lightButtonOver}"/>
+                        Property="Background"
+                        Value="{StaticResource lightButtonOver}"/>
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="lightButtonBorder"
-                            Property="Background"
-                            Value="{StaticResource lightButtonPress}"/>
+                        Property="Background"
+                        Value="{StaticResource lightButtonPress}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
