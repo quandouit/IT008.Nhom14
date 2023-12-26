@@ -162,6 +162,7 @@
     <Compile Include="Data\DTO\NguoiDungDTO.cs" />
     <Compile Include="Model\GiaoDichModel.cs" />
     <Compile Include="Model\LoaiGiaoDichModel.cs" />
+    <Compile Include="ViewModel\AllPlanViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\AddingNewPlanViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\EditDialogViewModel.cs" />
@@ -170,11 +171,15 @@
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PasswordBoxHelper.cs" />
+    <Compile Include="ViewModel\PlanThisMonthViewModel.cs" />
     <Compile Include="ViewModel\PlanViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelCommand.cs" />
+    <Compile Include="View\AllPlanView.xaml.cs">
+      <DependentUpon>AllPlanView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CustomDialog\AddingNewPlan.xaml.cs">
       <DependentUpon>AddingNewPlan.xaml</DependentUpon>
     </Compile>
@@ -192,6 +197,9 @@
     </Compile>
     <Compile Include="View\ManageView.xaml.cs">
       <DependentUpon>ManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PlanThisMonthView.xaml.cs">
+      <DependentUpon>PlanThisMonthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PlanView.xaml.cs">
       <DependentUpon>PlanView.xaml</DependentUpon>
@@ -230,6 +238,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AllPlanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CustomDialog\AddingNewPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PlanThisMonthView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -513,4 +513,17 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--Text button-->
+    <Style x:Key="textButton" TargetType="Button">
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource darkBackground}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
 </ResourceDictionary> 
