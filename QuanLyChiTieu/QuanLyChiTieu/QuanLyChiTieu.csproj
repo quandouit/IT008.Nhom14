@@ -193,6 +193,9 @@
     <Compile Include="View\ManageView.xaml.cs">
       <DependentUpon>ManageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PlanThisMonthView.xaml.cs">
+      <DependentUpon>PlanThisMonthView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PlanView.xaml.cs">
       <DependentUpon>PlanView.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PlanThisMonthView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
