@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="QuanLyChiTieu.View.PlanView"
+﻿<UserControl x:Class="QuanLyChiTieu.View.AllPlanView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,52 +7,32 @@
              xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1000">
-
     <UserControl.DataContext>
-        <viewmodel:PlanViewModel/>
+        <viewmodel:AllPlanViewModel/>
     </UserControl.DataContext>
     
-    <UserControl.Resources>
-        <DataTemplate DataType="{x:Type viewmodel:PlanThisMonthViewModel}">
-            <local:PlanThisMonthView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodel:AllPlanViewModel}">
-            <local:AllPlanView/>
-        </DataTemplate>
-    </UserControl.Resources>
-    
-
     <Grid>
-        <Border Background="Red"
-        Width="200"
-        Height="200"/>
         <Grid Background="{StaticResource lightBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource darkButtonStyle}"
-                        Content="Thêm mới"
-                        Command="{Binding AddingButoonCommand}"
-                        FontSize="18"
-                        Width="150"
-                        Margin="20 0"/>
-
-                    <Button Style="{StaticResource darkButtonStyle}"
-                            Content="Xem tất cả"
+                            Content="Quay lại"
                             Width="150"
-                            Command="{Binding ViewAllCommand}"
+                            Command="{Binding TurnBackCommand}"
                             FontSize="18"
                             Margin="20 0"/>
                 </StackPanel>
             </Grid>
-            <ContentControl Grid.Row="1"
-                            Content="{Binding CurrentMonthView}"/>
+            <Grid Width="100"
+                  Height="100"
+                  Background="Red"
+                  Grid.Row="1">
+            </Grid>
         </Grid>
-        <ContentControl Grid.Row="1"
-                 Content="{Binding AllPlanView}"/>
+        <ContentControl Content="{Binding PlanView}"/>
     </Grid>
 </UserControl>
