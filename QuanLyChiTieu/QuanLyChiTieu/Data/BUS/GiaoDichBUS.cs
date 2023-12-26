@@ -41,16 +41,16 @@ namespace QuanLyChiTieu.Data.BUS
         public static void ThemGiaoDich(GiaoDichDTO obj)
         {
             if (GiaoDichDAO.ThemGiaoDich(obj) == 0)
-                MessageBox.Show("Them moi giao dich thanh cong!");
+                MessageBox.Show("Thêm mới giao dịch thành công!");
             else
-                MessageBox.Show("Them moi giao dich that bai!");
+                MessageBox.Show("Thêm mới giao dịch thất bại!");
         }
         public static void XoaGiaoDich(int MAGD)
         {
             if (GiaoDichDAO.XoaGiaoDich(MAGD) == 0)
-                MessageBox.Show("Xoa giao dich thanh cong!");
+                MessageBox.Show("Xóa giao dịch thành công!");
             else
-                MessageBox.Show("Xoa giao dich that bai!");
+                MessageBox.Show("Xóa giao dịch thất bại!");
         }
         public static void XoaNhieuGiaoDich(BindingList<GiaoDichModel> GiaoDichData)
         {
@@ -67,19 +67,19 @@ namespace QuanLyChiTieu.Data.BUS
             }
             if (success)
             {
-                MessageBox.Show("Xoa giao dich thanh cong!");
+                MessageBox.Show("Hoàn thành xóa các giao dịch được chọn!");
             }
             else
             {
-                MessageBox.Show("Xoa giao dich that bai!");
+                MessageBox.Show("Chưa hoàn thành xóa các giao dịch được chọn!");
             }
         }
         public static void SuaGiaoDich(GiaoDichDTO obj)
         {
             if (GiaoDichDAO.SuaGiaoDich(obj) == 0)
-                MessageBox.Show("Sua doi thong tin giao dich thanh cong!");
+                MessageBox.Show("Sửa đổi thông tin giao dịch thành công!");
             else
-                MessageBox.Show("Sua doi thong tin giao dich that bai!");
+                MessageBox.Show("Sửa đổi thông tin giao dịch thất bại!");
         }
     }
 }

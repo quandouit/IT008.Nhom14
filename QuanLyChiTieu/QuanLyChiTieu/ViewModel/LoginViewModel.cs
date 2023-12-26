@@ -62,7 +62,7 @@ namespace QuanLyChiTieu.ViewModel
             }
             else
             {
-                MessageBox.Show("Ten dang nhap hoac mat khau sai");
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu sai!");
                 Password = "";
             }
         }
