@@ -37,8 +37,8 @@
                         Margin="20 0"/>
                 </StackPanel>
             </Grid>
-            <ContentPresenter Grid.Row="1"
-                Content="{Binding ShowPlanThisMonthCommand}"/>
+            <ContentControl Grid.Row="1"
+                            Content="{Binding CurrentMonthView}"/>
         </Grid>
     </Grid>
 </UserControl>

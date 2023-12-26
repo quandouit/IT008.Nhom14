@@ -12,18 +12,18 @@ namespace QuanLyChiTieu.ViewModel
 {
     public class PlanViewModel : ViewModelBase
     {
-        private ViewModelBase childcurrent;
-        public ViewModelBase CurrentChildView
+        private ViewModelBase monthcurrent;
+        public ViewModelBase CurrentMonthView
         {
             get
             {
-                return childcurrent;
+                return monthcurrent;
             }
 
             set
             {
-                childcurrent = value;
-                OnPropertyChanged(nameof(CurrentChildView));
+                monthcurrent = value;
+                OnPropertyChanged(nameof(CurrentMonthView));
             }
         }
         public ICommand AddingButoonCommand { get; set; }
@@ -33,6 +33,8 @@ namespace QuanLyChiTieu.ViewModel
         {
             AddingButoonCommand = new ViewModelCommand(ExecuteAddingButoonCommand);
             ShowPlanThisMonthCommand = new ViewModelCommand(ExecuteShowPlanThisMonthCommand);
+
+            ExecuteShowPlanThisMonthCommand(null);
         }
 
         private void ExecuteShowPlanThisMonthCommand(object obj)
@@ -42,7 +44,7 @@ namespace QuanLyChiTieu.ViewModel
             //{
             //    CurrentChildView = new PlanThisMonthViewModel();
             //}
-            CurrentChildView = new PlanThisMonthViewModel();
+            CurrentMonthView = new PlanThisMonthViewModel();
         }
         private void ExecuteAddingButoonCommand(object obj)
         {
