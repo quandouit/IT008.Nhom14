@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:QuanLyChiTieu.View" xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
+             xmlns:local="clr-namespace:QuanLyChiTieu.View" 
+             xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1000">
 
@@ -11,6 +12,12 @@
         <viewmodel:PlanViewModel/>
     </UserControl.DataContext>
     
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewmodel:PlanThisMonthViewModel}">
+            <local:PlanThisMonthView/>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
         <Border Background="Red"
         Width="200"
@@ -30,9 +37,8 @@
                         Margin="20 0"/>
                 </StackPanel>
             </Grid>
-
-
-            
+            <ContentPresenter Grid.Row="1"
+                Content="{Binding ShowPlanThisMonthCommand}"/>
         </Grid>
     </Grid>
 </UserControl>
