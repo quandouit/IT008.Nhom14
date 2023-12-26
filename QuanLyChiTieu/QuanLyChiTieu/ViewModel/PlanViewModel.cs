@@ -39,12 +39,11 @@ namespace QuanLyChiTieu.ViewModel
 
         private void ExecuteShowPlanThisMonthCommand(object obj)
         {
-            //DateTime dateTime = DateTime.Now;
-            //if (dateTime.Month.ToString() == "12")
-            //{
-            //    CurrentChildView = new PlanThisMonthViewModel();
-            //}
-            CurrentMonthView = new PlanThisMonthViewModel();
+            DateTime dateTime = DateTime.Now;
+            if (dateTime.Month.ToString() == "11")
+            {
+                CurrentMonthView = new PlanThisMonthViewModel();
+            }    
         }
         private void ExecuteAddingButoonCommand(object obj)
         {
