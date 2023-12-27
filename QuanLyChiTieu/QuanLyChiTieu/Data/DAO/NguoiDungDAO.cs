@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyChiTieu.ViewModel;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -44,6 +45,36 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmdAdd.Parameters.Add(parameter4);
 
                 sqlCmdAdd.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return 0;
+        }
+        public static int DoiMatKhau(string pass)
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "UPDATE NGUOIDUNG\r\nSET MATKHAU = @MATKHAU\r\nWHERE ID = @ID";
+                SqlParameter parameter0 = new SqlParameter("@MATKHAU", pass);
+                sqlCmd.Parameters.Add(parameter0);
+                SqlParameter parameter1 = new SqlParameter("@ID", MainViewModel.currentUser.ID);
+                sqlCmd.Parameters.Add(parameter1);
+
+                sqlCmd.ExecuteNonQuery();
             }
 
             catch (Exception ex)

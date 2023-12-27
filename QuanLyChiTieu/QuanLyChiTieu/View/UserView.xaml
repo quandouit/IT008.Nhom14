@@ -14,35 +14,59 @@
     </UserControl.DataContext>
 
     <Grid>
-        <StackPanel Margin="20">
+        <!-- Cột 1: Labels và TextBoxes -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <!-- Label và TextBox cho Tài khoản -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+        <StackPanel Grid.Column="0" Margin="20">
+            <StackPanel Margin="0,0,0,10">
                 <Label Content="Tài khoản:" Width="80" VerticalAlignment="Center"/>
                 <TextBox Name="accountTextBox" Text="{Binding getUser.TaiKhoan}"
                          Width="200"/>
             </StackPanel>
 
-            <!-- Label và TextBox cho Tiền -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <StackPanel Margin="0,0,0,10">
                 <Label Content="Tiền:" Width="80" VerticalAlignment="Center"/>
                 <TextBox Name="moneyTextBox" Text="{Binding getUser.TongTien}"
                          Width="200"/>
             </StackPanel>
 
-            <!-- Label và TextBox cho Số điện thoại -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <StackPanel Margin="0,0,0,10">
                 <Label Content="Số điện thoại:" Width="80" VerticalAlignment="Center"/>
                 <TextBox Name="phoneTextBox" Text="{Binding getUser.Sdt}"
                          Width="200"/>
             </StackPanel>
 
-            <!-- Button Đăng xuất -->
             <Button Content="Đăng xuất" Width="100" Height="30" 
                     Command="{Binding LogOut}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
         </StackPanel>
-    </Grid>
-            
 
+        <!-- Cột 2: Labels và TextBoxes -->
+        <StackPanel Grid.Column="1" Margin="20">
+            <StackPanel Margin="0,0,0,10">
+                <Label Content="Mật khẩu cũ:" Width="80" VerticalAlignment="Center"/>
+                <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Width="200"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,10">
+                <Label Content="Mật khẩu mới:" Width="80" VerticalAlignment="Center"/>
+                <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         Width="200"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,10">
+                <Label Content="Xác nhận mật khẩu mới:" Width="150" VerticalAlignment="Center"/>
+                <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding ConfirmPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         Width="200"/>
+            </StackPanel>
+
+            <Button Content="Đổi mật khẩu" Width="150" Height="30" 
+                    Command="{Binding ChangePasswordCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        </StackPanel>
+    </Grid>
 </UserControl>
