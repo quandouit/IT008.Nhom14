@@ -1,9 +1,11 @@
 ﻿using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,12 +14,9 @@ namespace QuanLyChiTieu.Data.BUS
 {
     public class NguoiDungBUS
     {
-        public static void ThemNguoiDung(NguoiDungDTO user)
+        public static int ThemNguoiDung(NguoiDungDTO user)
         {
-            int x = NguoiDungDAO.ThemNguoiDung(user);
-            if(x == 0) { MessageBox.Show("Tạo mới tài khoản thành công!"); }
-            else if (x == 1) { MessageBox.Show("Tạo mới tài khoản thất bại!"); }
-            else if (x == 2) { MessageBox.Show("Tên tài khoản đã tồn tại!"); }
+            return NguoiDungDAO.ThemNguoiDung(user);
         }
         public static bool DoiMatKhau(string pass)
         {
@@ -29,6 +28,21 @@ namespace QuanLyChiTieu.Data.BUS
             else
                 MessageBox.Show("Đổi mật khẩu thất bại!");
             return false;
+        }
+        public static bool DoiSotien(NguoiDungDTO input, decimal money)
+        {
+            if (NguoiDungDAO.DoiSotien(money, input.ID) == 0)
+            {
+                MessageBox.Show("Khởi tạo tài khoản thành công");
+                return true;
+            }
+            else
+                MessageBox.Show("Khởi tạo tài khoản thất bại!");
+            return false;
+        }
+        public static NguoiDungDTO ThongTinNguoiDung(NguoiDungDTO user)
+        {
+            return NguoiDungDAO.ThongTinNguoiDung(user);
         }
     }
 }

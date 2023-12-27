@@ -89,7 +89,10 @@
                        HorizontalAlignment="Center"
                        LineHeight="60"/>
 
-            <Button Content="ĐĂNG KÍ" Style="{StaticResource buttonSignUp}"/>
+            <Button Content="ĐĂNG KÍ" 
+                    Style="{StaticResource buttonSignUp}"
+                    Command="{Binding SignUpButtonCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
 
         </StackPanel>
 

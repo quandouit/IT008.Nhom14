@@ -8,6 +8,10 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
+using QuanLyChiTieu.Data.DAO;
+using QuanLyChiTieu.View;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -67,6 +71,19 @@ namespace QuanLyChiTieu.ViewModel
         public MainViewModel(NguoiDungDTO input) 
         {
             currentUser = input;
+            if (currentUser.TongTien <= -9999999999)
+            {
+                InitMoneyViewModel viewModel = new InitMoneyViewModel(currentUser);
+                InitMoneyDialog initDialog = new InitMoneyDialog { DataContext = viewModel };
+                initDialog.ShowDialog();
+
+                currentUser = NguoiDungDAO.ThongTinNguoiDung(currentUser);
+                if (currentUser.ID == 0)
+                {
+                    MessageBox.Show("Không thể khởi tạo người dùng, vui lòng đăng nhập lại sau");
+                    Application.Current.MainWindow.Close();
+                }
+            }
 
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowManageViewCommand = new ViewModelCommand(ExecuteShowManageViewCommand);
@@ -85,7 +102,6 @@ namespace QuanLyChiTieu.ViewModel
         {
             Application.Current.Shutdown();
         }
-
         private void ExecuteMinimizeCommand(object obj)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;

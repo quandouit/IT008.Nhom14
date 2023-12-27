@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel" 
+        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel"
         xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
         mc:Ignorable="d"
         

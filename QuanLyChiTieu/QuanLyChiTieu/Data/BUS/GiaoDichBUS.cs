@@ -17,7 +17,7 @@ namespace QuanLyChiTieu.Data.BUS
         public static BindingList<GiaoDichModel> LietKeGiaoDich()
         {
             BindingList<GiaoDichModel> result = new BindingList<GiaoDichModel>();
-            var giaoDichData = GiaoDichDAO.LietKeGiaoDich();
+            DataTable giaoDichData = GiaoDichDAO.LietKeGiaoDich();
 
             for (int i = 0; i < giaoDichData.Rows.Count; i++)
             {

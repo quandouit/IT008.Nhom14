@@ -13,6 +13,7 @@ using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.Data.BUS;
 using QuanLyChiTieu.View.CustomDialog;
 using QuanLyChiTieu.ViewModel.CustomDialogModel;
+using QuanLyChiTieu.View;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -39,14 +40,23 @@ namespace QuanLyChiTieu.ViewModel
         }
         public ICommand CloseCommand { get; }
         public ICommand SignInButtonCommand { get; }
+        public ICommand SignUpButtonCommand { get; }
 
         public LoginViewModel()
         {
             loginUser = new NguoiDungDTO();
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             SignInButtonCommand = new ViewModelCommand(ExecuteSignInButtonCommand);
+            SignUpButtonCommand = new ViewModelCommand(ExecuteSignUpButtonCommand);
         }
 
+        private void ExecuteSignUpButtonCommand(object obj)
+        {
+            RegisterView registerView = new RegisterView();
+            registerView.Show(); 
+            var loginWindow = obj as Window;
+            loginWindow.Close();
+        }
         private void ExecuteSignInButtonCommand(object obj)
         {
             NguoiDungDTO currentUser = LoginBUS.Try_Login(loginUser);

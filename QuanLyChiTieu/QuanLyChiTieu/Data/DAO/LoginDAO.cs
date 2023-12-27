@@ -28,8 +28,7 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.Parameters.Add(parameterTK);
                 SqlParameter parameterMK = new SqlParameter("@MATKHAU", user.MatKhau.ToString());
                 sqlCmd.Parameters.Add(parameterMK);
-
-
+                
                 using (SqlDataReader reader = sqlCmd.ExecuteReader())
                 {
                     if(reader.HasRows)
@@ -54,7 +53,7 @@ namespace QuanLyChiTieu.Data.DAO
                 }    
             }
 
-            catch (Exception  ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return null;

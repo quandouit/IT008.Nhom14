@@ -15,7 +15,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         Height="720"
-        Width="540">
+        Width="480">
     
     <Window.DataContext>
         <viewmodel:RegisterViewModel/>
@@ -31,7 +31,7 @@
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
             <Button Style="{StaticResource winCtrButton}"
@@ -68,9 +68,74 @@
                 <Button Style="{StaticResource textButton}"
                         Content="Quay lại đăng nhập"
                         Margin="0 10"
-                        FontWeight="SemiBold"/>
+                        FontWeight="SemiBold"
+                        Command="{Binding BackToLogInCommmand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="80 0">
+                <StackPanel Margin="0 40 0 10">
+                    <TextBlock Text="Tên đăng nhập"
+                               FontSize="16"/>
+                    <TextBox Height ="25" 
+                             FontSize="16"
+                             Style="{StaticResource aLineTextBox}"
+                             Margin="10"
+                             Text="{Binding UserName, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0 10">
+                    <TextBlock Text="Số điện thoại"
+                               FontSize="16"/>
+                    <TextBox Height ="25" 
+                             FontSize="16"
+                             Style="{StaticResource aLineTextBox}"
+                             Margin="10"
+                             Text="{Binding PhoneNumber, Mode=TwoWay}"/>
+                </StackPanel>
+                
+                <StackPanel Margin="0 10">
+                    <TextBlock Text="Mật khẩu"
+                               FontSize="16"/>
+                    <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 Style="{StaticResource aLinePasswordBox}"
+                                 Height ="25" 
+                                 Margin="10"/>
+                </StackPanel>
+
+                <StackPanel Margin="0 10">
+                    <TextBlock Text="Nhập lại mật khẩu"
+                               FontSize="16"/>
+                    <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding ConfirmPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 Height ="25" 
+                                 Margin="10">
+                        <PasswordBox.Style>
+                            <Style TargetType="PasswordBox" BasedOn="{StaticResource aLinePasswordBox}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PasswordConfirmationError}" Value="Mật khẩu không khớp!">
+                                        <Setter Property="BorderBrush" Value="{StaticResource redUI}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </PasswordBox.Style>
+                    </PasswordBox>
+                    <TextBlock Text="{Binding PasswordConfirmationError}"
+                               Foreground="{StaticResource redUI}"
+                               FontSize="12"
+                               HorizontalAlignment="Right"
+                               Height="18"/>
+                </StackPanel>
             </StackPanel>
             
+            <Grid Grid.Row="3">
+                <Button Content="Đăng ký"
+                        FontSize="18"
+                        Style="{StaticResource darkButtonStyle}"
+                        Margin="0 0 0 20"
+                        Command="{Binding TrySignUpCommmand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+            </Grid>
         </Grid>
+
     </Border>
 </Window>

@@ -14,7 +14,7 @@ namespace QuanLyChiTieu.Data.DAO
     public class NguoiDungDAO : DBConnection
     {
         public static int ThemNguoiDung(NguoiDungDTO user)
-        {   
+        {
             try
             {
                 OpenConn();
@@ -29,20 +29,29 @@ namespace QuanLyChiTieu.Data.DAO
 
                 var reader = sqlCmd.ExecuteReader();
                 if (reader.HasRows) return 2;
+                reader.Close();
+
+                sqlCmd.CommandText = "SELECT * FROM NGUOIDUNG WHERE SDT = @SDT";
+                SqlParameter parameter1 = new SqlParameter("@SDT", user.Sdt);
+                sqlCmd.Parameters.Add(parameter1);
+
+                reader = sqlCmd.ExecuteReader();
+                if (reader.HasRows) return 3;
+                reader.Close();
 
                 SqlCommand sqlCmdAdd = new SqlCommand();
                 sqlCmdAdd.CommandType = CommandType.Text;
                 sqlCmdAdd.Connection = sqlCon;
 
                 sqlCmdAdd.CommandText = "INSERT INTO NGUOIDUNG (TAIKHOAN, MATKHAU, SDT, TONGTIEN)\r\nVALUES\r\n(@TAIKHOAN , @MATKHAU , @SDT , @TONGTIEN);";
-                SqlParameter parameter1 = new SqlParameter("@TAIKHOAN", user.TaiKhoan);
-                sqlCmdAdd.Parameters.Add(parameter1);
-                SqlParameter parameter2 = new SqlParameter("@MATKHAU", user.MatKhau);
+                SqlParameter parameter2 = new SqlParameter("@TAIKHOAN", user.TaiKhoan);
                 sqlCmdAdd.Parameters.Add(parameter2);
-                SqlParameter parameter3 = new SqlParameter("@SDT", user.Sdt);
+                SqlParameter parameter3 = new SqlParameter("@MATKHAU", user.MatKhau);
                 sqlCmdAdd.Parameters.Add(parameter3);
-                SqlParameter parameter4 = new SqlParameter("@TONGTIEN", user.TongTien);
+                SqlParameter parameter4 = new SqlParameter("@SDT", user.Sdt);
                 sqlCmdAdd.Parameters.Add(parameter4);
+                SqlParameter parameter5 = new SqlParameter("@TONGTIEN", user.TongTien);
+                sqlCmdAdd.Parameters.Add(parameter5);
 
                 sqlCmdAdd.ExecuteNonQuery();
             }
@@ -87,6 +96,87 @@ namespace QuanLyChiTieu.Data.DAO
                 CloseConn();
             }
             return 0;
+        }
+        public static int DoiSotien(decimal sotien, int ID)
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "UPDATE NGUOIDUNG\r\nSET TONGTIEN = @TONGTIEN\r\nWHERE ID = @ID";
+                SqlParameter parameter0 = new SqlParameter("@TONGTIEN", sotien);
+                sqlCmd.Parameters.Add(parameter0);
+                SqlParameter parameter1 = new SqlParameter("@ID", ID);
+                sqlCmd.Parameters.Add(parameter1);
+
+                sqlCmd.ExecuteNonQuery();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return 0;
+        }
+        public static NguoiDungDTO ThongTinNguoiDung(NguoiDungDTO user)
+        {
+            NguoiDungDTO rt = new NguoiDungDTO();
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "SELECT * FROM NGUOIDUNG WHERE ID = @ID";
+                SqlParameter parameter0 = new SqlParameter("@ID", user.ID);
+                sqlCmd.Parameters.Add(parameter0);
+
+                using (SqlDataReader reader = sqlCmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            rt.ID = reader.GetInt32(0);
+                            rt.TaiKhoan = reader.GetString(1);
+                            rt.MatKhau = reader.GetString(2);
+                            rt.Sdt = reader.GetString(3);
+                            rt.TongTien = reader.GetDecimal(4);
+                        }
+                    }
+                    else
+                    {
+                        rt.ID = 0;
+                        rt.TaiKhoan = null;
+                        rt.MatKhau = null;
+                        rt.Sdt = null;
+                        rt.TongTien = 0;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            finally
+            {
+                CloseConn();
+            }
+
+            return rt;
         }
     }
 }
