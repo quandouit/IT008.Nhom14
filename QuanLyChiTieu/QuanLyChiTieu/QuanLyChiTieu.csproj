@@ -162,6 +162,7 @@
     <Compile Include="Data\DTO\NguoiDungDTO.cs" />
     <Compile Include="Model\GiaoDichModel.cs" />
     <Compile Include="Model\LoaiGiaoDichModel.cs" />
+    <Compile Include="Model\NganSachModel.cs" />
     <Compile Include="ViewModel\AllPlanViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\AddingNewPlanViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />

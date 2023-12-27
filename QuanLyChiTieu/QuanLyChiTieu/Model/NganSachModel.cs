@@ -6,20 +6,18 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyChiTieu.Data.DTO
+namespace QuanLyChiTieu.Model
 {
-    public class NganSachDTO : INotifyPropertyChanged
+    public class NganSachModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public NganSachDTO() { }
-        public string MaNS { get; set; }
-        public string ID { get; set; }
-        public string TenNS { get; set; }
-        public decimal TienNS { get; set; }
+        public NganSachModel() { }
+        public int ID { get; set; }
         public DateTime HSD { get; set; }
+        public decimal TienNS { get; set; }
     }
 }
