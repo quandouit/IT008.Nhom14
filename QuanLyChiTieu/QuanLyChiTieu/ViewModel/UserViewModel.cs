@@ -1,6 +1,8 @@
 ﻿using QuanLyChiTieu.Data.BUS;
 using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.View;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +73,10 @@ namespace QuanLyChiTieu.ViewModel
         {
             if(OldPassword != MainViewModel.currentUser.MatKhau)
             {
-                MessageBox.Show("Nhập sai mật khẩu cũ!");
+                CustomMessageBoxViewModel dialogOldPass = new CustomMessageBoxViewModel("Sai mật khẩu", "Nhập sai mật khẩu cũ!");
+                CustomMessageBox messageOldPass = new CustomMessageBox { DataContext = dialogOldPass };
+                messageOldPass.ShowDialog();
+                
                 OldPassword = "";
                 NewPassword = "";
                 ConfirmPass = "";
@@ -79,14 +84,20 @@ namespace QuanLyChiTieu.ViewModel
             }    
             if(OldPassword == NewPassword)
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu mới!");
+                CustomMessageBoxViewModel dialogNewPass = new CustomMessageBoxViewModel("Trùng mật khẩu cũ", "Vui lòng nhập mật khẩu mới!");
+                CustomMessageBox messageNewPass = new CustomMessageBox { DataContext = dialogNewPass };
+                messageNewPass.ShowDialog();
+
                 NewPassword = "";
                 ConfirmPass = "";
                 return;
             }    
             if(NewPassword != ConfirmPass) 
             {
-                MessageBox.Show("Xác nhận mật khẩu mới không trùng khớp!");
+                CustomMessageBoxViewModel dialogNotMatch = new CustomMessageBoxViewModel("Nhập lại sai", "Xác nhận mật khẩu mới không trùng khớp!");
+                CustomMessageBox messageNotMatch = new CustomMessageBox { DataContext = dialogNotMatch };
+                messageNotMatch.ShowDialog();
+
                 ConfirmPass = "";
                 return;
             }

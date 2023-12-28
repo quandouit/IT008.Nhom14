@@ -1,6 +1,8 @@
 ﻿using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.Model;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,16 +43,32 @@ namespace QuanLyChiTieu.Data.BUS
         public static void ThemGiaoDich(GiaoDichDTO obj)
         {
             if (GiaoDichDAO.ThemGiaoDich(obj) == 0)
-                MessageBox.Show("Thêm mới giao dịch thành công!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Thêm mới giao dịch thành công!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
             else
-                MessageBox.Show("Thêm mới giao dịch thất bại!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Thêm mới giao dịch thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
         }
         public static void XoaGiaoDich(int MAGD)
         {
             if (GiaoDichDAO.XoaGiaoDich(MAGD) == 0)
-                MessageBox.Show("Xóa giao dịch thành công!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Xóa giao dịch thành công!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
             else
-                MessageBox.Show("Xóa giao dịch thất bại!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Xóa giao dịch thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
         }
         public static void XoaNhieuGiaoDich(BindingList<GiaoDichModel> GiaoDichData)
         {
@@ -67,19 +85,31 @@ namespace QuanLyChiTieu.Data.BUS
             }
             if (success)
             {
-                MessageBox.Show("Hoàn thành xóa các giao dịch được chọn!");
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Hoàn thành", "Hoàn thành xóa các giao dịch được chọn!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Chưa hoàn thành xóa các giao dịch được chọn!");
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Chưa hoàn thành", "Chưa hoàn thành xóa các giao dịch được chọn!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
             }
         }
         public static void SuaGiaoDich(GiaoDichDTO obj)
         {
             if (GiaoDichDAO.SuaGiaoDich(obj) == 0)
-                MessageBox.Show("Sửa đổi thông tin giao dịch thành công!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Sửa đổi thông tin giao dịch thành công!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
             else
-                MessageBox.Show("Sửa đổi thông tin giao dịch thất bại!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Sửa đổi thông tin giao dịch thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
         }
     }
 }

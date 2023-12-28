@@ -80,7 +80,10 @@ namespace QuanLyChiTieu.ViewModel
                 currentUser = NguoiDungDAO.ThongTinNguoiDung(currentUser);
                 if (currentUser.ID == 0)
                 {
-                    MessageBox.Show("Không thể khởi tạo người dùng, vui lòng đăng nhập lại sau");
+                    CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi phiên đăng nhập", "Không thể khởi tạo người dùng, vui lòng đăng nhập lại sau");
+                    CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                    messageBox.ShowDialog();
+                    
                     Application.Current.MainWindow.Close();
                 }
             }

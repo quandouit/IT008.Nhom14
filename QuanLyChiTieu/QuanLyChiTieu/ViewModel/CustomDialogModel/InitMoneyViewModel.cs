@@ -10,6 +10,7 @@ using QuanLyChiTieu.Data.BUS;
 using System.Data;
 using QuanLyChiTieu.Model;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View.CustomDialog;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
@@ -51,7 +52,9 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             }
             else
             {
-                MessageBox.Show("Vui lòng nhập số dư để khởi tạo tài khoản");
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thông báo", "Vui lòng nhập số dư để khởi tạo tài khoản");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
             }
         }
     }

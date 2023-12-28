@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyChiTieu.ViewModel;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -58,7 +60,10 @@ namespace QuanLyChiTieu.Data.DAO
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
                 return 1;
             }
             finally
@@ -88,7 +93,10 @@ namespace QuanLyChiTieu.Data.DAO
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
                 return 1;
             }
             finally
@@ -118,7 +126,10 @@ namespace QuanLyChiTieu.Data.DAO
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
                 return 1;
             }
             finally
@@ -168,7 +179,10 @@ namespace QuanLyChiTieu.Data.DAO
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
                 return null;
             }
             finally

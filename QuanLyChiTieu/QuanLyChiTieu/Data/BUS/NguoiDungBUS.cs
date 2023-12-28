@@ -1,6 +1,8 @@
 ﻿using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.Model;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,22 +24,36 @@ namespace QuanLyChiTieu.Data.BUS
         {
             if (NguoiDungDAO.DoiMatKhau(pass) == 0)
             {
-                MessageBox.Show("Đổi mật khẩu thành công, vui lòng đăng nhập lại!");
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Đổi mật khẩu thành công, vui lòng đăng nhập lại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
                 return true;
             }
             else
-                MessageBox.Show("Đổi mật khẩu thất bại!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Đổi mật khẩu thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
             return false;
         }
         public static bool DoiSotien(NguoiDungDTO input, decimal money)
         {
             if (NguoiDungDAO.DoiSotien(money, input.ID) == 0)
             {
-                MessageBox.Show("Khởi tạo tài khoản thành công");
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Khởi tạo tài khoản thành công");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
                 return true;
             }
             else
-                MessageBox.Show("Khởi tạo tài khoản thất bại!");
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Khởi tạo tài khoản thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
             return false;
         }
         public static NguoiDungDTO ThongTinNguoiDung(NguoiDungDTO user)

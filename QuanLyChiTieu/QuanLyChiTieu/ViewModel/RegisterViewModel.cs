@@ -109,7 +109,10 @@ namespace QuanLyChiTieu.ViewModel
         {
             if (_newPassword != _confirmPass)
             {
-                MessageBox.Show("Mật khẩu nhập lại chưa đúng");
+                CustomMessageBoxViewModel dialogPassCheck = new CustomMessageBoxViewModel("Lỗi mật khẩu", "Mật khẩu nhập lại chưa đúng");
+                CustomMessageBox messagePassCheck = new CustomMessageBox { DataContext = dialogPassCheck };
+                messagePassCheck.ShowDialog();
+
                 return;
             }
             if (!string.IsNullOrWhiteSpace(UserName))
@@ -126,7 +129,9 @@ namespace QuanLyChiTieu.ViewModel
 
                         if (result == 0)
                         {
-                            MessageBox.Show("Đăng ký tài khoản thành công, hãy đăng nhập lại để hoàn thành");
+                            CustomMessageBoxViewModel dialogSuccess = new CustomMessageBoxViewModel("Thành công", "Đăng ký tài khoản thành công, hãy đăng nhập lại để hoàn thành đăng ký");
+                            CustomMessageBox messageSuccess = new CustomMessageBox { DataContext = dialogSuccess };
+                            messageSuccess.ShowDialog();
 
                             LoginView loginView = new LoginView();
                             loginView.Show();
@@ -138,7 +143,10 @@ namespace QuanLyChiTieu.ViewModel
                         }
                         else if (result == 2)
                         {
-                            MessageBox.Show("Tên đăng nhập đã tồn tại, vui lòng thử lại");
+                            CustomMessageBoxViewModel dialogUsername = new CustomMessageBoxViewModel("Lỗi tên đăng nhập", "Tên đăng nhập đã tồn tại, vui lòng thử lại");
+                            CustomMessageBox messageUsername = new CustomMessageBox { DataContext = dialogUsername };
+                            messageUsername.ShowDialog();
+
                             UserName = "";
                             PhoneNumber = "";
                             NewPassword = "";
@@ -146,7 +154,10 @@ namespace QuanLyChiTieu.ViewModel
                         }
                         else if (result == 3)
                         {
-                            MessageBox.Show("Số điện thoại đã tồn tại, vui lòng thử lại");
+                            CustomMessageBoxViewModel dialogPhone = new CustomMessageBoxViewModel("Lỗi số điện thoại", "Số điện thoại đã tồn tại, vui lòng thử lại");
+                            CustomMessageBox messagePhone = new CustomMessageBox { DataContext = dialogPhone };
+                            messagePhone.ShowDialog();
+                            
                             UserName = "";
                             PhoneNumber = "";
                             NewPassword = "";
@@ -154,7 +165,10 @@ namespace QuanLyChiTieu.ViewModel
                         }
                         else
                         {
-                            MessageBox.Show("Có lỗi xảy ra trong quá trình đăng ký, vui lòng thử lại sau");
+                            CustomMessageBoxViewModel dialogData = new CustomMessageBoxViewModel("Lỗi database", "Có lỗi xảy ra trong quá trình đăng ký, vui lòng thử lại sau");
+                            CustomMessageBox messageData = new CustomMessageBox { DataContext = dialogData };
+                            messageData.ShowDialog();
+                            
                             UserName = "";
                             PhoneNumber = "";
                             NewPassword = "";
@@ -164,7 +178,9 @@ namespace QuanLyChiTieu.ViewModel
                 }
                 return;
             }
-            MessageBox.Show("Vui lòng điền đầy đủ thông tin trước khi đăng ký");
+            CustomMessageBoxViewModel dialogMissing = new CustomMessageBoxViewModel("Thiếu thông tin", "Vui lòng điền đầy đủ thông tin trước khi đăng ký");
+            CustomMessageBox messageMissing = new CustomMessageBox { DataContext = dialogMissing };
+            messageMissing.ShowDialog();
         }
     }
 }
