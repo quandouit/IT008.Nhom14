@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
+using QuanLyChiTieu.View.CustomDialog;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -55,7 +57,10 @@ namespace QuanLyChiTieu.Data.DAO
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
                 return null;
             }
             finally

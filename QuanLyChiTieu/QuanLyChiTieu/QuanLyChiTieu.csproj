@@ -167,6 +167,7 @@
     <Compile Include="Model\NganSachModel.cs" />
     <Compile Include="ViewModel\AllPlanViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\AddingNewPlanViewModel.cs" />
+    <Compile Include="ViewModel\CustomDialogModel\CustomMessageBoxViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\EditDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\InitMoneyViewModel.cs" />
@@ -186,6 +187,9 @@
     </Compile>
     <Compile Include="View\CustomDialog\AddingNewPlan.xaml.cs">
       <DependentUpon>AddingNewPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomDialog\CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CustomDialog\DetailDialog.xaml.cs">
       <DependentUpon>DetailDialog.xaml</DependentUpon>
@@ -250,6 +254,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CustomDialog\AddingNewPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomDialog\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

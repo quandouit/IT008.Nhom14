@@ -14,6 +14,7 @@ using QuanLyChiTieu.Data.BUS;
 using QuanLyChiTieu.View.CustomDialog;
 using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using QuanLyChiTieu.View;
+using System.Windows.Forms;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -64,7 +65,7 @@ namespace QuanLyChiTieu.ViewModel
             {
                 MainViewModel viewModel = new MainViewModel(currentUser);
                 MainWindow mainWindow = new MainWindow { DataContext = viewModel };
-                Application.Current.MainWindow = mainWindow;
+                System.Windows.Application.Current.MainWindow = mainWindow;
                 mainWindow.Show();
 
                 var loginWindow = obj as Window;
@@ -72,7 +73,10 @@ namespace QuanLyChiTieu.ViewModel
             }
             else
             {
-                MessageBox.Show("Tên đăng nhập hoặc mật khẩu sai!");
+                CustomMessageBoxViewModel messageViewModel = new CustomMessageBoxViewModel("Thông báo", "Tên đăng nhập hoặc mật khẩu sai!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = messageViewModel };
+                messageBox.ShowDialog();
+
                 Password = "";
             }
         }
