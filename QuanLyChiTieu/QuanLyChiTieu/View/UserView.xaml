@@ -24,18 +24,21 @@
             <StackPanel Margin="0,0,0,10">
                 <Label Content="Tài khoản:" Width="80" VerticalAlignment="Center"/>
                 <TextBox Name="accountTextBox" Text="{Binding getUser.TaiKhoan}"
+                         IsReadOnly="True"
                          Width="200"/>
             </StackPanel>
 
             <StackPanel Margin="0,0,0,10">
                 <Label Content="Tiền:" Width="80" VerticalAlignment="Center"/>
                 <TextBox Name="moneyTextBox" Text="{Binding getUser.TongTien}"
+                         IsReadOnly="True"
                          Width="200"/>
             </StackPanel>
 
             <StackPanel Margin="0,0,0,10">
                 <Label Content="Số điện thoại:" Width="80" VerticalAlignment="Center"/>
                 <TextBox Name="phoneTextBox" Text="{Binding getUser.Sdt}"
+                         IsReadOnly="True"
                          Width="200"/>
             </StackPanel>
 
