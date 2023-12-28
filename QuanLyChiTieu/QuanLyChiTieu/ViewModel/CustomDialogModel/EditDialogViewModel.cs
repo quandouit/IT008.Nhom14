@@ -10,6 +10,8 @@ using QuanLyChiTieu.Data.BUS;
 using System.Data;
 using QuanLyChiTieu.Model;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View.CustomDialog;
+using System.Windows.Forms;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
@@ -98,7 +100,25 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         {
             if (obj is Window window)
             {
-                window.Close();
+                YesNoDialogViewModel dialogViewModel;
+                if (_isEditing)
+                {
+                    dialogViewModel = new YesNoDialogViewModel("Dừng chỉnh sửa", "Bạn có muốn dừng chỉnh sửa giao dịch không?");
+                }
+                else
+                {
+                    dialogViewModel = new YesNoDialogViewModel("Dừng thêm mới", "Bạn có muốn dừng tạo giao dịch mới không?");
+                }
+
+                dialogViewModel.DialogClosed += result =>
+                {
+                    if (result == DialogResult.OK)
+                    {
+                        window.Close();
+                    }
+                };
+                YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
             }
         }
         private void ExecuteAddCommand(object obj)

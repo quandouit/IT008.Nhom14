@@ -84,7 +84,16 @@ namespace QuanLyChiTieu.ViewModel
         {
             if (obj is Window window)
             {
-                window.Close();
+                YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Thoát ứng dụng", "Bạn có muốn thoát ứng dụng?");
+                dialogViewModel.DialogClosed += result =>
+                {
+                    if (result == DialogResult.OK)
+                    {
+                        window.Close();
+                    }
+                };
+                YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
             }
         }
     }

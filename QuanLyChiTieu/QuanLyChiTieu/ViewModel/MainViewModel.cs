@@ -12,6 +12,7 @@ using QuanLyChiTieu.View.CustomDialog;
 using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.View;
+using System.Windows.Forms;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -83,8 +84,8 @@ namespace QuanLyChiTieu.ViewModel
                     CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi phiên đăng nhập", "Không thể khởi tạo người dùng, vui lòng đăng nhập lại sau");
                     CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
                     messageBox.ShowDialog();
-                    
-                    Application.Current.MainWindow.Close();
+
+                    System.Windows.Application.Current.MainWindow.Close();
                 }
             }
 
@@ -103,22 +104,32 @@ namespace QuanLyChiTieu.ViewModel
 
         private void ExecuteCloseCommand(object obj)
         {
-            Application.Current.Shutdown();
+            YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Thoát ứng dụng", "Bạn có muốn thoát ứng dụng?");
+            dialogViewModel.DialogClosed += result =>
+            {
+                if (result == DialogResult.OK)
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+            };
+            YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+            messageBox.ShowDialog();
+;
         }
         private void ExecuteMinimizeCommand(object obj)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            System.Windows.Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
         private void ExecuteMaximizeCommand(object obj)
         {
-            if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
+            if (System.Windows.Application.Current.MainWindow.WindowState == WindowState.Maximized)
             {
-                Application.Current.MainWindow.WindowState = WindowState.Normal;
+                System.Windows.Application.Current.MainWindow.WindowState = WindowState.Normal;
             }
             else
             {
-                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+                System.Windows.Application.Current.MainWindow.WindowState = WindowState.Maximized;
             }
         }
 

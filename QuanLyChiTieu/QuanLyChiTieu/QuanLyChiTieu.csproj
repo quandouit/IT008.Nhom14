@@ -171,6 +171,7 @@
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\EditDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\InitMoneyViewModel.cs" />
+    <Compile Include="ViewModel\CustomDialogModel\YesNoDialogViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ManageViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
@@ -199,6 +200,9 @@
     </Compile>
     <Compile Include="View\CustomDialog\InitMoneyDialog.xaml.cs">
       <DependentUpon>InitMoneyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomDialog\YesNoDialog.xaml.cs">
+      <DependentUpon>YesNoDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -270,6 +274,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CustomDialog\InitMoneyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomDialog\YesNoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
