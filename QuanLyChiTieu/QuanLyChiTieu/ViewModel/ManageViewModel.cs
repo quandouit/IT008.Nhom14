@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QuanLyChiTieu.ViewModel
@@ -51,7 +52,7 @@ namespace QuanLyChiTieu.ViewModel
         public void LoadGiaoDichData()
         {
             GiaoDichData = new BindingList<GiaoDichModel>();
-            GiaoDichData = GiaoDichBUS.LietKeGiaoDich();
+            GiaoDichData = GiaoDichBUS.SapXepGiaoDich(GiaoDichBUS.LietKeGiaoDich());
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
@@ -62,8 +63,32 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
-            GiaoDichBUS.XoaNhieuGiaoDich(GiaoDichData);
-            LoadGiaoDichData();
+            if (GiaoDichData.Any(gd => gd.IsChecked))
+            {
+                bool check = false;
+                YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Xác nhận", "Bạn có muốn xóa những giao dịch này không?");
+                dialogViewModel.DialogClosed += result =>
+                {
+                    if (result == DialogResult.OK)
+                    {
+                        check = true;
+                    }
+                };
+                YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                if (check)
+                {
+                    GiaoDichBUS.XoaNhieuGiaoDich(GiaoDichData);
+                    LoadGiaoDichData();
+                }
+            }
+            else
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Chưa chọn giao dịch", "Vui lòng chọn giao dịch để xóa");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
         }
         private void ExecuteShowInfoBillCommand(object obj)
         {
@@ -77,15 +102,31 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
-            if (obj is GiaoDichModel selectedRow)
+            bool check = false;
+            YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Xác nhận", "Bạn có muốn xóa giao dịch này không?");
+            dialogViewModel.DialogClosed += result =>
             {
-                GiaoDichBUS.XoaGiaoDich(selectedRow.MaGD);
+                if (result == DialogResult.OK)
+                {
+                    check = true;
+                }
+            };
+            YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+            messageBox.ShowDialog();
+
+            if (check)
+            {
+                if (obj is GiaoDichModel selectedRow)
+                {
+                    GiaoDichBUS.XoaGiaoDich(selectedRow.MaGD);
+                }
+                LoadGiaoDichData();
             }
-            LoadGiaoDichData();
+
         }
         private void ExecuteUpdateIsAllSelectedCommand(object obj)
         {
-            CheckBox checkBox = obj as CheckBox;
+            System.Windows.Controls.CheckBox checkBox = obj as System.Windows.Controls.CheckBox;
             if (checkBox.Name == "HeaderCheckBox")
             {
                 foreach (GiaoDichModel row in GiaoDichData)

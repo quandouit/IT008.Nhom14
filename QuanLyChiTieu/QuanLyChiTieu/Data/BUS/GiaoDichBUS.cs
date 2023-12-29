@@ -24,7 +24,7 @@ namespace QuanLyChiTieu.Data.BUS
             for (int i = 0; i < giaoDichData.Rows.Count; i++)
             {
                 GiaoDichModel temp = new GiaoDichModel();
-                temp.STT = int.Parse(giaoDichData.Rows[i]["STT"].ToString());
+                temp.STT = 0;
                 temp.MaGD = int.Parse(giaoDichData.Rows[i]["MAGD"].ToString());
                 temp.MaLoaiGD = int.Parse(giaoDichData.Rows[i]["MALOAIGD"].ToString());
                 temp.ID = int.Parse(giaoDichData.Rows[i]["ID"].ToString());
@@ -39,6 +39,16 @@ namespace QuanLyChiTieu.Data.BUS
                 result.Add(temp);
             }
             return result;
+        }
+        public static BindingList<GiaoDichModel> SapXepGiaoDich(BindingList<GiaoDichModel> input)
+        {
+            List<GiaoDichModel> sortedList = input.OrderByDescending(gd => gd.NgayTao).ToList();
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                sortedList[i].STT = i + 1;
+            };
+            BindingList<GiaoDichModel> output = new BindingList<GiaoDichModel>(sortedList);
+            return output;
         }
         public static void ThemGiaoDich(GiaoDichDTO obj)
         {

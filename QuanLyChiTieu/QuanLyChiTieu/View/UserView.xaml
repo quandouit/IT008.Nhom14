@@ -6,70 +6,134 @@
              xmlns:local="clr-namespace:QuanLyChiTieu.View"
              xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
              mc:Ignorable="d" 
-             d:DesignHeight="630" d:DesignWidth="1000"
-             Background="Wheat">
+             d:DesignHeight="630" d:DesignWidth="1000">
 
     <UserControl.DataContext>
         <viewmodel:UserViewModel/>
     </UserControl.DataContext>
 
-    <Grid>
-        <!-- Cột 1: Labels và TextBoxes -->
+    <Grid Background="{StaticResource darkBackground}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Margin="20">
-            <StackPanel Margin="0,0,0,10">
-                <Label Content="Tài khoản:" Width="80" VerticalAlignment="Center"/>
-                <TextBox Name="accountTextBox" Text="{Binding getUser.TaiKhoan}"
-                         IsReadOnly="True"
-                         Width="200"/>
-            </StackPanel>
+        <Border Grid.Column="0"
+                Background="{StaticResource lightBackground}"
+                Margin="50"
+                CornerRadius="15">
 
-            <StackPanel Margin="0,0,0,10">
-                <Label Content="Tiền:" Width="80" VerticalAlignment="Center"/>
-                <TextBox Name="moneyTextBox" Text="{Binding getUser.TongTien}"
-                         IsReadOnly="True"
-                         Width="200"/>
-            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <StackPanel Margin="0,0,0,10">
-                <Label Content="Số điện thoại:" Width="80" VerticalAlignment="Center"/>
-                <TextBox Name="phoneTextBox" Text="{Binding getUser.Sdt}"
-                         IsReadOnly="True"
-                         Width="200"/>
-            </StackPanel>
+                <StackPanel Grid.Row="0" Margin="50">
+                    <StackPanel Margin="20">
+                        <TextBlock Text="Tên đăng nhập"
+                                   Margin="10"
+                                   FontSize="16"
+                                   FontFamily="Monsterat"
+                                   Foreground="{StaticResource darkFont}"/>
 
-            <Button Content="Đăng xuất" Width="100" Height="30" 
-                    Command="{Binding LogOut}" 
-                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
-        </StackPanel>
+                        <TextBlock Name="accountTextBox" 
+                                   Text="{Binding getUser.TaiKhoan}"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   Margin="10"
+                                   FontSize="24"
+                                   FontFamily="Monsterat"
+                                   Foreground="{StaticResource darkFont}"/>
+                    </StackPanel>
 
-        <!-- Cột 2: Labels và TextBoxes -->
-        <StackPanel Grid.Column="1" Margin="20">
-            <StackPanel Margin="0,0,0,10">
-                <Label Content="Mật khẩu cũ:" Width="80" VerticalAlignment="Center"/>
-                <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                        Width="200"/>
-            </StackPanel>
+                    <StackPanel Margin="20 0">
+                        <TextBlock Text="Số điện thoại:" 
+                                   Margin="10"
+                                   FontSize="16"
+                                   FontFamily="Monsterat"
+                                   Foreground="{StaticResource darkFont}"/>
 
-            <StackPanel Margin="0,0,0,10">
-                <Label Content="Mật khẩu mới:" Width="80" VerticalAlignment="Center"/>
-                <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                         Width="200"/>
-            </StackPanel>
+                        <TextBlock Name="phoneTextBox" 
+                                   Text="{Binding getUser.Sdt}"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   Margin="10"
+                                   FontSize="24"
+                                   FontFamily="Monsterat"
+                                   Foreground="{StaticResource darkFont}"/>
+                    </StackPanel>
+                </StackPanel>
 
-            <StackPanel Margin="0,0,0,10">
-                <Label Content="Xác nhận mật khẩu mới:" Width="150" VerticalAlignment="Center"/>
-                <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding ConfirmPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                         Width="200"/>
-            </StackPanel>
+                <Button Grid.Row="1"
+                        Margin="0 20 0 50"
+                        Content="Đăng xuất" 
+                        Style="{StaticResource darkButtonStyle}"
+                        FontSize="16"
+                        FontFamily="Monsterat"
+                        Command="{Binding LogOut}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+            </Grid>
+        </Border>
 
-            <Button Content="Đổi mật khẩu" Width="150" Height="30" 
-                    Command="{Binding ChangePasswordCommand}" 
-                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
-        </StackPanel>
+        <Border Grid.Column="1"
+                Background="{StaticResource lightBackground}"
+                Margin="50"
+                CornerRadius="15">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Margin="50">
+                    <StackPanel Margin="20">
+                        <TextBlock Text="Mật khẩu cũ"
+                               Margin="10"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"/>
+
+                        <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 Style="{StaticResource aLinePasswordBox}"
+                                 Margin="20 10 20 20"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="20 0">
+                        <TextBlock Text="Mật khẩu mới"
+                               Margin="10"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"/>
+
+                        <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     Style="{StaticResource aLinePasswordBox}"
+                                     Margin="20 10 20 20"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="20 20">
+                        <TextBlock Text="Xác nhận mật khẩu mới"
+                               Margin="10"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"/>
+
+                        <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding ConfirmPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     Style="{StaticResource aLinePasswordBox}"
+                                     Margin="20 10"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Button Grid.Row="1"
+                        Margin="0 20 0 50"
+                        Content="Đổi mật khẩu" 
+                        Style="{StaticResource darkButtonStyle}"
+                        FontSize="16"
+                        FontFamily="Monsterat"
+                        Command="{Binding ChangePasswordCommand}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
