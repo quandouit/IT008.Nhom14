@@ -114,7 +114,6 @@ namespace QuanLyChiTieu.ViewModel
             };
             YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
             messageBox.ShowDialog();
-;
         }
         private void ExecuteMinimizeCommand(object obj)
         {

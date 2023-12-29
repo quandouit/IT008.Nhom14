@@ -123,6 +123,9 @@
     <Reference Include="FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.3.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.77\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
@@ -166,6 +169,7 @@
     <Compile Include="Model\LoaiGiaoDichModel.cs" />
     <Compile Include="Model\NganSachModel.cs" />
     <Compile Include="ViewModel\AllPlanViewModel.cs" />
+    <Compile Include="ViewModel\DecimalInputBehavior.cs" />
     <Compile Include="ViewModel\CustomDialogModel\AddingNewPlanViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\CustomMessageBoxViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
@@ -176,6 +180,7 @@
     <Compile Include="ViewModel\ManageViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NumericInputBehavior.cs" />
     <Compile Include="ViewModel\PasswordBoxHelper.cs" />
     <Compile Include="ViewModel\PlanThisMonthViewModel.cs" />
     <Compile Include="ViewModel\PlanViewModel.cs" />
@@ -330,6 +335,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Data\packages.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
