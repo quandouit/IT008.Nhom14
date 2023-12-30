@@ -12,6 +12,7 @@ using QuanLyChiTieu.Model;
 using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.View.CustomDialog;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
@@ -44,7 +45,6 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         public ICommand CloseCommand { get; }
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
-
         public EditDialogViewModel()
         {
             GiaoDichMoi = new GiaoDichDTO
@@ -82,7 +82,6 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 
             SelectedLoaiGD = LoaiGiaoDichData.FirstOrDefault(x => x.MaLoaiGD == GiaoDichMoi.MaLoaiGD);
         }
-
         public void LoadLoaiGiaoDichData()
         {
             LoaiGiaoDichData = LoaiGiaoDichBUS.LietKeLoaiGiaoDich();

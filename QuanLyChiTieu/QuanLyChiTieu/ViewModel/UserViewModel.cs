@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QuanLyChiTieu.ViewModel
@@ -63,11 +64,20 @@ namespace QuanLyChiTieu.ViewModel
 
         private void ExecuteLogOut(object obj)
         {
-            LoginView loginView = new LoginView();
-            loginView.Show();
+            YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Đăng xuất", "Bạn có muốn đăng xuất không?");
+            dialogViewModel.DialogClosed += result =>
+            {
+                if (result == DialogResult.OK)
+                {
+                    LoginView loginView = new LoginView();
+                    loginView.Show();
 
-            var mainWindow = obj as MainWindow;
-            mainWindow.Close();
+                    var mainWindow = obj as MainWindow;
+                    mainWindow.Close();
+                }
+            };
+            YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+            messageBox.ShowDialog();
         }
         private void ExecuteChangePasswordCommand(object obj)
         {

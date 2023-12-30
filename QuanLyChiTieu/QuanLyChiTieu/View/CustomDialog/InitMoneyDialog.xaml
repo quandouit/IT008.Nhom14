@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
+        xmlns:behavior="clr-namespace:QuanLyChiTieu.ViewModel"
         mc:Ignorable="d"
         
          WindowStartupLocation="CenterScreen" 
@@ -65,7 +67,11 @@
                              Text="{Binding Money}"
                              Margin="0 0 0 20"
                              Width="250"
-                             HorizontalContentAlignment="Center"/>
+                             HorizontalContentAlignment="Center">
+                        <i:Interaction.Behaviors>
+                            <behavior:DecimalInputBehavior/>
+                        </i:Interaction.Behaviors>
+                    </TextBox>
                 </StackPanel>
             </StackPanel>
 
