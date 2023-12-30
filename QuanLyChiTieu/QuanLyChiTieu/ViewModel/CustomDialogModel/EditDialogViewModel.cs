@@ -44,7 +44,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         public ICommand AutoFillNameCommand { get; set; }
         public ICommand CloseCommand { get; }
         public ICommand AddCommand { get; set; }
-        public ICommand EditCommand { get; set; }
+
         public EditDialogViewModel()
         {
             GiaoDichMoi = new GiaoDichDTO
@@ -62,6 +62,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
             LoadLoaiGiaoDichData();
         }
+
         public EditDialogViewModel(GiaoDichModel input)
         {
             GiaoDichMoi = new GiaoDichDTO
@@ -79,13 +80,13 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
             LoadLoaiGiaoDichData();
-
             SelectedLoaiGD = LoaiGiaoDichData.FirstOrDefault(x => x.MaLoaiGD == GiaoDichMoi.MaLoaiGD);
         }
         public void LoadLoaiGiaoDichData()
         {
             LoaiGiaoDichData = LoaiGiaoDichBUS.LietKeLoaiGiaoDich();
         }
+
         private void ExecuteAutoFillNameCommand(object obj)
         {
             if (!_isUserInput && !_isEditing)
@@ -95,6 +96,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 _isAutoFill = false;
             }
         }
+
         private void ExecuteCloseCommand(object obj)
         {
             if (obj is Window window)
@@ -120,6 +122,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 messageBox.ShowDialog();
             }
         }
+
         private void ExecuteAddCommand(object obj)
         {
             if (obj is Window window)

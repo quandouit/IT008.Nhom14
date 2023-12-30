@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace QuanLyChiTieu.ViewModel
+namespace QuanLyChiTieu.Helper
 {
     public class PasswordBoxHelper
     {

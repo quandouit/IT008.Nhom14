@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace QuanLyChiTieu.ViewModel
+namespace QuanLyChiTieu.Behavior
 {
     public class NumericInputBehavior : Behavior<TextBox>
     {

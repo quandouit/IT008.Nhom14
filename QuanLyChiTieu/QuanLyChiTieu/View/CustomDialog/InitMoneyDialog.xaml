@@ -6,7 +6,7 @@
         xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
-        xmlns:behavior="clr-namespace:QuanLyChiTieu.ViewModel"
+        xmlns:behavior="clr-namespace:QuanLyChiTieu.Behavior"
         mc:Ignorable="d"
         
          WindowStartupLocation="CenterScreen" 

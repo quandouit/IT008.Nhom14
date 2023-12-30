@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuanLyChiTieu.View"
-             xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
+             xmlns:helper="clr-namespace:QuanLyChiTieu.Helper"
+             xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1000">
 
@@ -95,7 +96,7 @@
                                FontFamily="Monsterat"
                                Foreground="{StaticResource darkFont}"/>
 
-                        <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        <PasswordBox helper:PasswordBoxHelper.Password="{Binding OldPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Style="{StaticResource aLinePasswordBox}"
                                  Margin="20 10 20 20"/>
                     </StackPanel>
@@ -107,7 +108,7 @@
                                FontFamily="Monsterat"
                                Foreground="{StaticResource darkFont}"/>
 
-                        <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        <PasswordBox helper:PasswordBoxHelper.Password="{Binding NewPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource aLinePasswordBox}"
                                      Margin="20 10 20 20"/>
                     </StackPanel>
@@ -119,7 +120,7 @@
                                FontFamily="Monsterat"
                                Foreground="{StaticResource darkFont}"/>
 
-                        <PasswordBox viewmodel:PasswordBoxHelper.Password="{Binding ConfirmPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        <PasswordBox helper:PasswordBoxHelper.Password="{Binding ConfirmPass, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                      Style="{StaticResource aLinePasswordBox}"
                                      Margin="20 10"/>
                     </StackPanel>

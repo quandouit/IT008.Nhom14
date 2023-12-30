@@ -6,6 +6,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:QuanLyChiTieu.View"
         xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
+        xmlns:helper="clr-namespace:QuanLyChiTieu.Helper"
         mc:Ignorable="d"
         
         WindowStartupLocation="CenterScreen" 
@@ -147,7 +148,7 @@
                         <Image Source="/Images/pass.png"
                                Height="40"/>
                     <PasswordBox x:Name="pb_pass" 
-                                 viewmodel:PasswordBoxHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 helper:PasswordBoxHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Style="{StaticResource passBox}"/>
                 </Grid>
 

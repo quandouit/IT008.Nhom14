@@ -7,7 +7,8 @@
         xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
-        xmlns:behavior="clr-namespace:QuanLyChiTieu.ViewModel"
+        xmlns:behavior="clr-namespace:QuanLyChiTieu.Behavior"
+        xmlns:helper="clr-namespace:QuanLyChiTieu.Helper"
         mc:Ignorable="d"
         
         WindowStartupLocation="CenterScreen" 
@@ -111,11 +112,13 @@
                                    Style="{StaticResource typeIconText}" 
                                    Margin="5 10"/>
                     </StackPanel>
-                    
+
                     <Calendar x:Name="calNgayGD" 
                               Height="Auto" 
                               Margin="0 10"
-                              SelectedDate="{Binding Path=GiaoDichMoi.NgayTao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              SelectedDate="{Binding Path=GiaoDichMoi.NgayTao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              helper:CalendarExtensions.AutoReleaseMouse="True"/>
+
                 </StackPanel>
             </Grid>
         </Grid>
