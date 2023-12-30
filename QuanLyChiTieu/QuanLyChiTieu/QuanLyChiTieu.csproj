@@ -181,10 +181,12 @@
     <Compile Include="ViewModel\CustomDialogModel\EditDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\InitMoneyViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\YesNoDialogViewModel.cs" />
+    <Compile Include="ViewModel\DecimalInputBehavior.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ManageViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NumericInputBehavior.cs" />
     <Compile Include="ViewModel\PasswordBoxHelper.cs" />
     <Compile Include="ViewModel\PlanThisMonthViewModel.cs" />
     <Compile Include="ViewModel\PlanViewModel.cs" />

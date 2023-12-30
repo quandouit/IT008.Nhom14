@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -45,17 +46,29 @@ namespace QuanLyChiTieu.ViewModel
 
         public HomeViewModel()
         {
-            SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
+            int id = MainViewModel.currentUser.ID;
+            SoDu = NguoiDungBUS.LaySoDu(id);
             
             //lấy tháng và năm hiện tại để lấy khoản thu chi;
-            DateTime dateTime = DateTime.Now;
+            int month = DateTime.Now.Month;
+            int year = DateTime.Now.Year;
+
+            
+            int TongChiThangNay = (int)NguoiDungBUS.LayTongChi(id, month, year);
+            int TongThuThangNay = (int)NguoiDungBUS.LayTongThu(id, month, year);
+
+            //tìm tháng trước để lấy khoản thu chi
+            if (month == 1) { month = 12; year--; }
+            else month--;
+            int TongChiThangTruoc = (int)NguoiDungBUS.LayTongChi(id, month, year);
+            int TongThuThangTruoc = (int)NguoiDungBUS.LayTongThu(id, month, year);
 
             MyChartData = new SeriesCollection
             {
             new ColumnSeries
             {
                 Title = "Giá trị",
-                Values = new ChartValues<int> { 20, 30, 20, 40 }
+                Values = new ChartValues<int> { TongThuThangTruoc, TongChiThangTruoc, TongThuThangNay, TongChiThangNay }
             }
             };
 

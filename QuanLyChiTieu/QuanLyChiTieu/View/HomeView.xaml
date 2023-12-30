@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:QuanLyChiTieu.View"
              xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="630" d:DesignWidth="1000">
 
 
     <UserControl.DataContext>
@@ -17,7 +17,7 @@
 
     <Grid Background="Wheat">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="300"/>
+            <ColumnDefinition Width="Auto" MinWidth="500"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 

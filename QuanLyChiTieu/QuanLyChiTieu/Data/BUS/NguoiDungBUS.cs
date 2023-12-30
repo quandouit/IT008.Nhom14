@@ -71,5 +71,27 @@ namespace QuanLyChiTieu.Data.BUS
             }
             return rt;
         }
+        public static decimal LayTongChi(int ID, int month, int year)
+        {
+            decimal rt = NguoiDungDAO.LayTongChi(ID, month, year);
+            if (rt == -1)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Lấy thông tin tổng chi người dùng thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
+            return rt;
+        }
+        public static decimal LayTongThu(int ID, int month, int year)
+        {
+            decimal rt = NguoiDungDAO.LayTongThu(ID, month, year);
+            if (rt == -1)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Lấy thông tin tổng thu người dùng thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
+            return rt;
+        }
     }
 }

@@ -210,7 +210,99 @@ namespace QuanLyChiTieu.Data.DAO
                 var reader = sqlCmd.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
+                    while (reader.Read() && !reader.IsDBNull(0))
+                    {
+                        rt = reader.GetDecimal(0);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                return -1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return rt;
+        }
+        public static decimal LayTongChi(int ID, int month, int year)
+        {
+            decimal rt = 0;
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "SELECT SUM(TIEN) FROM GIAODICH " +
+                                     "\r\nINNER JOIN NGUOIDUNG ON GIAODICH.ID = NGUOIDUNG.ID" +
+                                     "\r\nINNER JOIN LOAIGIAODICH ON GIAODICH.MALOAIGD = LOAIGIAODICH.MALOAIGD" +
+                                     "\r\nWHERE NGUOIDUNG.ID = @ID AND TRANGTHAI = 'OUT' AND MONTH(NGAYTAO) = @MONTH AND YEAR(NGAYTAO) = @YEAR";
+                SqlParameter parameter0 = new SqlParameter("@ID", ID);
+                sqlCmd.Parameters.Add(parameter0);
+                SqlParameter parameter1 = new SqlParameter("@MONTH", month);
+                sqlCmd.Parameters.Add(parameter1);
+                SqlParameter parameter2 = new SqlParameter("@YEAR", year);
+                sqlCmd.Parameters.Add(parameter2);
+
+                var reader = sqlCmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read() && !reader.IsDBNull(0))
+                    {
+                        rt = reader.GetDecimal(0);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                return -1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return rt;
+        }
+        public static decimal LayTongThu(int ID, int month, int year)
+        {
+            decimal rt = 0;
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "SELECT SUM(TIEN) FROM GIAODICH " +
+                                     "\r\nINNER JOIN NGUOIDUNG ON GIAODICH.ID = NGUOIDUNG.ID" +
+                                     "\r\nINNER JOIN LOAIGIAODICH ON GIAODICH.MALOAIGD = LOAIGIAODICH.MALOAIGD" +
+                                     "\r\nWHERE NGUOIDUNG.ID = @ID AND TRANGTHAI = 'IN' AND MONTH(NGAYTAO) = @MONTH AND YEAR(NGAYTAO) = @YEAR";
+                SqlParameter parameter0 = new SqlParameter("@ID", ID);
+                sqlCmd.Parameters.Add(parameter0);
+                SqlParameter parameter1 = new SqlParameter("@MONTH", month);
+                sqlCmd.Parameters.Add(parameter1);
+                SqlParameter parameter2 = new SqlParameter("@YEAR", year);
+                sqlCmd.Parameters.Add(parameter2);
+
+                var reader = sqlCmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read() && !reader.IsDBNull(0))
                     {
                         rt = reader.GetDecimal(0);
                     }
