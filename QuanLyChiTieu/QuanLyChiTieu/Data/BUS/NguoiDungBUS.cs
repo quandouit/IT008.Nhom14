@@ -60,5 +60,16 @@ namespace QuanLyChiTieu.Data.BUS
         {
             return NguoiDungDAO.ThongTinNguoiDung(user);
         }
+        public static decimal LaySoDu(int ID)
+        {
+            decimal rt = NguoiDungDAO.LaySoDu(ID);
+            if (rt == -1)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Lấy thông tin số dư người dùng thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
+            return rt;
+        }
     }
 }

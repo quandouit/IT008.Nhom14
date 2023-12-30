@@ -4,10 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:QuanLyChiTieu.View"
+             xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
-    <Border Background="Wheat"/>
+
+    <UserControl.DataContext>
+        <viewmodel:HomeViewModel/>
+    </UserControl.DataContext>
+
+    <Grid Background="Wheat">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="10,10,10,10">
+            <Label Content="Số dư:"/>
+            <TextBox Width="120"
+                     IsReadOnly="True"
+                     Text="{Binding SoDu}"/>
+
+            <Border Margin="0,100,0,0" Height="336">
+                <lvc:CartesianChart Series="{Binding MyChartData}" LegendLocation="None">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Các khoản" Labels="{Binding Categories}" />
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Giá trị" />
+                    </lvc:CartesianChart.AxisY>
+      
+                </lvc:CartesianChart>
+            </Border>
+        </StackPanel>
+
+    </Grid>
 </UserControl>
 

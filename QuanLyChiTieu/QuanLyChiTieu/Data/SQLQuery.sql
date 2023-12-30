@@ -15,6 +15,7 @@ MANS int identity(1,1) primary key,
 ID int,
 TENNS nvarchar(40),
 TIENNS decimal,
+HANMUC decimal,
 HSD date,
 constraint FK_ID_NGANSACH foreign key (ID) references NGUOIDUNG(ID),
 )

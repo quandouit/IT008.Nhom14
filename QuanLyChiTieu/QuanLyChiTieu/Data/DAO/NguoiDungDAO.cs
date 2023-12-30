@@ -192,5 +192,44 @@ namespace QuanLyChiTieu.Data.DAO
 
             return rt;
         }
+        public static decimal LaySoDu(int ID)
+        {
+            decimal rt = 0;
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "SELECT TONGTIEN FROM NGUOIDUNG WHERE ID = @ID";
+                SqlParameter parameter0 = new SqlParameter("@ID", ID);
+                sqlCmd.Parameters.Add(parameter0);
+
+                var reader = sqlCmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        rt = reader.GetDecimal(0);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                return -1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return rt;
+        }
     }
 }
