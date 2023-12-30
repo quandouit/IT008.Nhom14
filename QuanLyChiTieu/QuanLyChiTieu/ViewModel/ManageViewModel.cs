@@ -36,6 +36,8 @@ namespace QuanLyChiTieu.ViewModel
         public ICommand ShowInfoBillCommand { get; }
         public ICommand DeleteSingleBillCommand { get; }
         public ICommand UpdateIsAllSelectedCommand { get; set; }
+        public ICommand SortRecentFirstCommand { get; }
+        public ICommand SortRecentLastCommand { get; }
 
         public ManageViewModel()
         {
@@ -45,14 +47,24 @@ namespace QuanLyChiTieu.ViewModel
             DeleteChoosenBillCommand = new ViewModelCommand(ExecuteDeleteChoosenBillCommand);
             ShowInfoBillCommand = new ViewModelCommand(ExecuteShowInfoBillCommand);
             DeleteSingleBillCommand = new ViewModelCommand(ExecuteDeleteSingleBillCommand);
-            
+            SortRecentFirstCommand = new ViewModelCommand(ExecuteSortRecentFirstCommand);
+            SortRecentLastCommand = new ViewModelCommand(ExecuteSortRecentLastCommand);
+
             UpdateIsAllSelectedCommand = new ViewModelCommand(ExecuteUpdateIsAllSelectedCommand);
         }
 
         public void LoadGiaoDichData()
         {
             GiaoDichData = new BindingList<GiaoDichModel>();
-            GiaoDichData = GiaoDichBUS.SapXepGiaoDich(GiaoDichBUS.LietKeGiaoDich());
+            GiaoDichData = GiaoDichBUS.SapXepGanTruoc(GiaoDichBUS.LietKeGiaoDich());
+        }
+        private void ExecuteSortRecentFirstCommand(object obj)
+        {
+            GiaoDichData = GiaoDichBUS.SapXepGanTruoc(GiaoDichData);
+        }
+        private void ExecuteSortRecentLastCommand(object obj)
+        {
+            GiaoDichData = GiaoDichBUS.SapXepXaTruoc(GiaoDichData);
         }
         private void ExecuteAddNewBillCommand(object obj)
         {

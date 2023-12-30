@@ -40,9 +40,19 @@ namespace QuanLyChiTieu.Data.BUS
             }
             return result;
         }
-        public static BindingList<GiaoDichModel> SapXepGiaoDich(BindingList<GiaoDichModel> input)
+        public static BindingList<GiaoDichModel> SapXepGanTruoc(BindingList<GiaoDichModel> input)
         {
             List<GiaoDichModel> sortedList = input.OrderByDescending(gd => gd.NgayTao).ToList();
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                sortedList[i].STT = i + 1;
+            };
+            BindingList<GiaoDichModel> output = new BindingList<GiaoDichModel>(sortedList);
+            return output;
+        }
+        public static BindingList<GiaoDichModel> SapXepXaTruoc(BindingList<GiaoDichModel> input)
+        {
+            List<GiaoDichModel> sortedList = input.OrderBy(gd => gd.NgayTao).ToList();
             for (int i = 0; i < sortedList.Count; i++)
             {
                 sortedList[i].STT = i + 1;
