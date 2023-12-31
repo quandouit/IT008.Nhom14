@@ -93,7 +93,8 @@
                                Margin="0, 0, 10, 0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding TienNganSach, Mode=TwoWay}"
+                    
+                    <TextBlock Text="{Binding TienNganSach, Mode=TwoWay, StringFormat={}{0:N0}}"
                                FontSize="20"
                                FontFamily="Monsterat"
                                FontWeight="Bold"
@@ -103,7 +104,8 @@
                                Margin="0, 0, 10, 0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding TienDaDung, Mode=TwoWay}"
+
+                    <TextBlock Text="{Binding TienDaDung, Mode=TwoWay, StringFormat={}{0:N0}}"
                                FontSize="20"
                                FontFamily="Monsterat"
                                FontWeight="Bold"
@@ -119,8 +121,8 @@
                      Width="500"
                      Height="30"
                      Minimum="0"
-                     Maximum="{Binding SoNguyenTienNganSach}"
-                     Value="{Binding SoNguyenTienDaDung}"
+                     Maximum="{Binding TienNganSach}"
+                     Value="{Binding TienDaDung}"
                      Background="{StaticResource lightButtonBorder}"
                      Foreground="{StaticResource darkBackground}"/>
 

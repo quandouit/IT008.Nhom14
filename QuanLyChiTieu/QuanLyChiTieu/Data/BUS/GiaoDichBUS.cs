@@ -60,9 +60,9 @@ namespace QuanLyChiTieu.Data.BUS
             BindingList<GiaoDichModel> output = new BindingList<GiaoDichModel>(sortedList);
             return output;
         }
-        public static void ThemGiaoDich(GiaoDichDTO obj)
+        public static void ThemGiaoDich(GiaoDichDTO giaodich)
         {
-            if (GiaoDichDAO.ThemGiaoDich(obj) == 0)
+            if (GiaoDichDAO.ThemGiaoDich(giaodich) == 0)
             {
                 CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Thêm mới giao dịch thành công!");
                 CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
@@ -116,9 +116,9 @@ namespace QuanLyChiTieu.Data.BUS
                 messageBox.ShowDialog();
             }
         }
-        public static void SuaGiaoDich(GiaoDichDTO obj)
+        public static void SuaGiaoDich(GiaoDichDTO giaodich)
         {
-            if (GiaoDichDAO.SuaGiaoDich(obj) == 0)
+            if (GiaoDichDAO.SuaGiaoDich(giaodich) == 0)
             {
                 CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Sửa đổi thông tin giao dịch thành công!");
                 CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };

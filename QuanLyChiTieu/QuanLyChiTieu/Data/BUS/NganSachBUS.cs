@@ -10,27 +10,22 @@ using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Model;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Windows.Media.Animation;
 
 namespace QuanLyChiTieu.Data.BUS
 {
     public class NganSachBUS
     {
-        public static string TienNganSach()
+        public static decimal TienNganSach()
         {
-            string result;
             var tienNganSach = NganSachDAO.TienNganSach();
-            result = tienNganSach.Rows[0]["TIENNS"].ToString();
-            return result;
+            return decimal.Parse(tienNganSach.Rows[0]["TIENNS"].ToString());
         }
 
-        public static string TienDaDung()
+        public static decimal TienDaDung(decimal tienNganSach)
         {
-            string result;
-            var tienNganSach = NganSachDAO.TienNganSach();
             var tienDaDung = NganSachDAO.TienDaDung();
-            var tienConLai = decimal.Parse(tienNganSach.Rows[0]["TIENNS"].ToString()) - decimal.Parse(tienDaDung.Rows[0]["TIENDD"].ToString());
-            result = tienConLai.ToString();
-            return result;
+            return tienNganSach - decimal.Parse(tienDaDung.Rows[0]["TIENDD"].ToString());
         }
     }
 }

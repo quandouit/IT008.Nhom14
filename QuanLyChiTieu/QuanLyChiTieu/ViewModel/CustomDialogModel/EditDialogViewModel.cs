@@ -125,17 +125,26 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 
         private void ExecuteAddCommand(object obj)
         {
-            if (obj is Window window)
+            if (GiaoDichMoi.IsFilled())
+                    {
+                if (obj is Window window)
+                {
+                    if (_isEditing)
+                    {
+                        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                    }
+                    else
+                    {
+                        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                    }
+                    window.Close();
+                }
+            }
+            else
             {
-                if (_isEditing)
-                {
-                    GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
-                }
-                else
-                {
-                    GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
-                }
-                window.Close();
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thiếu thông tin", "Vui lòng điền đầy đủ thông tin giao dịch");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
             }
         }
     }

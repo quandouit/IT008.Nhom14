@@ -41,5 +41,12 @@ namespace QuanLyChiTieu.Data.DTO
         public decimal Tien { get; set; }
         public string GhiChu { get; set; }
         public DateTime NgayTao { get; set; }
+        public bool IsFilled()
+        {
+            if (!string.IsNullOrEmpty(MaLoaiGD.ToString())) { return false; }
+            if (!string.IsNullOrWhiteSpace(TenGD)) { return false; }
+            if (!string.IsNullOrWhiteSpace(Tien.ToString())) { return false; }
+            return true;
+        }
     }
 }

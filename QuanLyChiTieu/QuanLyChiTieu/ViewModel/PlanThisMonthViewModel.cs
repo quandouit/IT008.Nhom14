@@ -6,13 +6,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace QuanLyChiTieu.ViewModel
 {
     public class PlanThisMonthViewModel : ViewModelBase
     {
-        private string _tienNganSach;
-        public string TienNganSach
+        private decimal _tienNganSach;
+        public decimal TienNganSach
         {
             get { return _tienNganSach; }
             set
@@ -22,8 +23,8 @@ namespace QuanLyChiTieu.ViewModel
             }
         }
 
-        private string _tienDaDung;
-        public string TienDaDung
+        private decimal _tienDaDung;
+        public decimal TienDaDung
         {
             get { return _tienDaDung; }
             set
@@ -32,7 +33,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(TienDaDung));
             }
         }
-
         private string _homNay;
         public string HomNay
         {
@@ -53,47 +53,13 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(HanSuDung));
             }
         }
-        private decimal soNguyenTienNganSach;
-        public decimal SoNguyenTienNganSach
-        {
-            get { return soNguyenTienNganSach; }
-            set
-            {
-                soNguyenTienNganSach = value;
-                OnPropertyChanged(nameof(SoNguyenTienNganSach));
-            }
-        }
-        private decimal soNguyenTienDaDung;
-        public decimal SoNguyenTienDaDung
-        {
-            get { return soNguyenTienDaDung; }
-            set
-            {
-                soNguyenTienDaDung = value;
-                OnPropertyChanged(nameof(SoNguyenTienDaDung));
-            }
-        }
-
         public PlanThisMonthViewModel()
         {
-            HienThiTienNganSach();
-            HienThiTienDaDung();
             NgayHomNay();
             ThoiHanSuDung();
-            TinhTienNganSach();
-            TinhTienDaDung();
+            ExecuteUpdateMaxCommand();
+            ExecuteUpdateUsedCommand(TienNganSach);
         }
-
-        private void TinhTienDaDung()
-        {
-            SoNguyenTienDaDung = decimal.Parse(TienNganSach) - decimal.Parse(TienDaDung);
-        }
-
-        private void TinhTienNganSach()
-        {
-            SoNguyenTienNganSach = decimal.Parse(TienNganSach);
-        }
-
         private void ThoiHanSuDung()
         {
             DateTime dateTime = DateTime.Now;
@@ -105,19 +71,14 @@ namespace QuanLyChiTieu.ViewModel
             DateTime dateTime = DateTime.Now;
             HanSuDung = "1" + "/" + dateTime.Month.ToString() + " - " +
                 DateTime.DaysInMonth(dateTime.Year, dateTime.Month) + "/" + dateTime.Month.ToString();
-
         }
-
-        private void HienThiTienDaDung()
-        {
-            TienDaDung = NganSachBUS.TienDaDung();
-        }
-
-        private void HienThiTienNganSach()
+        private void ExecuteUpdateMaxCommand()
         {
             TienNganSach = NganSachBUS.TienNganSach();
         }
-
-
+        private void ExecuteUpdateUsedCommand(decimal tienngansach)
+        {
+            TienDaDung = NganSachBUS.TienDaDung(tienngansach);
+        }
     }
 }
