@@ -171,6 +171,7 @@
     <Compile Include="Data\DTO\LoaiGiaoDichDTO.cs" />
     <Compile Include="Data\DTO\NganSachDTO.cs" />
     <Compile Include="Data\DTO\NguoiDungDTO.cs" />
+    <Compile Include="Helper\WindowsApiService.cs" />
     <Compile Include="Model\GiaoDichModel.cs" />
     <Compile Include="Model\LoaiGiaoDichModel.cs" />
     <Compile Include="Model\NganSachModel.cs" />
