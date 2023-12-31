@@ -15,45 +15,231 @@
         <viewmodel:HomeViewModel/>
     </UserControl.DataContext>
 
-    <Grid Background="Wheat">
+    <Grid Background="{StaticResource darkBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="500"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Margin="10,10,10,10">
-            <Label Content="Số dư:"/>
-            <TextBox Width="120"
-                     IsReadOnly="True"
-                     Text="{Binding SoDu}"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Border Grid.Row="0" 
+                    Background="{StaticResource lightBackground}"
+                    Margin="20"
+                    CornerRadius="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0"
+                               Text="Số dư"
+                               Margin="80 15 0 5"
+                               FontSize="20"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"/>
 
-            <Border Margin="0,100,0,0" Height="336">
-                <lvc:CartesianChart Series="{Binding MyChartData}" LegendLocation="None">
-                    <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Labels="{Binding Categories}" />
-                    </lvc:CartesianChart.AxisX>
-                    <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="Giá trị" />
-                    </lvc:CartesianChart.AxisY>
-      
-                </lvc:CartesianChart>
+                    <StackPanel Grid.Row="1"
+                                Margin="30 0 0 20"
+                                Orientation="Horizontal">
+                        
+                        <fa:IconImage Icon="Wallet"
+                                      Height="30"/>
+                        
+                        <TextBlock Text="{Binding SoDu}"
+                                   Margin="15 5"
+                                   FontSize="24"
+                                   FontFamily="Monsterat"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource darkFont}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
             </Border>
-        </StackPanel>
 
-        <StackPanel Grid.Column="1" Margin="10,10,10,10">
-            <Label Content="Phân loại các khoản chi trong tháng:"/>
-            <lvc:PieChart Name="pieChart" Width="280" Height="280" 
-                          Series="{Binding MyPieChartData}">
-                <!-- Các cài đặt khác của biểu đồ tròn -->
-            </lvc:PieChart>
+            <Border Grid.Row="1"
+                    Background="{StaticResource lightBackground}"
+                    CornerRadius="15"
+                    Margin="20 0 20 20"
+                    Padding="10">
 
-            <Label Content="Phân loại các khoản thu trong tháng:"/>
-            <lvc:PieChart Name="pieChart2" Width="280" Height="280" 
-                          Series="{Binding MyPieChartData2}">
-                <!-- Các cài đặt khác của biểu đồ tròn -->
-            </lvc:PieChart>
-        </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
+                    <TextBlock Grid.Row="0"
+                               Text="So sánh thu chi"
+                               Margin="30 15 0 10"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"/>
+
+                    <lvc:CartesianChart Series="{Binding MyChartData}" 
+                                        LegendLocation="None"
+                                        Margin="10"
+                                        Grid.Row="1">
+                        <lvc:CartesianChart.Style>
+                            <Style TargetType="lvc:CartesianChart">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding MyChartDataCanShow, Mode=TwoWay}"
+                                                 Value="False">
+                                        <Setter Property="Visibility" 
+                                                Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </lvc:CartesianChart.Style>
+                        
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding Categories}" 
+                                      FontSize="12" 
+                                      Foreground="{StaticResource darkFont}"/>
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="" 
+                                 FontSize="12" 
+                                 Foreground="{StaticResource darkFont}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <TextBlock Text="Không có dữ liệu"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontWeight="Light"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
+                               Grid.Row="1">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding MyChartDataCanShow, Mode=TwoWay}"
+                                                 Value="True">
+                                        <Setter Property="Visibility" 
+                                                Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Column="1"
+                CornerRadius="15"
+                Margin="20"
+                Background="{StaticResource lightBackground}"
+                Height="Auto">
+            <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Margin="0 40 0 0"
+                               Text="Phân loại các khoản chi trong tháng"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
+                               HorizontalAlignment="Center"/>
+
+                    <lvc:PieChart Grid.Row="1"
+                                  Width="200"
+                                  Height="200"
+                                  Series="{Binding MyPieChartData}">
+                        <lvc:PieChart.Style>
+                            <Style TargetType="lvc:PieChart">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PieChart1DataCanShow, Mode=TwoWay}"
+                                                 Value="False">
+                                        <Setter Property="Visibility" 
+                                                Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </lvc:PieChart.Style>
+                    </lvc:PieChart>
+
+                <TextBlock Text="Không có dữ liệu"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontWeight="Light"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
+                               Grid.Row="1">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PieChart1DataCanShow, Mode=TwoWay}"
+                                             Value="True">
+                                    <Setter Property="Visibility" 
+                                            Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <TextBlock Grid.Row="2"
+                           Margin="0 40 0 0"
+                           Text="Phân loại các khoản thu trong tháng"
+                           FontSize="16"
+                           FontFamily="Monsterat"
+                           Foreground="{StaticResource darkFont}"
+                           HorizontalAlignment="Center"/>
+
+                <lvc:PieChart Grid.Row="3"
+                                  Width="200"
+                                  Height="200"
+                                  Series="{Binding MyPieChartData2}">
+                    <lvc:PieChart.Style>
+                        <Style TargetType="lvc:PieChart">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PieChart2DataCanShow, Mode=TwoWay}"
+                                             Value="False">
+                                    <Setter Property="Visibility" 
+                                            Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </lvc:PieChart.Style>
+                </lvc:PieChart>
+
+                <TextBlock Text="Không có dữ liệu"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontWeight="Light"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
+                               Grid.Row="3">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PieChart2DataCanShow, Mode=TwoWay}"
+                                             Value="True">
+                                    <Setter Property="Visibility" 
+                                            Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
 

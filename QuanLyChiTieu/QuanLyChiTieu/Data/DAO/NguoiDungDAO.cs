@@ -302,9 +302,12 @@ namespace QuanLyChiTieu.Data.DAO
                 var reader = sqlCmd.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    while (reader.Read() && !reader.IsDBNull(0))
+                    while (reader.Read())
                     {
-                        rt = reader.GetDecimal(0);
+                        if (!reader.IsDBNull(0))
+                        {
+                            rt = reader.GetDecimal(0);
+                        }
                     }
                 }
             }
