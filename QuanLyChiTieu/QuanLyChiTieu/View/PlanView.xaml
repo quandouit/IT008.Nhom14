@@ -54,5 +54,13 @@
         </Grid>
         <ContentControl Grid.Row="1"
                  Content="{Binding AllPlanView}"/>
+        <TextBlock Grid.Row="1"
+                   Text="{Binding Notify}"
+                   FontFamily="Monsterat"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource darkBackground}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

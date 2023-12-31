@@ -11,11 +11,24 @@ using QuanLyChiTieu.Model;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
+using System.Windows.Forms.VisualStyles;
 
 namespace QuanLyChiTieu.Data.BUS
 {
     public class NganSachBUS
     {
+        public static List<DateTime> HSDNganSach()
+        {
+            List<DateTime> dateTimes = new List<DateTime>();
+            DataTable HSD = NganSachDAO.TatCaNganSach();
+            foreach(int row in  HSD.Rows)
+            {
+                DateTime temp = DateTime.Parse(HSD.Rows[row]["HSD"].ToString());
+                dateTimes.Add(temp);
+            }    
+
+            return dateTimes;
+        }
         public static decimal TienNganSach()
         {
             var tienNganSach = NganSachDAO.TienNganSach();
