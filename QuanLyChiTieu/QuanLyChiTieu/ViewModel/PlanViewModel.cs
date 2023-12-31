@@ -41,6 +41,20 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(AllPlanView));
             }
         }
+        private string _notify;
+        public string Notify
+        {
+            get
+            {
+                return _notify;
+            }
+
+            set
+            {
+                _notify = value;
+                OnPropertyChanged(nameof(Notify));
+            }
+        }
 
         public ICommand AddingButoonCommand { get; set; }
         public ICommand ShowPlanThisMonthCommand { get; set; }
@@ -54,6 +68,8 @@ namespace QuanLyChiTieu.ViewModel
             ExecuteShowPlanThisMonthCommand(null);
         }
 
+     
+
         private void ExecuteViewAllCommand(object obj)
         {
             AllPlanView = new AllPlanViewModel();
@@ -65,7 +81,12 @@ namespace QuanLyChiTieu.ViewModel
             if (dateTime.Month.ToString() == "12")
             {
                 CurrentMonthView = new PlanThisMonthViewModel();
-            }    
+            }
+            else
+            {
+                Notify = "Chưa có ngân sách nào trong tháng này!";
+            } 
+                
         }
         private void ExecuteAddingButoonCommand(object obj)
         {

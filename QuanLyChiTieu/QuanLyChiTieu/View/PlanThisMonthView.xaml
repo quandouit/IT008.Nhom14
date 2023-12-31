@@ -55,7 +55,7 @@
                         <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Hôm nay: "
                                FontSize="20"
@@ -80,9 +80,9 @@
                                FontWeight="Bold"
                                Grid.Column="2"
                                Foreground="{StaticResource darkButtonBackground}"
-                               Margin="0, 0, 10, 0"
+                               Margin="0 ,0,0,3"
                                HorizontalAlignment="Right"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Bottom"/>
                     <TextBlock Text="Còn lại: "
                                FontSize="20"
                                FontFamily="Monsterat"
@@ -90,10 +90,10 @@
                                Grid.Row="1"
                                Grid.Column="2"
                                Foreground="{StaticResource darkButtonBackground}"
-                               Margin="0, 0, 10, 0"
+                               Margin="0, 0, 0, 0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"/>
-                    
+
                     <TextBlock Text="{Binding TienNganSach, Mode=TwoWay, StringFormat={}{0:N0}}"
                                FontSize="20"
                                FontFamily="Monsterat"
@@ -105,7 +105,7 @@
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"/>
 
-                    <TextBlock Text="{Binding TienDaDung, Mode=TwoWay, StringFormat={}{0:N0}}"
+                    <TextBlock Text="{Binding TienConLai, Mode=TwoWay, StringFormat={}{0:N0}}"
                                FontSize="20"
                                FontFamily="Monsterat"
                                FontWeight="Bold"

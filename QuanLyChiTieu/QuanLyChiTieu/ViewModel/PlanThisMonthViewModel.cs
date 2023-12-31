@@ -33,6 +33,16 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(TienDaDung));
             }
         }
+        private decimal _tienConLai;
+        public decimal TienConLai
+        {
+            get { return _tienConLai; }
+            set
+            {
+                _tienConLai = value;
+                OnPropertyChanged(nameof(TienConLai));
+            }
+        }
         private string _homNay;
         public string HomNay
         {
@@ -59,7 +69,14 @@ namespace QuanLyChiTieu.ViewModel
             ThoiHanSuDung();
             ExecuteUpdateMaxCommand();
             ExecuteUpdateUsedCommand(TienNganSach);
+            SoTienConLai();
         }
+
+        private void SoTienConLai()
+        {
+            TienConLai = TienNganSach - TienDaDung;
+        }
+
         private void ThoiHanSuDung()
         {
             DateTime dateTime = DateTime.Now;
@@ -78,7 +95,9 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteUpdateUsedCommand(decimal tienngansach)
         {
-            TienDaDung = NganSachBUS.TienDaDung(tienngansach);
+            int id = MainViewModel.currentUser.ID;
+            DateTime dateTime = DateTime.Now;
+            TienDaDung = NguoiDungBUS.LayTongChi(id, dateTime.Month, dateTime.Year);
         }
     }
 }
