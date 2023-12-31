@@ -8,5 +8,6 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
     internal class AddingNewPlanViewModel
     {
+        
     }
 }

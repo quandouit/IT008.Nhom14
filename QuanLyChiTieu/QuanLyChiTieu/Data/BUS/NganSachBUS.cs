@@ -17,6 +17,22 @@ namespace QuanLyChiTieu.Data.BUS
 {
     public class NganSachBUS
     {
+        public static BindingList<NganSachModel> DanhSachNganSach()
+        {
+            BindingList<NganSachModel> result = new BindingList<NganSachModel>();
+            DataTable danhSach = NganSachDAO.DanhSachNganSach();
+
+            for (int i = 0; i < danhSach.Rows.Count; i++)
+            {
+                NganSachModel temp = new NganSachModel();
+                temp.ID = int.Parse(danhSach.Rows[i]["ID"].ToString());
+                temp.TienNS = decimal.Parse(danhSach.Rows[i]["TIENNS"].ToString());
+                temp.HSD = DateTime.Parse(danhSach.Rows[i]["HSD"].ToString());
+                result.Add(temp);
+            }
+            return result;
+        }
+
         public static List<DateTime> HSDNganSach()
         {
             List<DateTime> dateTimes = new List<DateTime>();

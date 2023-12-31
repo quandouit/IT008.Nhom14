@@ -13,6 +13,35 @@ namespace QuanLyChiTieu.Data.DAO
 {
     public class NganSachDAO : DBConnection
     {
+        public static DataTable DanhSachNganSach()
+        {
+            try
+            {
+                OpenConn();
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "SELECT * FROM NGANSACH WHERE NS.ID = @ID"; ;
+                SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
+                sqlCmd.Parameters.Add(parameterTK);
+                var reader = sqlCmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(reader);
+                reader.Close();
+                return dt;
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                CloseConn();
+            }
+        }
+
+
         public static DataTable TatCaNganSach()
         {
             try
