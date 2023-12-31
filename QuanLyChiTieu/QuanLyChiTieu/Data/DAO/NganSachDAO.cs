@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -22,6 +24,8 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.CommandText = "SELECT HSD FROM NGANSACH WHERE ID = @ID"; ;
                 SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
+                
+
                 var reader = sqlCmd.ExecuteReader();
                 var dt = new DataTable();
                 dt.Load(reader);
@@ -38,32 +42,42 @@ namespace QuanLyChiTieu.Data.DAO
                 CloseConn();
             }
         }
-        public static DataTable TienNganSach()
+        public static decimal TienNganSach()
         {
+            decimal rt = 0;
             try
             {
+                DateTime date = DateTime.Now;
                 OpenConn();
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
-                sqlCmd.CommandText = "SELECT TIENNS FROM NGANSACH WHERE ID = @ID"; ;
+                sqlCmd.CommandText = "SELECT TIENNS FROM NGANSACH WHERE ID = @ID  AND MONTH(HSD) = @MONTH AND YEAR(HSD) = @YEAR"; ;
                 SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
+                SqlParameter parameterTK1 = new SqlParameter("@MONTH", date.Month.ToString());
+                sqlCmd.Parameters.Add(parameterTK1);
+                SqlParameter parameterTK2 = new SqlParameter("@YEAR", date.Year.ToString());
+                sqlCmd.Parameters.Add(parameterTK2);
                 var reader = sqlCmd.ExecuteReader();
-                var dt = new DataTable();
-                dt.Load(reader);
-                reader.Close();
-                return dt;
+                if (reader.HasRows)
+                {
+                    while (reader.Read() && !reader.IsDBNull(0))
+                    {
+                        rt = reader.GetDecimal(0);
+                    }
+                }
             }
 
             catch (Exception)
             {
-                return null;
+                return -1;
             }
             finally
             {
                 CloseConn();
             }
+            return rt;
         }
 
         public static DataTable TienDaDung()

@@ -63,6 +63,20 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(HanSuDung));
             }
         }
+        private string _overBudgetNotify;
+        public string OverBudgetNotify
+        {
+            get
+            {
+                return _overBudgetNotify;
+            }
+
+            set
+            {
+                _overBudgetNotify = value;
+                OnPropertyChanged(nameof(OverBudgetNotify));
+            }
+        }
         public PlanThisMonthViewModel()
         {
             NgayHomNay();
@@ -70,6 +84,13 @@ namespace QuanLyChiTieu.ViewModel
             ExecuteUpdateMaxCommand();
             ExecuteUpdateUsedCommand(TienNganSach);
             SoTienConLai();
+            ShowOverBudgetNotify();
+        }
+
+        private void ShowOverBudgetNotify()
+        {
+            if(TienNganSach < TienDaDung)
+                OverBudgetNotify = "*Bạn đã vượt quá ngân sách tháng này";
         }
 
         private void SoTienConLai()

@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FontAwesome.Sharp;
+using QuanLyChiTieu.Data.BUS;
+using System.Windows.Media.Media3D;
 
 
 namespace QuanLyChiTieu.ViewModel
@@ -55,6 +57,21 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(Notify));
             }
         }
+        
+        private List<DateTime> _allHSD;
+        public List<DateTime> AllHSD
+        {
+            get
+            {
+                return _allHSD;
+            }
+
+            set
+            {
+                _allHSD = value;
+                OnPropertyChanged(nameof(AllHSD));
+            }
+        }
 
         public ICommand AddingButoonCommand { get; set; }
         public ICommand ShowPlanThisMonthCommand { get; set; }
@@ -62,13 +79,17 @@ namespace QuanLyChiTieu.ViewModel
 
         public PlanViewModel()
         {
+            LoadAllHSD();
             AddingButoonCommand = new ViewModelCommand(ExecuteAddingButoonCommand);
             ShowPlanThisMonthCommand = new ViewModelCommand(ExecuteShowPlanThisMonthCommand);
             ViewAllCommand = new ViewModelCommand(ExecuteViewAllCommand);
             ExecuteShowPlanThisMonthCommand(null);
         }
 
-     
+        private void LoadAllHSD()
+        {
+            AllHSD = NganSachBUS.HSDNganSach();
+        }
 
         private void ExecuteViewAllCommand(object obj)
         {
@@ -78,7 +99,17 @@ namespace QuanLyChiTieu.ViewModel
         private void ExecuteShowPlanThisMonthCommand(object obj)
         {
             DateTime dateTime = DateTime.Now;
-            if (dateTime.Month.ToString() == "12")
+            bool flag = false;
+            foreach(DateTime date in AllHSD)
+            {
+                if (dateTime.Month.ToString() == "12"/*date.Month*/ && dateTime.Year.ToString() == "2023"/*date.Year*/)
+                { 
+                    flag = true; 
+                    break; 
+                }
+            }
+            
+            if (flag)
             {
                 CurrentMonthView = new PlanThisMonthViewModel();
             }

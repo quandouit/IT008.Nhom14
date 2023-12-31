@@ -21,18 +21,18 @@ namespace QuanLyChiTieu.Data.BUS
         {
             List<DateTime> dateTimes = new List<DateTime>();
             DataTable HSD = NganSachDAO.TatCaNganSach();
-            foreach(int row in  HSD.Rows)
+            for (int i = 0; i < HSD.Rows.Count; ++i)
             {
-                DateTime temp = DateTime.Parse(HSD.Rows[row]["HSD"].ToString());
+                DateTime temp;
+                temp = DateTime.Parse(HSD.Rows[i]["HSD"].ToString());
                 dateTimes.Add(temp);
-            }    
+            }
 
             return dateTimes;
         }
         public static decimal TienNganSach()
         {
-            var tienNganSach = NganSachDAO.TienNganSach();
-            return decimal.Parse(tienNganSach.Rows[0]["TIENNS"].ToString());
+            return NganSachDAO.TienNganSach();
         }
 
         public static decimal TienDaDung(decimal tienNganSach)
