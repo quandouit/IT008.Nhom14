@@ -93,6 +93,7 @@ namespace QuanLyChiTieu.ViewModel
 
         private void ExecuteViewAllCommand(object obj)
         {
+            Notify = "";
             AllPlanView = new AllPlanViewModel();
         }
 
