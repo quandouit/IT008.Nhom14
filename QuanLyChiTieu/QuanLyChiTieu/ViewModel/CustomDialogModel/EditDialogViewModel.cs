@@ -52,7 +52,8 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 ID = MainViewModel.currentUser.ID,
                 TenGD = "",
                 NgayTao = DateTime.Today,
-                GhiChu = ""
+                GhiChu = "",
+                MaLoaiGD = 0
             };
             _isUserInput = false;
             _isAutoFill = false;

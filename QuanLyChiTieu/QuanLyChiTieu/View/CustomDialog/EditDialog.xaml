@@ -84,8 +84,7 @@
                     <StackPanel Margin="30 15">
                         <TextBlock Text="Số tiền" Tag="Trường bắt buộc" Style="{StaticResource typeIconText}" Margin="0 5"/>
                         <TextBox x:Name="txtSoTien" 
-                                 Style="{StaticResource aLineTextBox}" 
-                                 Tag="Trường bắt buộc" 
+                                 Style="{StaticResource aLineTextBox}"
                                  Height="20"
                                  Text="{Binding Path=GiaoDichMoi.Tien, Mode=TwoWay}">
                             <i:Interaction.Behaviors>

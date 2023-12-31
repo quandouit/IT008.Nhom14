@@ -43,9 +43,9 @@ namespace QuanLyChiTieu.Data.DTO
         public DateTime NgayTao { get; set; }
         public bool IsFilled()
         {
-            if (!string.IsNullOrEmpty(MaLoaiGD.ToString())) { return false; }
-            if (!string.IsNullOrWhiteSpace(TenGD)) { return false; }
-            if (!string.IsNullOrWhiteSpace(Tien.ToString())) { return false; }
+            if (string.IsNullOrEmpty(MaLoaiGD.ToString()) || MaLoaiGD == 0) { return false; }
+            if (string.IsNullOrWhiteSpace(TenGD)) { return false; }
+            if (string.IsNullOrWhiteSpace(Tien.ToString())) { return false; }
             return true;
         }
     }
