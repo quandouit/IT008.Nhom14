@@ -11,12 +11,14 @@ using System.Windows.Media.Media3D;
 using System.Windows.Data;
 using QuanLyChiTieu.Model;
 using System.ComponentModel;
+using System.Windows;
 
 
 namespace QuanLyChiTieu.ViewModel
 {
     public class PlanViewModel : ViewModelBase
-    {
+    { 
+
         private ViewModelBase monthcurrent;
         private NganSachModel _nganSachHienTai;
         public NganSachModel NganSachHienTai
@@ -131,7 +133,7 @@ namespace QuanLyChiTieu.ViewModel
             bool flag = false;
             foreach(DateTime date in AllHSD)
             {
-                if (dateTime.Month.ToString() == "12"/*date.Month*/ && dateTime.Year.ToString() == "2023"/*date.Year*/)
+                if (dateTime.Month.ToString() == "1"/*date.Month*/ && dateTime.Year.ToString() == "2024"/*date.Year*/)
                 { 
                     flag = true; 
                     break; 

@@ -101,14 +101,15 @@ namespace QuanLyChiTieu.ViewModel
         private void ThoiHanSuDung()
         {
             DateTime dateTime = DateTime.Now;
-            HomNay = dateTime.Day.ToString() + "/" + dateTime.Month.ToString();
+            HanSuDung = "1" + "/" + dateTime.Month.ToString() + " - " +
+                DateTime.DaysInMonth(dateTime.Year, dateTime.Month) + "/" + dateTime.Month.ToString();
         }
 
         private void NgayHomNay()
         {
             DateTime dateTime = DateTime.Now;
-            HanSuDung = "1" + "/" + dateTime.Month.ToString() + " - " +
-                DateTime.DaysInMonth(dateTime.Year, dateTime.Month) + "/" + dateTime.Month.ToString();
+            HomNay = dateTime.Day.ToString() + "/" + dateTime.Month.ToString();
+            
         }
         private void ExecuteUpdateMaxCommand()
         {
