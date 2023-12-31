@@ -30,7 +30,7 @@
             <Border Margin="0,100,0,0" Height="336">
                 <lvc:CartesianChart Series="{Binding MyChartData}" LegendLocation="None">
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="Các khoản" Labels="{Binding Categories}" />
+                        <lvc:Axis Labels="{Binding Categories}" />
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
                         <lvc:Axis Title="Giá trị" />
@@ -38,6 +38,20 @@
       
                 </lvc:CartesianChart>
             </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10,10,10,10">
+            <Label Content="Phân loại các khoản chi trong tháng:"/>
+            <lvc:PieChart Name="pieChart" Width="280" Height="280" 
+                          Series="{Binding MyPieChartData}">
+                <!-- Các cài đặt khác của biểu đồ tròn -->
+            </lvc:PieChart>
+
+            <Label Content="Phân loại các khoản thu trong tháng:"/>
+            <lvc:PieChart Name="pieChart2" Width="280" Height="280" 
+                          Series="{Binding MyPieChartData2}">
+                <!-- Các cài đặt khác của biểu đồ tròn -->
+            </lvc:PieChart>
         </StackPanel>
 
     </Grid>

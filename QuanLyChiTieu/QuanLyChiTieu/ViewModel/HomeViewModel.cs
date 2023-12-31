@@ -1,12 +1,14 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using QuanLyChiTieu.Data.BUS;
+using QuanLyChiTieu.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -30,6 +32,26 @@ namespace QuanLyChiTieu.ViewModel
             {
                 _myChartData = value;
                 OnPropertyChanged(nameof(MyChartData));
+            }
+        }
+        private SeriesCollection _myPieChartData;
+        public SeriesCollection MyPieChartData 
+        {
+            get { return _myPieChartData; }
+            set
+            {
+                _myPieChartData = value;
+                OnPropertyChanged(nameof(MyPieChartData));
+            }
+        }
+        private SeriesCollection _myPieChartData2;
+        public SeriesCollection MyPieChartData2
+        {
+            get { return _myPieChartData2; }
+            set
+            {
+                _myPieChartData2 = value;
+                OnPropertyChanged(nameof(MyPieChartData2));
             }
         }
 
@@ -73,6 +95,34 @@ namespace QuanLyChiTieu.ViewModel
             };
 
             Categories = new[] { "Thu tháng trước", "Chi tháng trước", "Thu tháng này " ,"Chi tháng này"};
+
+            //Biểu đồ tròn phân tích các khoản chi
+            List<LoaiGiaoDichDTO> myList = GiaoDichBUS.PhanLoaiGiaoDichOUT();
+
+            MyPieChartData = new SeriesCollection();
+            foreach(LoaiGiaoDichDTO item  in myList)
+            {
+                PieSeries pie = new PieSeries
+                {
+                    Title = item.TenLoaiGD,
+                    Values = new ChartValues<double> { (double)item.SumTIEN }
+                };
+                MyPieChartData.Add(pie);
+            }
+
+            //Biểu đồ tròn phân tích các khoản thu
+            myList = GiaoDichBUS.PhanLoaiGiaoDichIN();
+
+            MyPieChartData2 = new SeriesCollection();
+            foreach (LoaiGiaoDichDTO item in myList)
+            {
+                PieSeries pie = new PieSeries
+                {
+                    Title = item.TenLoaiGD,
+                    Values = new ChartValues<double> { (double)item.SumTIEN }
+                };
+                MyPieChartData2.Add(pie);
+            }
         }
     }
 }

@@ -9,8 +9,9 @@ namespace QuanLyChiTieu.Data.DTO
     public class LoaiGiaoDichDTO
     {
         public LoaiGiaoDichDTO() { }
-        public char MaLoaiGD { get; set; }
+        public int MaLoaiGD { get; set; }
         public string TenLoaiGD { get; set; }
         public string TrangThai { get; set; }
+        public decimal SumTIEN { get; set; }
     }
 }

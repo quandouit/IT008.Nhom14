@@ -158,5 +158,81 @@ namespace QuanLyChiTieu.Data.DAO
             }
             return 0;
         }
+        public static DataTable PhanLoaiGiaoDichOUT()
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "select GIAODICH.MALOAIGD, TENLOAIGD, SUM(TIEN) AS SUMTIEN from GIAODICH" +
+                                     "\r\ninner join LOAIGIAODICH on GIAODICH.MALOAIGD = LOAIGIAODICH.MALOAIGD" +
+                                     "\r\nWHERE ID = @ID AND TRANGTHAI = 'OUT'" +
+                                     "\r\nGROUP BY GIAODICH.MALOAIGD, TENLOAIGD";
+                SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
+                sqlCmd.Parameters.Add(parameterTK);
+
+                var reader = sqlCmd.ExecuteReader();
+
+                var dt = new DataTable();
+                dt.Load(reader);
+                reader.Close();
+                return dt;
+            }
+
+            catch (Exception ex)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                return null;
+            }
+            finally
+            {
+                CloseConn();
+            }
+        }
+        public static DataTable PhanLoaiGiaoDichIN()
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "select GIAODICH.MALOAIGD, TENLOAIGD, SUM(TIEN) AS SUMTIEN from GIAODICH" +
+                                     "\r\ninner join LOAIGIAODICH on GIAODICH.MALOAIGD = LOAIGIAODICH.MALOAIGD" +
+                                     "\r\nWHERE ID = @ID AND TRANGTHAI = 'IN'" +
+                                     "\r\nGROUP BY GIAODICH.MALOAIGD, TENLOAIGD";
+                SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
+                sqlCmd.Parameters.Add(parameterTK);
+
+                var reader = sqlCmd.ExecuteReader();
+
+                var dt = new DataTable();
+                dt.Load(reader);
+                reader.Close();
+                return dt;
+            }
+
+            catch (Exception ex)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                return null;
+            }
+            finally
+            {
+                CloseConn();
+            }
+        }
     }
 }

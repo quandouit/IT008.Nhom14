@@ -131,5 +131,39 @@ namespace QuanLyChiTieu.Data.BUS
                 messageBox.ShowDialog();
             }
         }
+        public static List<LoaiGiaoDichDTO> PhanLoaiGiaoDichOUT()
+        {
+            List<LoaiGiaoDichDTO> result = new List<LoaiGiaoDichDTO>();
+            DataTable loaiGiaoDichData = GiaoDichDAO.PhanLoaiGiaoDichOUT();
+
+            for (int i = 0; i < loaiGiaoDichData.Rows.Count; i++)
+            {
+                LoaiGiaoDichDTO temp = new LoaiGiaoDichDTO();
+                temp.MaLoaiGD = int.Parse(loaiGiaoDichData.Rows[i]["MALOAIGD"].ToString());
+                temp.TenLoaiGD = loaiGiaoDichData.Rows[i]["TENLOAIGD"].ToString();
+                temp.SumTIEN = decimal.Parse(loaiGiaoDichData.Rows[i]["SUMTIEN"].ToString());
+                temp.TrangThai = "OUT";
+
+                result.Add(temp);
+            }
+            return result;
+        }
+        public static List<LoaiGiaoDichDTO> PhanLoaiGiaoDichIN()
+        {
+            List<LoaiGiaoDichDTO> result = new List<LoaiGiaoDichDTO>();
+            DataTable loaiGiaoDichData = GiaoDichDAO.PhanLoaiGiaoDichIN();
+
+            for (int i = 0; i < loaiGiaoDichData.Rows.Count; i++)
+            {
+                LoaiGiaoDichDTO temp = new LoaiGiaoDichDTO();
+                temp.MaLoaiGD = int.Parse(loaiGiaoDichData.Rows[i]["MALOAIGD"].ToString());
+                temp.TenLoaiGD = loaiGiaoDichData.Rows[i]["TENLOAIGD"].ToString();
+                temp.SumTIEN = decimal.Parse(loaiGiaoDichData.Rows[i]["SUMTIEN"].ToString());
+                temp.TrangThai = "OUT";
+
+                result.Add(temp);
+            }
+            return result;
+        }
     }
 }
