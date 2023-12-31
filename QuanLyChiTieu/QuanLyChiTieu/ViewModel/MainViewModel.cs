@@ -13,6 +13,9 @@ using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.View;
 using System.Windows.Forms;
+using System.Windows.Interop;
+using System.Runtime.InteropServices;
+using QuanLyChiTieu.Helper;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -68,7 +71,8 @@ namespace QuanLyChiTieu.ViewModel
         public ICommand MaximizeCommand { get; }
         public ICommand MinimizeCommand { get; }
         public ICommand CloseCommand { get; }
-
+        public ICommand winCtrBar_LButtonDownCommand { get; private set; }
+        public ICommand winCtrBar_MouseEnterCommand { get; private set; }
         public MainViewModel(NguoiDungDTO input) 
         {
             currentUser = input;
@@ -96,12 +100,24 @@ namespace QuanLyChiTieu.ViewModel
             MaximizeCommand = new ViewModelCommand(ExecuteMaximizeCommand);
             MinimizeCommand = new ViewModelCommand(ExecuteMinimizeCommand);
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
+            winCtrBar_LButtonDownCommand = new ViewModelCommand(ExecuteLButtonDownCommand);
+            winCtrBar_MouseEnterCommand = new ViewModelCommand(ExecuteMouseEnterCommand);  
 
             //default
             ExecuteShowHomeViewCommand(null);
         }
         public MainViewModel() { }
+        private void ExecuteLButtonDownCommand(object obj)
+        {
+            WindowInteropHelper helper = new WindowInteropHelper(System.Windows.Application.Current.MainWindow);
+            WindowsApiService.SendMessage(helper.Handle, 161, 2, 0);
+        }
 
+        private void ExecuteMouseEnterCommand(object parameter)
+        {
+            System.Windows.Application.Current.MainWindow.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            System.Windows.Application.Current.MainWindow.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+        }
         private void ExecuteCloseCommand(object obj)
         {
             YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Thoát ứng dụng", "Bạn có muốn thoát ứng dụng?");
@@ -131,7 +147,6 @@ namespace QuanLyChiTieu.ViewModel
                 System.Windows.Application.Current.MainWindow.WindowState = WindowState.Maximized;
             }
         }
-
         private void ExecuteShowHomeViewCommand(object obj)
         {
             CurrentChildView = new HomeViewModel();

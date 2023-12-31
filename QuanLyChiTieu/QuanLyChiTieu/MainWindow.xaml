@@ -7,6 +7,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel" 
         xmlns:local1="clr-namespace:QuanLyChiTieu.View"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         
         WindowStartupLocation="CenterScreen" 
@@ -126,9 +127,16 @@
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
-                                Margin="5, 0, 5, 0"
-                                MouseLeftButtonDown="winCtrBar_LButtonDown"
-                                MouseEnter="winCtrBar_MouseEnter">
+                                Margin="5, 0, 5, 0">
+                        
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding winCtrBar_LButtonDownCommand}" />
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="MouseEnter">
+                                <i:InvokeCommandAction Command="{Binding winCtrBar_MouseEnterCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
 
                         <Button x:Name="winCloseButton"
                                 Style="{StaticResource winCtrButton}"
