@@ -36,7 +36,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource darkButtonStyle}"
                         Content="Thêm mới"
-                        Command="{Binding AddingButoonCommand}"
+                        Command="{Binding AddingButtonCommand}"
                         FontSize="18"
                         Width="150"
                         Margin="20 0"/>

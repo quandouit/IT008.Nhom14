@@ -18,7 +18,20 @@ namespace QuanLyChiTieu.ViewModel
     public class PlanViewModel : ViewModelBase
     {
         private ViewModelBase monthcurrent;
+        private NganSachModel _nganSachHienTai;
+        public NganSachModel NganSachHienTai
+        {
+            get
+            {
+                return _nganSachHienTai;
+            }
 
+            set
+            {
+                _nganSachHienTai = value;
+                OnPropertyChanged(nameof(NganSachHienTai));
+            }
+        }
         private BindingList<NganSachModel> _danhSachNganSach;
         public BindingList<NganSachModel> DanhSachNganSach
         {
@@ -33,8 +46,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(DanhSachNganSach));
             }
         }
-
-
         public ViewModelBase CurrentMonthView
         {
             get
@@ -48,7 +59,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(CurrentMonthView));
             }
         }
-
         private ViewModelBase _allPlanView;
         public ViewModelBase AllPlanView
         {
@@ -77,7 +87,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(Notify));
             }
         }
-        
         private List<DateTime> _allHSD;
         public List<DateTime> AllHSD
         {
@@ -92,15 +101,14 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(AllHSD));
             }
         }
-
-        public ICommand AddingButoonCommand { get; set; }
+        public ICommand AddingButtonCommand { get; set; }
         public ICommand ShowPlanThisMonthCommand { get; set; }
         public ICommand ViewAllCommand { get; set; }
 
         public PlanViewModel()
         {
             LoadAllHSD();
-            AddingButoonCommand = new ViewModelCommand(ExecuteAddingButoonCommand);
+            AddingButtonCommand = new ViewModelCommand(ExecuteAddingButtonCommand);
             ShowPlanThisMonthCommand = new ViewModelCommand(ExecuteShowPlanThisMonthCommand);
             ViewAllCommand = new ViewModelCommand(ExecuteViewAllCommand);
             ExecuteShowPlanThisMonthCommand(null);
@@ -140,7 +148,7 @@ namespace QuanLyChiTieu.ViewModel
             } 
                 
         }
-        private void ExecuteAddingButoonCommand(object obj)
+        private void ExecuteAddingButtonCommand(object obj)
         {
             AddingNewPlan addingDialog = new AddingNewPlan();
             addingDialog.ShowDialog();
