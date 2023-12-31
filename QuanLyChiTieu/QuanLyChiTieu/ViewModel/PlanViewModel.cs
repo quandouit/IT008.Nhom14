@@ -8,6 +8,9 @@ using System.Windows.Input;
 using FontAwesome.Sharp;
 using QuanLyChiTieu.Data.BUS;
 using System.Windows.Media.Media3D;
+using System.Windows.Data;
+using QuanLyChiTieu.Model;
+using System.ComponentModel;
 
 
 namespace QuanLyChiTieu.ViewModel
@@ -15,6 +18,23 @@ namespace QuanLyChiTieu.ViewModel
     public class PlanViewModel : ViewModelBase
     {
         private ViewModelBase monthcurrent;
+
+        private BindingList<NganSachModel> _danhSachNganSach;
+        public BindingList<NganSachModel> DanhSachNganSach
+        {
+            get
+            {
+                return _danhSachNganSach;
+            }
+
+            set
+            {
+                _danhSachNganSach = value;
+                OnPropertyChanged(nameof(DanhSachNganSach));
+            }
+        }
+
+
         public ViewModelBase CurrentMonthView
         {
             get
