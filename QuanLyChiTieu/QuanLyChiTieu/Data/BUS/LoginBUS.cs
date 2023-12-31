@@ -1,5 +1,7 @@
 ﻿using QuanLyChiTieu.Data.DAO;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,6 @@ namespace QuanLyChiTieu.Data.BUS
     {
         public static NguoiDungDTO Try_Login(NguoiDungDTO user)
         {
-            if (user.TaiKhoan is null) { user.TaiKhoan = ""; }
-            if (user.MatKhau is null) { user.MatKhau = ""; }
-
             return LoginDAO.Try_Login(user);
         }
     }

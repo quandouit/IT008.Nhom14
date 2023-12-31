@@ -42,7 +42,6 @@ namespace QuanLyChiTieu.ViewModel
         public ICommand CloseCommand { get; }
         public ICommand SignInButtonCommand { get; }
         public ICommand SignUpButtonCommand { get; }
-
         public LoginViewModel()
         {
             loginUser = new NguoiDungDTO();
@@ -60,6 +59,14 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteSignInButtonCommand(object obj)
         {
+            if (string.IsNullOrWhiteSpace(loginUser.TaiKhoan) || string.IsNullOrWhiteSpace(loginUser.MatKhau))
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thiếu thông tin", "Vui lòng điền đầy đủ tên đăng nhập và mật khẩu");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+                return;
+            }
+
             NguoiDungDTO currentUser = LoginBUS.Try_Login(loginUser);
             if (currentUser.ID != 0)
             {

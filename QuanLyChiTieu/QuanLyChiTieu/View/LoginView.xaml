@@ -17,11 +17,11 @@
         Title="Login" 
         Height="720"
         Width="1080" Foreground="{StaticResource darkFont}">
-    
+
     <Window.DataContext>
         <viewmodel:LoginViewModel/>
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -94,10 +94,9 @@
                     Style="{StaticResource buttonSignUp}"
                     Command="{Binding SignUpButtonCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
-
         </StackPanel>
 
-            <TextBlock
+        <TextBlock
             Grid.Column="1"
             Grid.Row="1"
             Text="ĐĂNG NHẬP"
@@ -106,34 +105,46 @@
             FontWeight="Bold"
             HorizontalAlignment="Center"
             Margin="0, 70, 0, 550"
-            Foreground="{StaticResource darkBackground}">
+            Foreground="{StaticResource darkBackground}"/>
 
-            </TextBlock>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="1"
+                    VerticalAlignment="Center">
 
-            <StackPanel Grid.Column="1"
-                        Grid.Row="1"
-                        VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Tên đăng nhập"
+                           Margin="125, 20, 0, 5"
+                           FontSize="16"
+                           FontFamily="Monsterat"
+                           Foreground="{StaticResource darkFont}"/>
 
                 <Border 
-                BorderThickness="0.7"
-                Width="400"
-                CornerRadius="5"
-                BorderBrush="Black"
-                Margin="0, 50, 0, 10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="/Images/user.png" Height="40"/>
+                    BorderThickness="0.7"
+                    Width="400"
+                    CornerRadius="5"
+                    BorderBrush="Black">
+                
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Source="/Images/user.png" Height="40"/>
 
-                    <TextBox x:Name="tb_email"
-                             Text="{Binding Username}"
-                             Style="{StaticResource usernameTextBox}"
-                             Tag="Tên đăng nhập">
-                    </TextBox>
-                </Grid>
-            </Border>
+                        <TextBox x:Name="tb_email"
+                                 Text="{Binding Username}"
+                                 Style="{StaticResource usernameTextBox}"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Mật khẩu"
+                           Margin="125, 20, 0, 5"
+                           FontSize="16"
+                           FontFamily="Monsterat"
+                           Foreground="{StaticResource darkFont}"/>
 
                 <Border BorderThickness="0.7"
                         Width="400"
@@ -145,19 +156,22 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Images/pass.png"
-                               Height="40"/>
-                    <PasswordBox x:Name="pb_pass" 
+
+                        <Image Source="/Images/pass.png" Height="40"/>
+
+                        <PasswordBox x:Name="pb_pass" 
                                  helper:PasswordBoxHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                  Style="{StaticResource passBox}"/>
-                </Grid>
+                    </Grid>
 
-            </Border>
+                </Border>
+            </StackPanel>
+            
             <Button Content="ĐĂNG NHẬP"
                     x:Name="bt_signin" 
                     Style="{StaticResource buttonSignIn}"
                     HorizontalAlignment="Right"
-                    Margin="0, 0, 120, 0"
+                    Margin="0, 20, 120, 0"
                     Command="{Binding SignInButtonCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
 
