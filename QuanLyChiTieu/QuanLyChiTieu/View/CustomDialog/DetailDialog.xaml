@@ -74,53 +74,72 @@
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="15">
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Tên giao dịch" 
-                               Style="{StaticResource typeIconText}" 
+                    <TextBlock Text="Tên giao dịch"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}" 
+                               FontWeight="Bold"
                                Width="120"/>
 
-                    <TextBlock Style="{StaticResource typeIconText}" 
-                               FontWeight="Normal"
+                    <TextBlock FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
                                Text="{Binding Path=GiaoDich.TenGD}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Loại giao dịch" 
-                               Style="{StaticResource typeIconText}" 
+                    <TextBlock Text="Loại giao dịch"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}" 
+                               FontWeight="Bold"
                                Width="120"/>
 
-                    <TextBlock Style="{StaticResource typeIconText}" 
-                               FontWeight="Normal"
+                    <TextBlock FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
                                Text="{Binding Path=GiaoDich.TenLoaiGD}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Số tiền" 
-                               Style="{StaticResource typeIconText}" 
+                    <TextBlock Text="Số tiền"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}" 
+                               FontWeight="Bold"
                                Width="120"/>
 
-                    <TextBlock Style="{StaticResource typeIconText}" 
-                               FontWeight="Normal"
+                    <TextBlock FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
                                Text="{Binding Path=GiaoDich.Tien}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Ngày tạo" 
-                               Style="{StaticResource typeIconText}" 
+                    <TextBlock Text="Ngày tạo"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}" 
+                               FontWeight="Bold"
                                Width="120"/>
 
-                    <TextBlock x:Name="ngaytao" 
-                               Style="{StaticResource typeIconText}" 
-                               FontWeight="Normal"
+                    <TextBlock FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
                                Text="{Binding Path=GiaoDich.NgayTao}"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 10" Orientation="Horizontal">
-                    <TextBlock Text="Ghi chú" 
-                               Style="{StaticResource typeIconText}" 
+                    <TextBlock Text="Ghi chú"
+                               FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}" 
+                               FontWeight="Bold"
                                Width="120"/>
 
-                    <TextBlock Style="{StaticResource typeIconText}" 
-                               FontWeight="Normal"
+                    <TextBlock FontSize="16"
+                               FontFamily="Monsterat"
+                               Foreground="{StaticResource darkFont}"
                                Text="{Binding Path=GiaoDich.GhiChu}"/>
                 </StackPanel>
             </StackPanel>
