@@ -11,16 +11,6 @@
     <UserControl.DataContext>
         <viewmodel:PlanViewModel/>
     </UserControl.DataContext>
-    
-    <UserControl.Resources>
-        <DataTemplate DataType="{x:Type viewmodel:PlanThisMonthViewModel}">
-            <local:PlanThisMonthView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodel:AllPlanViewModel}">
-            <local:AllPlanView/>
-        </DataTemplate>
-    </UserControl.Resources>
-    
 
     <Grid>
         <Border Background="Red"
@@ -49,11 +39,8 @@
                             Margin="20 0"/>
                 </StackPanel>
             </Grid>
-            <ContentControl Grid.Row="1"
-                            Content="{Binding CurrentMonthView}"/>
         </Grid>
-        <ContentControl Grid.Row="1"
-                 Content="{Binding AllPlanView}"/>
+
         <TextBlock Grid.Row="1"
                    Text="{Binding Notify}"
                    FontFamily="Monsterat"

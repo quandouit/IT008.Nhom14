@@ -33,6 +33,10 @@
             <local1:PlanView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewmodel:AllPlanViewModel}">
+            <local1:AllPlanView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewmodel:UserViewModel}">
             <local1:UserView/>
         </DataTemplate>

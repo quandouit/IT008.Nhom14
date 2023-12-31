@@ -171,6 +171,7 @@
     <Compile Include="Data\DTO\LoaiGiaoDichDTO.cs" />
     <Compile Include="Data\DTO\NganSachDTO.cs" />
     <Compile Include="Data\DTO\NguoiDungDTO.cs" />
+    <Compile Include="Helper\ViewModelLocator.cs" />
     <Compile Include="Helper\WindowsApiService.cs" />
     <Compile Include="Model\GiaoDichModel.cs" />
     <Compile Include="Model\LoaiGiaoDichModel.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="ViewModel\PlanThisMonthViewModel.cs" />
     <Compile Include="ViewModel\PlanViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\SharePlanListViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelCommand.cs" />

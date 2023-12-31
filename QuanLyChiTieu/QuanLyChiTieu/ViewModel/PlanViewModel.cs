@@ -12,14 +12,13 @@ using System.Windows.Data;
 using QuanLyChiTieu.Model;
 using System.ComponentModel;
 using System.Windows;
+using QuanLyChiTieu.Helper;
 
 
 namespace QuanLyChiTieu.ViewModel
 {
-    public class PlanViewModel : ViewModelBase
-    { 
-
-        private ViewModelBase monthcurrent;
+    public class PlanViewModel : SharePlanListViewModel
+    {
         private NganSachModel _nganSachHienTai;
         public NganSachModel NganSachHienTai
         {
@@ -27,7 +26,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 return _nganSachHienTai;
             }
-
             set
             {
                 _nganSachHienTai = value;
@@ -41,26 +39,24 @@ namespace QuanLyChiTieu.ViewModel
             {
                 return _danhSachNganSach;
             }
-
             set
             {
                 _danhSachNganSach = value;
                 OnPropertyChanged(nameof(DanhSachNganSach));
             }
         }
-        public ViewModelBase CurrentMonthView
-        {
-            get
-            {
-                return monthcurrent;
-            }
-
-            set
-            {
-                monthcurrent = value;
-                OnPropertyChanged(nameof(CurrentMonthView));
-            }
-        }
+        //public ViewModelBase CurrentMonthView
+        //{
+        //    get
+        //    {
+        //        return monthcurrent;
+        //    }
+        //    set
+        //    {
+        //        monthcurrent = value;
+        //        OnPropertyChanged(nameof(CurrentMonthView));
+        //    }
+        //}
         private ViewModelBase _allPlanView;
         public ViewModelBase AllPlanView
         {
@@ -68,7 +64,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 return _allPlanView;
             }
-
             set
             {
                 _allPlanView = value;
@@ -82,7 +77,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 return _notify;
             }
-
             set
             {
                 _notify = value;
@@ -96,7 +90,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 return _allHSD;
             }
-
             set
             {
                 _allHSD = value;
@@ -123,8 +116,11 @@ namespace QuanLyChiTieu.ViewModel
 
         private void ExecuteViewAllCommand(object obj)
         {
-            Notify = "";
-            AllPlanView = new AllPlanViewModel();
+            var mainViewModel = ViewModelLocator.Instance.MainViewModel;
+            if (mainViewModel != null)
+            {
+                mainViewModel.CurrentChildView = new AllPlanViewModel();
+            }
         }
 
         private void ExecuteShowPlanThisMonthCommand(object obj)

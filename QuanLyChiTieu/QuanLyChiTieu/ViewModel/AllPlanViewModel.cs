@@ -1,13 +1,18 @@
-﻿using System;
+﻿using QuanLyChiTieu.Helper;
+using QuanLyChiTieu.Model;
+using QuanLyChiTieu.View;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace QuanLyChiTieu.ViewModel
 {
-    public class AllPlanViewModel : ViewModelBase
+    public class AllPlanViewModel : SharePlanListViewModel
     {
         private ViewModelBase _planView;
         public ViewModelBase PlanView
@@ -44,12 +49,15 @@ namespace QuanLyChiTieu.ViewModel
         public AllPlanViewModel()
         {
             TurnBackCommand = new ViewModelCommand(ExecuteTurnBackCommand);
-            //ExecuteShowPlanThisMonthCommand(null);
         }
 
         private void ExecuteTurnBackCommand(object obj)
         {
-            PlanView = new PlanViewModel();
+            var mainViewModel = ViewModelLocator.Instance.MainViewModel;
+            if (mainViewModel != null)
+            {
+                mainViewModel.CurrentChildView = new PlanViewModel();
+            }
         }
     }
 }

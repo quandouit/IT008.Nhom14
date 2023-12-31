@@ -15,6 +15,7 @@ using QuanLyChiTieu.View.CustomDialog;
 using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using QuanLyChiTieu.View;
 using System.Windows.Forms;
+using QuanLyChiTieu.Helper;
 
 namespace QuanLyChiTieu.ViewModel
 {
@@ -73,6 +74,7 @@ namespace QuanLyChiTieu.ViewModel
                 MainViewModel viewModel = new MainViewModel(currentUser);
                 MainWindow mainWindow = new MainWindow { DataContext = viewModel };
                 System.Windows.Application.Current.MainWindow = mainWindow;
+                ViewModelLocator.Instance.MainViewModel = viewModel;
                 mainWindow.Show();
 
                 var loginWindow = obj as Window;
