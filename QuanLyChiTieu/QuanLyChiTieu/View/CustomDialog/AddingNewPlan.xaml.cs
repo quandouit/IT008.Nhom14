@@ -24,16 +24,5 @@ namespace QuanLyChiTieu.View.CustomDialog
         {
             InitializeComponent();
         }
-
-        private void _calendar_DisplayModeChanged(object sender, CalendarModeChangedEventArgs e)
-        {
-            _calendar.DisplayMode = CalendarMode.Year;
-        }
-
-        private void _calendar_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            _calendar.DisplayMode = CalendarMode.Year;
-            _calendar.DisplayDate = DateTime.Today;
-        } 
     }
 }

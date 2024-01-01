@@ -17,7 +17,7 @@ namespace QuanLyChiTieu.Data.DTO
         }
         public NganSachDTO() { }
         public string MaNS { get; set; }
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string TenNS { get; set; }
         public decimal TienNS { get; set; }
         public DateTime HSD { get; set; }

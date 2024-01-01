@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel"
+        xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel" 
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="AddingNewPlan" Height="500" Width="600">
+        Title="AddingNewPlan" Height="500" Width="600"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
 
     <Window.DataContext>
         <viewmodel:AddingNewPlanViewModel/>
@@ -16,22 +21,32 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
+        <Button x:Name="winCloseButton"
+        Style="{StaticResource winCtrButton}"
+        Tag="{StaticResource redUI}"
+        Command="{Binding CloseCommand}"
+        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+        Grid.Column="1"
+        Grid.Row="0"
+        HorizontalAlignment="Right">
+            <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
+        </Button>
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Margin="0, 0, 30, 30"
                     Grid.Row="1">
-            <Button Style="{StaticResource greenButtonStyle}" 
+            <Button Style="{StaticResource darkButtonStyle}" 
                     Content="Xác nhận"
-                    Margin="0, 0, 10, 0"/>
-            <Button Content="Hủy"
-                    Style="{StaticResource redButtonStyle}"
-                    Width="80"/>
+                    FontSize="18"
+                    Margin="0, 0, 10, 0"
+                    Command="{Binding AddCommand}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1">
-            <StackPanel Margin="0, 10, 0, 0">
+            <StackPanel Margin="0, 50, 0, 0">
                 <TextBlock Text="Số tiền"
                        FontSize="18"
                        FontFamily = "Monsterat"
@@ -55,8 +70,6 @@
                        Foreground="{StaticResource darkButtonBackground}"/>
 
             <Calendar x:Name="_calendar" 
-                      DisplayModeChanged="_calendar_DisplayModeChanged"
-                      Loaded="_calendar_OnLoaded"
                       DisplayDate="{Binding SelectedMonth, UpdateSourceTrigger=PropertyChanged}" 
                       SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
                       DisplayMode="Month"
