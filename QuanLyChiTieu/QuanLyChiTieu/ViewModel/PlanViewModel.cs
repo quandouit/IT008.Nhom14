@@ -221,6 +221,7 @@ namespace QuanLyChiTieu.ViewModel
             }
         }
         public ICommand ViewAllCommand { get; set; }
+        public ICommand AddNewPlan {  get; set; }
 
         public PlanViewModel()
         {
@@ -236,8 +237,16 @@ namespace QuanLyChiTieu.ViewModel
             OnPropertyChanged("FormattedHSD");
             UpdateUsed();
             UpdateRemain();
+            AddNewPlan = new ViewModelCommand(ExecuteAddNewPlan);
             ViewAllCommand = new ViewModelCommand(ExecuteViewAllCommand);
         }
+
+        private void ExecuteAddNewPlan(object obj)
+        {
+            View.CustomDialog.AddingNewPlanViewModel addingDialog = new View.CustomDialog.AddingNewPlanViewModel();
+            addingDialog.ShowDialog();
+        }
+
         private void ExecuteViewAllCommand(object obj)
         {
             var mainViewModel = ViewModelLocator.Instance.MainViewModel;

@@ -18,9 +18,9 @@ namespace QuanLyChiTieu.View.CustomDialog
     /// <summary>
     /// Interaction logic for AddingNewPlan.xaml
     /// </summary>
-    public partial class AddingNewPlan : Window
+    public partial class AddingNewPlanViewModel : Window
     {
-        public AddingNewPlan()
+        public AddingNewPlanViewModel()
         {
             InitializeComponent();
         }

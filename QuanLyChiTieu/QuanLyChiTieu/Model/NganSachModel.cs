@@ -15,6 +15,14 @@ namespace QuanLyChiTieu.Model
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public bool IsFilled()
+        {
+            if(TienNS == 0)
+                return false;
+            return true;
+        }
+
         public NganSachModel() { }
         public int ID { get; set; }
         public DateTime HSD { get; set; }

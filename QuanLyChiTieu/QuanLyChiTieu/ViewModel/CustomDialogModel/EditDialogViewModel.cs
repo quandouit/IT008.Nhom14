@@ -127,7 +127,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         private void ExecuteAddCommand(object obj)
         {
             if (GiaoDichMoi.IsFilled())
-                    {
+            {
                 if (obj is Window window)
                 {
                     if (_isEditing)

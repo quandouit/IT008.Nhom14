@@ -115,14 +115,39 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         private void ExecuteAddCommand(object obj)
         {
             NganSachMoi.TienNS = TienNganSach;
-            DateTime date = new DateTime();
-            date = date.AddDays(30);
-            date = date.AddMonths(SelectedMonth);
-            date = date.AddYears(SelectedYear);
+            DateTime date = new DateTime(SelectedYear, SelectedMonth, 30);
             NganSachMoi.HSD = date;
+
+            if (NganSachMoi.IsFilled())
+            {
+                //if (obj is Window window)
+                //{
+                //    if (_isEditing)
+                //    {
+                //        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                //    }
+                //    else
+                //    {
+                //        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                //    }
+                //    window.Close();
+                //}
+                
+
+                if (obj is Window window)
+                {
+                    NganSachBUS.ThemNganSach(NganSachMoi);
+                    SharePlanListViewModel.SharedPlanList.Add(NganSachMoi);
+                    window.Close();
+                }
+            }
+            else
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thiếu thông tin", "Vui lòng điền đầy đủ thông tin giao dịch");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
             
-            NganSachBUS.ThemNganSach(NganSachMoi);
-            SharePlanListViewModel.SharedPlanList.Add(NganSachMoi);
         }
     }
 }
