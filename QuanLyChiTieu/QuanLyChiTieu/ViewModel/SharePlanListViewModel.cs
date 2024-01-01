@@ -38,5 +38,11 @@ namespace QuanLyChiTieu.ViewModel
             SharedPlanList = NganSachBUS.DanhSachNganSach();
             SharedPlanListInstance = SharedPlanList;
         }
+        protected void LoadCurrent(DateTime Today)
+        {
+            SharedCurrent = SharedPlanList.FirstOrDefault(x => x.HSD.Month == Today.Month && x.HSD.Year == Today.Year);
+            SharedCurrentInstance = SharedCurrent;
+        }
+
     }
 }

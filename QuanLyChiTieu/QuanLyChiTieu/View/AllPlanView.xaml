@@ -34,7 +34,7 @@
                         FontSize="18"/>
             </Border>
 
-            <Border Grid.Row="1" 
+            <Border Grid.Row="1"
                     Background="{StaticResource darkBackground}"
                     CornerRadius="15"
                     Margin="20">
@@ -47,11 +47,11 @@
                             <DataTemplate>
 
                                 <Border Background="{StaticResource lightBackground}"
-                                            CornerRadius="10"
-                                            Margin="15 10">
+                                        CornerRadius="10"
+                                        Margin="15 10">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding Year}"
-                                                   FontSize="16"
+                                                   FontSize="20"
                                                    FontFamily="Monsterat"
                                                    FontWeight="Bold"
                                                    Foreground="{StaticResource darkFont}"
