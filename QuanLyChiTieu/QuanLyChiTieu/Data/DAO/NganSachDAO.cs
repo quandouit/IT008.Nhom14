@@ -171,5 +171,34 @@ namespace QuanLyChiTieu.Data.DAO
             }
             return 0;
         }
+        public static int SuaNganSach(NganSachModel obj)
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "UPDATE NGANSACH\r\nSET TIENNS = @TIENNS;";
+                SqlParameter parameter = new SqlParameter("@TIENNS", obj.TienNS);
+                sqlCmd.Parameters.Add(parameter);
+                sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                return 1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return 0;
+        }
     }
 }

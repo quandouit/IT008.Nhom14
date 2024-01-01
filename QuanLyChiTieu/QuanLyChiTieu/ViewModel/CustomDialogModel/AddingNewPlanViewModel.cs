@@ -10,22 +10,23 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
     public class AddingNewPlanViewModel : ViewModelBase
     {
-        public DateTime date {  get; set; }
+        public DateTime _date {  get; set; }
         public DateTime Date
         {
             get
             {
-                return date;
+                return _date;
             }
 
             set
             {
-                date = value;
+                _date = value;
                 OnPropertyChanged(nameof(Date));
             }
         }
@@ -97,7 +98,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 
         private void ExecuteCloseCommad(object obj)
         {
-            if (obj is Window window)
+            if (obj is System.Windows.Window window)
             {
                 YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Thoát ứng dụng", "Bạn có muốn thoát ứng dụng?");
                 dialogViewModel.DialogClosed += result =>
@@ -119,9 +120,37 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             NganSachMoi.HSD = date;
             if (NganSachMoi.IsFilled())
             {
-
-                NganSachBUS.ThemNganSach(NganSachMoi);
-                SharePlanListViewModel.SharedPlanList.Add(NganSachMoi);
+                if(SharePlanListViewModel.SharedPlanList.Any(item => item.HSD == NganSachMoi.HSD))
+                {
+                    YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Ngân sách đã tồn tại", "Tháng hiện bạn chọn đã có sẵn một ngân sách, bạn có muốn thay thế?");
+                    dialogViewModel.DialogClosed += result =>
+                    {
+                        if (result == DialogResult.OK)
+                        {
+                            NganSachBUS.SuaNganSach(NganSachMoi);
+                            //var itemsRemove = SharePlanListViewModel.SharedPlanList.Where(item => item.HSD == NganSachMoi.HSD);
+                            //foreach(var item in itemsRemove)
+                            //{
+                            //    SharePlanListViewModel.SharedPlanList.Remove(item);
+                            //}
+                            //SharePlanListViewModel.SharedPlanList.Add(NganSachMoi);
+                            SharePlanListViewModel list = new SharePlanListViewModel();
+                            list.LoadAllNganSach();
+                        }
+                    };
+                    YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+                    messageBox.ShowDialog();
+                }
+                else
+                {
+                    if(obj is System.Windows.Window window)
+                    {
+                        NganSachBUS.ThemNganSach(NganSachMoi);
+                        SharePlanListViewModel.SharedPlanList.Add(NganSachMoi);
+                        window.Close();
+                    }    
+                }
+                
             }
             else
             {
