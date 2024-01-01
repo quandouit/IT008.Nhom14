@@ -62,147 +62,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(OverBudgetNotify));
             }
         }
-
-        ////So tien con lai
-        //private decimal _tienConLai;
-        //public decimal TienConLai
-        //{
-        //    get { return _tienConLai; }
-        //    set
-        //    {
-        //        _tienConLai = value;
-        //        OnPropertyChanged(nameof(TienConLai));
-        //    }
-        //}
-
-        ////Ngay hien tai
-        //private string _homNay;
-        //public string HomNay
-        //{
-        //    get { return _homNay; }
-        //    set
-        //    {
-        //        _homNay = value;
-        //        OnPropertyChanged(nameof(HomNay));
-        //    }
-        //}
-        ////HSD: Ngay dau thang -> ngay cuoi thang
-        //private string _hanSuDung;
-        //public string HanSuDung
-        //{
-        //    get { return _hanSuDung; }
-        //    set
-        //    {
-        //        _hanSuDung = value;
-        //        OnPropertyChanged(nameof(HanSuDung));
-        //    }
-        //}
-        ////Thong bao khi tien su dung > tien ngan sach
-
-
-        //public ICommand AddingButtonCommand { get; set; }
-        //public ICommand ShowPlanThisMonthCommand { get; set; }
-        //public ICommand ViewAllCommand { get; set; }
-
-        //public PlanViewModel()
-        //{
-        //    if (SharedPlanList == null)
-        //    {
-        //        LoadAllNganSach();
-        //    }
-
-        //    LoadAllHSD();
-        //    AddingButtonCommand = new ViewModelCommand(ExecuteAddingButtonCommand);
-        //    ShowPlanThisMonthCommand = new ViewModelCommand(ExecuteShowPlanThisMonthCommand);
-        //    ViewAllCommand = new ViewModelCommand(ExecuteViewAllCommand);
-        //    NgayHomNay();
-        //    ThoiHanSuDung();
-        //    ExecuteUpdateMaxCommand();
-        //    ExecuteUpdateUsedCommand(TienNganSach);
-        //    SoTienConLai();
-        //    ShowOverBudgetNotify();
-        //    ExecuteShowPlanThisMonthCommand(null);
-        //}
-
-        //private void LoadAllHSD()
-        //{
-        //    AllHSD = NganSachBUS.HSDNganSach();
-        //}
-
-        //private void ExecuteViewAllCommand(object obj)
-        //{
-        //    var mainViewModel = ViewModelLocator.Instance.MainViewModel;
-        //    if (mainViewModel != null)
-        //    {
-        //        mainViewModel.CurrentChildView = new AllPlanViewModel();
-        //    }
-        //}
-
-        //private void ExecuteShowPlanThisMonthCommand(object obj)
-        //{
-        //    DateTime dateTime = DateTime.Now;
-        //    bool flag = false;
-        //    foreach(DateTime date in AllHSD)
-        //    {
-        //        if (dateTime.Month == date.Month && dateTime.Year == date.Year)
-        //        { 
-        //            flag = true; 
-        //            break; 
-        //        }
-        //    }
-
-        //    if (flag)
-        //    {
-        //        //Status = "Hidden";
-        //    }
-        //    else
-        //    {
-        //        Status = "Hidden";
-        //        Notify = "Chưa có ngân sách nào trong tháng này!";
-        //    } 
-
-        //}
-        //private void ExecuteAddingButtonCommand(object obj)
-        //{
-        //    AddingNewPlan addingDialog = new AddingNewPlan();
-        //    addingDialog.ShowDialog();
-        //}
-
-        //private void ShowOverBudgetNotify()
-        //{
-        //    if (TienNganSach < TienDaDung)
-        //        OverBudgetNotify = "*Bạn đã vượt quá ngân sách tháng này";
-        //}
-
-        //private void SoTienConLai()
-        //{
-        //    TienConLai = TienNganSach - TienDaDung;
-        //}
-
-        //private void ThoiHanSuDung()
-        //{
-        //    DateTime dateTime = DateTime.Now;
-        //    HanSuDung = "1" + "/" + dateTime.Month.ToString() + " - " +
-        //        DateTime.DaysInMonth(dateTime.Year, dateTime.Month) + "/" + dateTime.Month.ToString();
-        //}
-
-        //private void NgayHomNay()
-        //{
-        //    DateTime dateTime = DateTime.Now;
-        //    HomNay = dateTime.Day.ToString() + "/" + dateTime.Month.ToString();
-
-        //}
-        //private void ExecuteUpdateMaxCommand()
-        //{
-        //    TienNganSach = NganSachBUS.TienNganSach(DateTime.Now);
-        //}
-        //private void ExecuteUpdateUsedCommand(decimal tienngansach)
-        //{
-        //    int id = MainViewModel.currentUser.ID;
-        //    DateTime dateTime = DateTime.Now;
-        //    TienDaDung = NguoiDungBUS.LayTongChi(id, dateTime.Month, dateTime.Year);
-        //}
-
         public decimal TienConLai {  get; set; }
         public decimal TienDaDung { get; set; }
         public DateTime Today { get; set; }
@@ -245,8 +104,7 @@ namespace QuanLyChiTieu.ViewModel
 
         private void ExecuteShowAddingCommand(object obj)
         {
-            //AddingNewPlanViewModel addingNewPlanViewModel = new AddingNewPlanViewModel();
-            AddingNewPlan newPlanDialog = new AddingNewPlan(); //{ DataContext = addingNewPlanViewModel };
+            AddingNewPlan newPlanDialog = new AddingNewPlan();
             newPlanDialog.ShowDialog();
         }
 
@@ -264,7 +122,7 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void UpdateUsed()
         {
-            TienDaDung = NguoiDungBUS.LayTongChi(MainViewModel.currentUser.ID, Today.Month, Today.Year);
+            TienDaDung = NguoiDungBUS.LayTongChi(MainViewModel.currentUser.ID, SharedCurrentInstance.HSD.Month, SharedCurrentInstance.HSD.Year);
         }
         private void UpdateRemain()
         {

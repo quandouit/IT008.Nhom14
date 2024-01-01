@@ -56,10 +56,6 @@ namespace QuanLyChiTieu.Data.BUS
             }
             return false;
         }
-        public static NguoiDungDTO ThongTinNguoiDung(NguoiDungDTO user)
-        {
-            return NguoiDungDAO.ThongTinNguoiDung(user);
-        }
         public static decimal LaySoDu(int ID)
         {
             decimal rt = NguoiDungDAO.LaySoDu(ID);

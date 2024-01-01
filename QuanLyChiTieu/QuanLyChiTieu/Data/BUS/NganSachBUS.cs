@@ -38,31 +38,6 @@ namespace QuanLyChiTieu.Data.BUS
 
             return sortedResult;
         }
-
-        public static List<DateTime> HSDNganSach()
-        {
-            List<DateTime> dateTimes = new List<DateTime>();
-            DataTable HSD = NganSachDAO.TatCaNganSach();
-            for (int i = 0; i < HSD.Rows.Count; ++i)
-            {
-                DateTime temp;
-                temp = DateTime.Parse(HSD.Rows[i]["HSD"].ToString());
-                dateTimes.Add(temp);
-            }
-
-            return dateTimes;
-        }
-        public static decimal TienNganSach(DateTime date)
-        {
-            return NganSachDAO.TienNganSach(date);
-        }
-
-        public static decimal TienDaDung(decimal tienNganSach)
-        {
-            var tienDaDung = NganSachDAO.TienDaDung();
-            return tienNganSach - decimal.Parse(tienDaDung.Rows[0]["TIENDD"].ToString());
-        }
-
         public static void ThemNganSach(NganSachModel nganSachMoi)
         {
             if(NganSachDAO.ThemNganSach(nganSachMoi) == 0)

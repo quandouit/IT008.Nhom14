@@ -42,7 +42,7 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void UpdateSharedCurrent(NganSachModel nganSachModel)
         {
-            SharedCurrentInstance = nganSachModel;
+            LoadCurrent(nganSachModel.HSD);
             var mainViewModel = ViewModelLocator.Instance.MainViewModel;
             if (mainViewModel != null)
             {
