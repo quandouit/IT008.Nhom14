@@ -45,18 +45,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(DanhSachNganSach));
             }
         }
-        //public ViewModelBase CurrentMonthView
-        //{
-        //    get
-        //    {
-        //        return monthcurrent;
-        //    }
-        //    set
-        //    {
-        //        monthcurrent = value;
-        //        OnPropertyChanged(nameof(CurrentMonthView));
-        //    }
-        //}
         private ViewModelBase _allPlanView;
         public ViewModelBase AllPlanView
         {
@@ -102,6 +90,11 @@ namespace QuanLyChiTieu.ViewModel
 
         public PlanViewModel()
         {
+            if (SharedPlanList == null)
+            {
+                LoadAllNganSach();
+            }
+
             LoadAllHSD();
             AddingButtonCommand = new ViewModelCommand(ExecuteAddingButtonCommand);
             ShowPlanThisMonthCommand = new ViewModelCommand(ExecuteShowPlanThisMonthCommand);
@@ -138,7 +131,7 @@ namespace QuanLyChiTieu.ViewModel
             
             if (flag)
             {
-                CurrentMonthView = new PlanThisMonthViewModel();
+                //CurrentMonthView = new PlanThisMonthViewModel();
             }
             else
             {

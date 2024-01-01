@@ -27,5 +27,4 @@ namespace QuanLyChiTieu.View
             InitializeComponent();
         }
     }
-
 }
