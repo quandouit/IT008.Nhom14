@@ -40,7 +40,7 @@ namespace QuanLyChiTieu.Data.BUS
         }
         public static void ThemNganSach(NganSachModel nganSachMoi)
         {
-            if(NganSachDAO.ThemNganSach(nganSachMoi) == 0)
+            if (NganSachDAO.ThemNganSach(nganSachMoi) == 0)
             {
                 CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Thêm mới ngân sách thành công!");
                 CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };

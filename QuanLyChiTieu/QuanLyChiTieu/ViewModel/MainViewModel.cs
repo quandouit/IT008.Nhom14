@@ -93,7 +93,7 @@ namespace QuanLyChiTieu.ViewModel
                     System.Windows.Application.Current.MainWindow.Close();
                 }
             }
-
+            SharePlanListViewModel.Reset();
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowManageViewCommand = new ViewModelCommand(ExecuteShowManageViewCommand);
             ShowPlanViewCommand = new ViewModelCommand(ExecuteShowPlanViewCommand);

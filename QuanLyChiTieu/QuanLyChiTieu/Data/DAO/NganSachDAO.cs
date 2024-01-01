@@ -10,6 +10,7 @@ using QuanLyChiTieu.View.CustomDialog;
 using QuanLyChiTieu.ViewModel.CustomDialogModel;
 using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.Model;
+using System.Windows.Media;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -104,7 +105,7 @@ namespace QuanLyChiTieu.Data.DAO
             }
             return 0;
         }
-        public static int SuaNganSach(NganSachModel obj)
+        public static int SuaNganSach(NganSachModel ngansach)
         {
             try
             {
@@ -114,9 +115,15 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
 
-                sqlCmd.CommandText = "UPDATE NGANSACH\r\nSET TIENNS = @TIENNS;";
-                SqlParameter parameter = new SqlParameter("@TIENNS", obj.TienNS);
-                sqlCmd.Parameters.Add(parameter);
+                sqlCmd.CommandText = "UPDATE NGANSACH\r\nSET TIENNS = @TIENNS where ID = @ID AND MONTH(HSD) = @MONTH AND YEAR(HSD) = @YEAR";
+                SqlParameter parameter0 = new SqlParameter("@TIENNS", ngansach.TienNS);
+                sqlCmd.Parameters.Add(parameter0);
+                SqlParameter parameter1 = new SqlParameter("@ID", ngansach.ID);
+                sqlCmd.Parameters.Add(parameter1);
+                SqlParameter parameter2 = new SqlParameter("@MONTH", ngansach.HSD.Month);
+                sqlCmd.Parameters.Add(parameter2);
+                SqlParameter parameter3 = new SqlParameter("@YEAR", ngansach.HSD.Year);
+                sqlCmd.Parameters.Add(parameter3);
                 sqlCmd.ExecuteNonQuery();
             }
             catch (Exception ex)

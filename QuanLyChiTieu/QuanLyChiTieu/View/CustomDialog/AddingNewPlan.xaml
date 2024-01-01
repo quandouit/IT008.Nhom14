@@ -47,7 +47,8 @@
                                 Content="Xác nhận"
                                 FontSize="18"
                                 Margin="0, 0, 10, 0"
-                                Command="{Binding AddCommand}"/>
+                                Command="{Binding AddCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1">

@@ -62,8 +62,26 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(OverBudgetNotify));
             }
         }
-        public decimal TienConLai {  get; set; }
-        public decimal TienDaDung { get; set; }
+        private decimal _tienConLai;
+        public decimal TienConLai
+        {
+            get { return _tienConLai; }
+            set
+            {
+                _tienConLai = value;
+                OnPropertyChanged("TienConLai");
+            }
+        }
+        private decimal _tienDaDung;
+        public decimal TienDaDung
+        {
+            get { return _tienDaDung; }
+            set
+            {
+                _tienDaDung = value;
+                OnPropertyChanged("TienDaDung");
+            }
+        }
         public DateTime Today { get; set; }
         public string FormattedHSD
         {
@@ -86,26 +104,36 @@ namespace QuanLyChiTieu.ViewModel
         {
             UpdateToday();
             LoadAllNganSach();
+
             if (SharedPlanList == null)
             {
                 LoadAllNganSach();
             }
+
             if (SharedCurrent == null)
             {
                 LoadCurrent(Today);
             }
+
             OnPropertyChanged("FormattedHSD");
-            UpdateUsed();
-            UpdateRemain();
+
+            if (CheckStatus())
+            {
+                UpdateUsed();
+                UpdateRemain();
+            }
+
             ViewAllCommand = new ViewModelCommand(ExecuteViewAllCommand);
             ShowAddingView = new ViewModelCommand(ExecuteShowAddingCommand);
-            
         }
-
         private void ExecuteShowAddingCommand(object obj)
         {
             AddingNewPlan newPlanDialog = new AddingNewPlan();
             newPlanDialog.ShowDialog();
+            LoadAllNganSach();
+            LoadCurrent(SharedCurrentInstance.HSD);
+            UpdateUsed();
+            UpdateRemain();
         }
 
         private void ExecuteViewAllCommand(object obj)
@@ -126,17 +154,22 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void UpdateRemain()
         {
+            TienConLai = SharedCurrentInstance.TienNS - TienDaDung;
+            if (TienDaDung > SharedCurrent.TienNS)
+                OverBudgetNotify = "Bạn đã vượt quá ngân sách!";
+            else OverBudgetNotify = "";
+        }
+        private bool CheckStatus()
+        {
             if (SharedCurrentInstance == null)
             {
                 Notify = "Chưa có ngân sách nào trong tháng này";
                 Status = "Hidden";
-            }    
-            else
-            {
-                TienConLai = SharedCurrentInstance.TienNS - TienDaDung;
-                if (TienDaDung > SharedCurrent.TienNS)
-                    OverBudgetNotify = "Bạn đã vượt quá ngân sách!";
+                return false;
             }
+            Notify = "";
+            Status = "";
+            return true;
         }
     }
 }

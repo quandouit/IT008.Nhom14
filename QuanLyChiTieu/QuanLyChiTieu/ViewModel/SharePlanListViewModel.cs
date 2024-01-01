@@ -30,7 +30,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged("SharedCurrentInstance");
             }
         }
-
         public static NganSachModel SharedCurrent { get; set; }
 
         public void LoadAllNganSach()
@@ -40,6 +39,11 @@ namespace QuanLyChiTieu.ViewModel
         protected void LoadCurrent(DateTime Today)
         {
             SharedCurrentInstance = SharedPlanList.FirstOrDefault(x => x.HSD.Month == Today.Month && x.HSD.Year == Today.Year);
+        }
+        public static void Reset()
+        {
+            SharedPlanList = null;
+            SharedCurrent = null;
         }
     }
 }
