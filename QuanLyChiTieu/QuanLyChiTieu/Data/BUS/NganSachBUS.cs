@@ -12,6 +12,9 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
 using System.Windows.Forms.VisualStyles;
+using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View.CustomDialog;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 
 namespace QuanLyChiTieu.Data.BUS
 {
@@ -55,6 +58,22 @@ namespace QuanLyChiTieu.Data.BUS
         {
             var tienDaDung = NganSachDAO.TienDaDung();
             return tienNganSach - decimal.Parse(tienDaDung.Rows[0]["TIENDD"].ToString());
+        }
+
+        public static void ThemNganSach(NganSachModel nganSachMoi)
+        {
+            if(NganSachDAO.ThemNganSach(nganSachMoi) == 0)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Thêm mới ngân sách thành công!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
+            else
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Thêm mới ngân sách thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }    
         }
     }
 }
