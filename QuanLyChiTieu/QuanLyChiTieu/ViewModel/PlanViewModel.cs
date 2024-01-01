@@ -13,6 +13,7 @@ using QuanLyChiTieu.Model;
 using System.ComponentModel;
 using System.Windows;
 using QuanLyChiTieu.Helper;
+using QuanLyChiTieu.ViewModel.CustomDialogModel;
 
 
 namespace QuanLyChiTieu.ViewModel
@@ -45,19 +46,21 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(DanhSachNganSach));
             }
         }
-        private ViewModelBase _allPlanView;
-        public ViewModelBase AllPlanView
-        {
-            get
-            {
-                return _allPlanView;
-            }
-            set
-            {
-                _allPlanView = value;
-                OnPropertyChanged(nameof(AllPlanView));
-            }
-        }
+        //private ViewModelBase _allPlanView;
+        //public ViewModelBase AllPlanView
+        //{
+        //    get
+        //    {
+        //        return _allPlanView;
+        //    }
+        //    set
+        //    {
+        //        _allPlanView = value;
+        //        OnPropertyChanged(nameof(AllPlanView));
+        //    }
+        //}
+
+        //notify: luu thong bao khi thang hien tai khong co ngan sach nao
         private string _notify;
         public string Notify
         {
@@ -71,6 +74,21 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(Notify));
             }
         }
+        //status: trang thai hien hay khong hien border chua ngan sach cua thang hien tai
+        private string _status;
+        public string Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
+        //All HSD: Chua danh sach cac thang co ngan sach, dugn de kiem tra
         private List<DateTime> _allHSD;
         public List<DateTime> AllHSD
         {
@@ -84,6 +102,77 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(AllHSD));
             }
         }
+        //Ngan sach cua thang hien tai
+        private decimal _tienNganSach;
+        public decimal TienNganSach
+        {
+            get { return _tienNganSach; }
+            set
+            {
+                _tienNganSach = value;
+                OnPropertyChanged(nameof(TienNganSach));
+            }
+        }
+        //So tien da dung trong thang
+        private decimal _tienDaDung;
+        public decimal TienDaDung
+        {
+            get { return _tienDaDung; }
+            set
+            {
+                _tienDaDung = value;
+                OnPropertyChanged(nameof(TienDaDung));
+            }
+        }
+        //So tien con lai
+        private decimal _tienConLai;
+        public decimal TienConLai
+        {
+            get { return _tienConLai; }
+            set
+            {
+                _tienConLai = value;
+                OnPropertyChanged(nameof(TienConLai));
+            }
+        }
+        //Ngay hien tai
+        private string _homNay;
+        public string HomNay
+        {
+            get { return _homNay; }
+            set
+            {
+                _homNay = value;
+                OnPropertyChanged(nameof(HomNay));
+            }
+        }
+        //HSD: Ngay dau thang -> ngay cuoi thang
+        private string _hanSuDung;
+        public string HanSuDung
+        {
+            get { return _hanSuDung; }
+            set
+            {
+                _hanSuDung = value;
+                OnPropertyChanged(nameof(HanSuDung));
+            }
+        }
+        //Thong bao khi tien su dung > tien ngan sach
+        private string _overBudgetNotify;
+        public string OverBudgetNotify
+        {
+            get
+            {
+                return _overBudgetNotify;
+            }
+
+            set
+            {
+                _overBudgetNotify = value;
+                OnPropertyChanged(nameof(OverBudgetNotify));
+            }
+        }
+
         public ICommand AddingButtonCommand { get; set; }
         public ICommand ShowPlanThisMonthCommand { get; set; }
         public ICommand ViewAllCommand { get; set; }
@@ -99,6 +188,12 @@ namespace QuanLyChiTieu.ViewModel
             AddingButtonCommand = new ViewModelCommand(ExecuteAddingButtonCommand);
             ShowPlanThisMonthCommand = new ViewModelCommand(ExecuteShowPlanThisMonthCommand);
             ViewAllCommand = new ViewModelCommand(ExecuteViewAllCommand);
+            NgayHomNay();
+            ThoiHanSuDung();
+            ExecuteUpdateMaxCommand();
+            ExecuteUpdateUsedCommand(TienNganSach);
+            SoTienConLai();
+            ShowOverBudgetNotify();
             ExecuteShowPlanThisMonthCommand(null);
         }
 
@@ -122,7 +217,7 @@ namespace QuanLyChiTieu.ViewModel
             bool flag = false;
             foreach(DateTime date in AllHSD)
             {
-                if (dateTime.Month.ToString() == "1"/*date.Month*/ && dateTime.Year.ToString() == "2024"/*date.Year*/)
+                if (dateTime.Month == date.Month && dateTime.Year == date.Year)
                 { 
                     flag = true; 
                     break; 
@@ -131,10 +226,11 @@ namespace QuanLyChiTieu.ViewModel
             
             if (flag)
             {
-                //CurrentMonthView = new PlanThisMonthViewModel();
+                //Status = "Hidden";
             }
             else
             {
+                Status = "Hidden";
                 Notify = "Chưa có ngân sách nào trong tháng này!";
             } 
                 
@@ -143,6 +239,41 @@ namespace QuanLyChiTieu.ViewModel
         {
             AddingNewPlan addingDialog = new AddingNewPlan();
             addingDialog.ShowDialog();
+        }
+
+        private void ShowOverBudgetNotify()
+        {
+            if (TienNganSach < TienDaDung)
+                OverBudgetNotify = "*Bạn đã vượt quá ngân sách tháng này";
+        }
+
+        private void SoTienConLai()
+        {
+            TienConLai = TienNganSach - TienDaDung;
+        }
+
+        private void ThoiHanSuDung()
+        {
+            DateTime dateTime = DateTime.Now;
+            HanSuDung = "1" + "/" + dateTime.Month.ToString() + " - " +
+                DateTime.DaysInMonth(dateTime.Year, dateTime.Month) + "/" + dateTime.Month.ToString();
+        }
+
+        private void NgayHomNay()
+        {
+            DateTime dateTime = DateTime.Now;
+            HomNay = dateTime.Day.ToString() + "/" + dateTime.Month.ToString();
+
+        }
+        private void ExecuteUpdateMaxCommand()
+        {
+            TienNganSach = NganSachBUS.TienNganSach(DateTime.Now);
+        }
+        private void ExecuteUpdateUsedCommand(decimal tienngansach)
+        {
+            int id = MainViewModel.currentUser.ID;
+            DateTime dateTime = DateTime.Now;
+            TienDaDung = NguoiDungBUS.LayTongChi(id, dateTime.Month, dateTime.Year);
         }
 
     }

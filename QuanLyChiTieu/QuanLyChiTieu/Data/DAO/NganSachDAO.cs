@@ -71,12 +71,11 @@ namespace QuanLyChiTieu.Data.DAO
                 CloseConn();
             }
         }
-        public static decimal TienNganSach()
+        public static decimal TienNganSach(DateTime date)
         {
             decimal rt = 0;
             try
             {
-                DateTime date = DateTime.Now;
                 OpenConn();
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;

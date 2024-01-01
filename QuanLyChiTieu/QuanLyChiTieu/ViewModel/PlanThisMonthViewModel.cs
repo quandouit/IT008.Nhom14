@@ -114,7 +114,7 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteUpdateMaxCommand()
         {
-            TienNganSach = NganSachBUS.TienNganSach();
+            TienNganSach = NganSachBUS.TienNganSach(DateTime.Now);
         }
         private void ExecuteUpdateUsedCommand(decimal tienngansach)
         {

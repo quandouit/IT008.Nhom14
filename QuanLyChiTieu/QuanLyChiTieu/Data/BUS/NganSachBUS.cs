@@ -49,9 +49,9 @@ namespace QuanLyChiTieu.Data.BUS
 
             return dateTimes;
         }
-        public static decimal TienNganSach()
+        public static decimal TienNganSach(DateTime date)
         {
-            return NganSachDAO.TienNganSach();
+            return NganSachDAO.TienNganSach(date);
         }
 
         public static decimal TienDaDung(decimal tienNganSach)
