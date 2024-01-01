@@ -30,7 +30,29 @@
 
             <Border Grid.Row="1" 
                     Background="{StaticResource darkBackground}"
-                    CornerRadius="15"/>
+                    CornerRadius="15">
+                <ScrollViewer Style="{StaticResource customScrollViewer}">
+                    <ItemsControl ItemsSource="{Binding SharedPlanListInstance}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding HSD.Year}"/>
+
+                                    <ItemsControl ItemsSource="{Binding}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Content="{Binding HSD.Month}"
+                                            Style="{StaticResource lightButtonStyle}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
 
         </Grid>
     </Grid>

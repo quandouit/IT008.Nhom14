@@ -11,46 +11,27 @@ namespace QuanLyChiTieu.ViewModel
 {
     public class SharePlanListViewModel : ViewModelBase
     {
-        private static BindingList<NganSachModel> _sharedPlanList;
-        public static BindingList<NganSachModel> SharedPlanList
+        public BindingList<NganSachModel> SharedPlanListInstance
         {
-            get { return _sharedPlanList; }
+            get { return SharedPlanList; }
             set
             {
-                if (_sharedPlanList != value)
-                {
-                    _sharedPlanList = value;
-                    OnSharedPlanListChanged();
-                }
+                SharedPlanList = value;
+                OnPropertyChanged("SharedPlanListInstance");
             }
         }
-        public static event Action SharedPlanListChanged;
-
-        private static void OnSharedPlanListChanged()
+        public static BindingList<NganSachModel> SharedPlanList { get; set; }
+        public BindingList<NganSachModel> SharedCurrentInstance
         {
-            SharedPlanListChanged?.Invoke();
-        }
-
-        private static NganSachModel _sharedCurrent;
-        public static NganSachModel SharedCurrent
-        {
-            get { return _sharedCurrent; }
+            get { return SharedCurrent; }
             set
             {
-                if (_sharedCurrent != value)
-                {
-                    _sharedCurrent = value;
-                    OnSharedCurrentChanged();
-                }
+                SharedCurrent = value;
+                OnPropertyChanged("SharedCurrentInstance");
             }
         }
 
-        public static event Action SharedCurrentChanged;
-
-        private static void OnSharedCurrentChanged()
-        {
-            SharedCurrentChanged?.Invoke();
-        }
+        public static BindingList<NganSachModel> SharedCurrent { get; set; }
 
         protected void LoadAllNganSach()
         {
