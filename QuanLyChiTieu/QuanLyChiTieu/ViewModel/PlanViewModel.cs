@@ -20,33 +20,48 @@ namespace QuanLyChiTieu.ViewModel
 {
     public class PlanViewModel : SharePlanListViewModel
     {
-        //private string _notify;
-        //public string Notify
-        //{
-        //    get
-        //    {
-        //        return _notify;
-        //    }
-        //    set
-        //    {
-        //        _notify = value;
-        //        OnPropertyChanged(nameof(Notify));
-        //    }
-        //}
-        ////status: trang thai hien hay khong hien border chua ngan sach cua thang hien tai
-        //private string _status;
-        //public string Status
-        //{
-        //    get
-        //    {
-        //        return _status;
-        //    }
-        //    set
-        //    {
-        //        _status = value;
-        //        OnPropertyChanged(nameof(Status));
-        //    }
-        //}
+        private string _notify;
+        public string Notify
+        {
+            get
+            {
+                return _notify;
+            }
+            set
+            {
+                _notify = value;
+                OnPropertyChanged(nameof(Notify));
+            }
+        }
+        //status: trang thai hien hay khong hien border chua ngan sach cua thang hien tai
+        private string _status;
+        public string Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
+
+        private string _overBudgetNotify;
+        public string OverBudgetNotify
+        {
+            get
+            {
+                return _overBudgetNotify;
+            }
+
+            set
+            {
+                _overBudgetNotify = value;
+                OnPropertyChanged(nameof(OverBudgetNotify));
+            }
+        }
 
         ////So tien con lai
         //private decimal _tienConLai;
@@ -83,20 +98,7 @@ namespace QuanLyChiTieu.ViewModel
         //    }
         //}
         ////Thong bao khi tien su dung > tien ngan sach
-        //private string _overBudgetNotify;
-        //public string OverBudgetNotify
-        //{
-        //    get
-        //    {
-        //        return _overBudgetNotify;
-        //    }
 
-        //    set
-        //    {
-        //        _overBudgetNotify = value;
-        //        OnPropertyChanged(nameof(OverBudgetNotify));
-        //    }
-        //}
 
         //public ICommand AddingButtonCommand { get; set; }
         //public ICommand ShowPlanThisMonthCommand { get; set; }
@@ -200,7 +202,7 @@ namespace QuanLyChiTieu.ViewModel
         //    DateTime dateTime = DateTime.Now;
         //    TienDaDung = NguoiDungBUS.LayTongChi(id, dateTime.Month, dateTime.Year);
         //}
-        
+
         public decimal TienConLai {  get; set; }
         public decimal TienDaDung { get; set; }
         public DateTime Today { get; set; }
@@ -254,7 +256,17 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void UpdateRemain()
         {
-            TienConLai = SharedCurrentInstance.TienNS - TienDaDung;
+            if (SharedCurrentInstance == null)
+            {
+                Notify = "Chưa có ngân sách nào trong tháng này";
+                Status = "Hidden";
+            }    
+            else
+            {
+                TienConLai = SharedCurrentInstance.TienNS - TienDaDung;
+                if (TienDaDung > SharedCurrent.TienNS)
+                    OverBudgetNotify = "Bạn đã vượt quá ngân sách!";
+            }
         }
     }
 }

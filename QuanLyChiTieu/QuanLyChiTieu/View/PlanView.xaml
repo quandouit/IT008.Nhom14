@@ -160,6 +160,7 @@
                                    FontSize="18"
                                    Foreground="{StaticResource redUI}"
                                    HorizontalAlignment="Left"
+                                    Margin="10, 0, 0, 0"
                                    VerticalAlignment="Top"/>
 
                         <ProgressBar Grid.Row="2"
