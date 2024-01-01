@@ -21,7 +21,7 @@ namespace QuanLyChiTieu.ViewModel
             }
         }
         public static BindingList<NganSachModel> SharedPlanList { get; set; }
-        public BindingList<NganSachModel> SharedCurrentInstance
+        public NganSachModel SharedCurrentInstance
         {
             get { return SharedCurrent; }
             set
@@ -31,11 +31,12 @@ namespace QuanLyChiTieu.ViewModel
             }
         }
 
-        public static BindingList<NganSachModel> SharedCurrent { get; set; }
+        public static NganSachModel SharedCurrent { get; set; }
 
         protected void LoadAllNganSach()
         {
             SharedPlanList = NganSachBUS.DanhSachNganSach();
+            SharedPlanListInstance = SharedPlanList;
         }
     }
 }
