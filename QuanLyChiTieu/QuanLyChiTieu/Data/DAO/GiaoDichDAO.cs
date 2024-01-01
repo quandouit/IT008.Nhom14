@@ -170,10 +170,14 @@ namespace QuanLyChiTieu.Data.DAO
 
                 sqlCmd.CommandText = "select GIAODICH.MALOAIGD, TENLOAIGD, SUM(TIEN) AS SUMTIEN from GIAODICH" +
                                      "\r\ninner join LOAIGIAODICH on GIAODICH.MALOAIGD = LOAIGIAODICH.MALOAIGD" +
-                                     "\r\nWHERE ID = @ID AND TRANGTHAI = 'OUT'" +
+                                     "\r\nWHERE ID = @ID AND TRANGTHAI = 'OUT' AND MONTH(NGAYTAO) = @MONTH AND YEAR(NGAYTAO) = @YEAR" +
                                      "\r\nGROUP BY GIAODICH.MALOAIGD, TENLOAIGD";
                 SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
+                SqlParameter parameterM = new SqlParameter("@MONTH", DateTime.Now.Month);
+                sqlCmd.Parameters.Add(parameterM);
+                SqlParameter parameterY = new SqlParameter("@YEAR", DateTime.Now.Year);
+                sqlCmd.Parameters.Add(parameterY);
 
                 var reader = sqlCmd.ExecuteReader();
 
@@ -208,10 +212,14 @@ namespace QuanLyChiTieu.Data.DAO
 
                 sqlCmd.CommandText = "select GIAODICH.MALOAIGD, TENLOAIGD, SUM(TIEN) AS SUMTIEN from GIAODICH" +
                                      "\r\ninner join LOAIGIAODICH on GIAODICH.MALOAIGD = LOAIGIAODICH.MALOAIGD" +
-                                     "\r\nWHERE ID = @ID AND TRANGTHAI = 'IN'" +
+                                     "\r\nWHERE ID = @ID AND TRANGTHAI = 'IN' AND MONTH(NGAYTAO) = @MONTH AND YEAR(NGAYTAO) = @YEAR" +
                                      "\r\nGROUP BY GIAODICH.MALOAIGD, TENLOAIGD";
                 SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
+                SqlParameter parameterM = new SqlParameter("@MONTH", DateTime.Now.Month);
+                sqlCmd.Parameters.Add(parameterM);
+                SqlParameter parameterY = new SqlParameter("@YEAR", DateTime.Now.Year);
+                sqlCmd.Parameters.Add(parameterY);
 
                 var reader = sqlCmd.ExecuteReader();
 

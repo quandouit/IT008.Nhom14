@@ -159,7 +159,7 @@ namespace QuanLyChiTieu.Data.BUS
                 temp.MaLoaiGD = int.Parse(loaiGiaoDichData.Rows[i]["MALOAIGD"].ToString());
                 temp.TenLoaiGD = loaiGiaoDichData.Rows[i]["TENLOAIGD"].ToString();
                 temp.SumTIEN = decimal.Parse(loaiGiaoDichData.Rows[i]["SUMTIEN"].ToString());
-                temp.TrangThai = "OUT";
+                temp.TrangThai = "IN";
 
                 result.Add(temp);
             }
