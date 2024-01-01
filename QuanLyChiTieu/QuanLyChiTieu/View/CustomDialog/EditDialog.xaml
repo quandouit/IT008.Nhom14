@@ -15,7 +15,9 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="MainWindow" Height="500" Width="600">
+        Height="500" Width="600"
+        Title="Eco-Wallet"
+        Icon="/Images/ColorBG.png">
 
     <Window.DataContext>
         <viewmodel:EditDialogViewModel/>

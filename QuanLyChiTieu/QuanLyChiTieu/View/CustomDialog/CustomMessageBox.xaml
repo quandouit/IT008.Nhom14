@@ -7,12 +7,14 @@
         xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
         mc:Ignorable="d"
         
-         WindowStartupLocation="CenterScreen" 
-         WindowStyle="None"
-         AllowsTransparency="True"
-         Background="Transparent"
-         Width="480"
-         SizeToContent="Height">
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Width="480"
+        SizeToContent="Height"
+        Title="Eco-Wallet"
+        Icon="/Images/ColorBG.png">
 
     <Window.DataContext>
         <viewmodel:CustomMessageBoxViewModel/>

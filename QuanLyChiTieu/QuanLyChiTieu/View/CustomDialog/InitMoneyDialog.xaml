@@ -9,11 +9,13 @@
         xmlns:behavior="clr-namespace:QuanLyChiTieu.Behavior"
         mc:Ignorable="d"
         
-         WindowStartupLocation="CenterScreen" 
-         WindowStyle="None"
-         AllowsTransparency="True"
-         Background="Transparent"
-         Height="360" Width="480">
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Height="360" Width="480"
+        Title="Eco-Wallet"
+        Icon="/Images/ColorBG.png">
     
     <Window.DataContext>
         <viewmodel:InitMoneyViewModel/>

@@ -12,7 +12,9 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Height="Auto" Width="500">
+        Height="Auto" Width="500"
+        Title="Eco-Wallet"
+        Icon="/Images/ColorBG.png">
 
     <Window.DataContext>
         <viewmodel:DetailDialogViewModel/>

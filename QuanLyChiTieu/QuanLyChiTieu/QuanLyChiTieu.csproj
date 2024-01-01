@@ -192,7 +192,6 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="Behavior\NumericInputBehavior.cs" />
     <Compile Include="Helper\PasswordBoxHelper.cs" />
-    <Compile Include="ViewModel\PlanThisMonthViewModel.cs" />
     <Compile Include="ViewModel\PlanViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SharePlanListViewModel.cs" />
@@ -228,9 +227,6 @@
     </Compile>
     <Compile Include="View\ManageView.xaml.cs">
       <DependentUpon>ManageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PlanThisMonthView.xaml.cs">
-      <DependentUpon>PlanThisMonthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PlanView.xaml.cs">
       <DependentUpon>PlanView.xaml</DependentUpon>
@@ -309,10 +305,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PlanThisMonthView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\PlanView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -364,11 +356,10 @@
       <DependentUpon>DataBase_QLTC.mdf</DependentUpon>
     </Content>
     <Content Include="Data\SQLQuery.sql" />
+    <Resource Include="Images\ColorBG.png" />
+    <Resource Include="Images\TransBG.png" />
     <Resource Include="Images\pass.png" />
     <Resource Include="Images\user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Asset 1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
