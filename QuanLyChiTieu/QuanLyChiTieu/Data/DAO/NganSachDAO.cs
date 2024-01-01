@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLyChiTieu.View.CustomDialog;
 using QuanLyChiTieu.ViewModel.CustomDialogModel;
+using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.Model;
 
 namespace QuanLyChiTieu.Data.DAO
 {
@@ -134,6 +136,40 @@ namespace QuanLyChiTieu.Data.DAO
             {
                 CloseConn();
             }
+        }
+
+        public static int ThemNganSach(NganSachModel obj)
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+
+                sqlCmd.CommandText = "BEGIN TRANSACTION insert into NGANSACH (ID, TIENNS, HSD)\r\nvalues\r\n(@ID , @TIENNS , @HSD) COMMIT;";
+                SqlParameter parameter0 = new SqlParameter("@ID", obj.ID);
+                sqlCmd.Parameters.Add(parameter0);
+                SqlParameter parameter1 = new SqlParameter("@TIENNS", obj.TienNS);
+                sqlCmd.Parameters.Add(parameter1);
+                SqlParameter parameter2 = new SqlParameter("@HSD", obj.HSD);
+                sqlCmd.Parameters.Add(parameter2);
+                sqlCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+
+                return 1;
+            }
+            finally
+            {
+                CloseConn();
+            }
+            return 0;
         }
     }
 }

@@ -16,64 +16,91 @@
         <viewmodel:AddingNewPlanViewModel/>
     </Window.DataContext>
 
-    <Grid Background="{StaticResource lightBackground}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Button x:Name="winCloseButton"
-        Style="{StaticResource winCtrButton}"
-        Tag="{StaticResource redUI}"
-        Command="{Binding CloseCommand}"
-        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-        Grid.Column="1"
-        Grid.Row="0"
-        HorizontalAlignment="Right">
-            <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
-        </Button>
+    <Border BorderThickness="2"
+            BorderBrush="{StaticResource darkBackground}">
+        <Grid Background="{StaticResource lightBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Margin="0, 0, 30, 30"
-                    Grid.Row="1">
-            <Button Style="{StaticResource darkButtonStyle}" 
-                    Content="Xác nhận"
-                    FontSize="18"
-                    Margin="0, 0, 10, 0"
-                    Command="{Binding AddCommand}"/>
-        </StackPanel>
+            <Button x:Name="winCloseButton"
+    Style="{StaticResource winCtrButton}"
+    Tag="{StaticResource redUI}"
+    Command="{Binding CloseCommand}"
+    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+    Grid.Column="1"
+    Grid.Row="0"
+    HorizontalAlignment="Right">
+                <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
+            </Button>
 
-        <StackPanel Grid.Row="1">
-            <StackPanel Margin="0, 50, 0, 0">
-                <TextBlock Text="Số tiền"
-                       FontSize="18"
-                       FontFamily = "Monsterat"
-                       FontWeight="Bold"
-                       Margin="150, 0, 0, 0"
-                       Foreground="{StaticResource darkButtonBackground}"/>
-                <TextBox Width="300"
-                         Height="30"
-                         FontSize="18"
-                         FontFamily = "Monsterat"
-                         FontWeight="Bold"
-                         Foreground="{StaticResource darkButtonBackground}"
-                         VerticalContentAlignment="Center"/>        
+            <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0, 0, 30, 30"
+                Grid.Row="1">
+                <Button Style="{StaticResource darkButtonStyle}" 
+                Content="Xác nhận"
+                FontSize="18"
+                Margin="0, 0, 10, 0"
+                Command="{Binding AddCommand}"/>
             </StackPanel>
 
-            <TextBlock Text="Chọn tháng"
+            <StackPanel Grid.Row="1">
+                <StackPanel Margin="0, 50, 0, 0">
+                    <TextBlock Text="Số tiền"
+                   FontSize="18"
+                   FontFamily = "Monsterat"
+                   FontWeight="Bold"
+                   Margin="150, 0, 0, 0"
+                   Foreground="{StaticResource darkButtonBackground}"/>
+                    <TextBox Width="300"
+                             Height="30"
+                             Style="{StaticResource aLineTextBox}"
+                             VerticalContentAlignment="Center"
+                             DataContext="{Binding TienNganSach}"/>
+                </StackPanel>
+
+
+
+                <StackPanel>
+                    <TextBlock Text="Chọn tháng"
                        FontSize="18"
                        FontFamily = "Monsterat"
                        FontWeight="Bold"
                        Margin="150, 15, 0, 0"
                        Foreground="{StaticResource darkButtonBackground}"/>
 
-            <Calendar x:Name="_calendar" 
-                      DisplayDate="{Binding SelectedMonth, UpdateSourceTrigger=PropertyChanged}" 
-                      SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
-                      DisplayMode="Month"
-                      Margin="0 5 0 0"/>
-        </StackPanel>
-    </Grid>
+                    <ComboBox ItemsSource="{Binding Months}" 
+                              SelectedItem="{Binding SelectedMonth}" 
+                                Margin="0, 20, 0, 0"
+                                Width="300"
+                                Height="30"
+                                FontSize="18"
+                                FontFamily = "Monsterat"
+                                SelectedValue="{Binding Date.Month, Mode=OneWay}"
+                                Foreground="{StaticResource darkButtonBackground}"/>
+
+                    <TextBlock Text="Chọn năm"
+                       FontSize="18"
+                       FontFamily = "Monsterat"
+                       FontWeight="Bold"
+                       Margin="150, 15, 0, 0"
+                       Foreground="{StaticResource darkButtonBackground}"/>
+
+                    <ComboBox ItemsSource="{Binding Years}" 
+                              SelectedItem="{Binding SelectedYear}" 
+                              Margin="0, 20, 0, 0"
+                      Width="300"
+                      Height="30"
+                      FontSize="18"
+                      FontFamily = "Monsterat"
+                      SelectedValue="{Binding Date.Year, Mode=OneWay}"
+                      Foreground="{StaticResource darkButtonBackground}"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
