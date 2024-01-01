@@ -30,7 +30,10 @@ namespace QuanLyChiTieu.Data.BUS
                 temp.HSD = DateTime.Parse(danhSach.Rows[i]["HSD"].ToString());
                 result.Add(temp);
             }
-            return result;
+
+            var sortedResult = new BindingList<NganSachModel>(result.OrderByDescending(x => x.HSD).ToList());
+
+            return sortedResult;
         }
 
         public static List<DateTime> HSDNganSach()

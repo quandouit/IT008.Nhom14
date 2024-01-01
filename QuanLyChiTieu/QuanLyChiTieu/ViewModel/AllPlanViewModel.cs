@@ -3,6 +3,7 @@ using QuanLyChiTieu.Model;
 using QuanLyChiTieu.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -12,45 +13,43 @@ using System.Windows.Input;
 
 namespace QuanLyChiTieu.ViewModel
 {
+    public class YearGroup
+    {
+        public int Year { get; set; }
+        public ObservableCollection<NganSachModel> Months { get; set; }
+    }
+
     public class AllPlanViewModel : SharePlanListViewModel
     {
-        private ViewModelBase _planView;
-        public ViewModelBase PlanView
+        public ObservableCollection<YearGroup> YearGroups { get; set; }
+
+        public void GroupByYear()
         {
-            get
-            {
-                return _planView;
-            }
+            var groups = SharedPlanList.GroupBy(x => x.HSD.Year)
+                .Select(g => new YearGroup { Year = g.Key, Months = new ObservableCollection<NganSachModel>(g.OrderBy(x => x.HSD).ToList()) })
+                .ToList();
 
-            set
-            {
-                _planView = value;
-                OnPropertyChanged(nameof(PlanView));
-            }
-        }
-
-        private ViewModelBase _allPlanView;
-        public ViewModelBase AllPlanView
-        {
-            get
-            {
-                return _allPlanView;
-            }
-
-            set
-            {
-                _allPlanView = value;
-                OnPropertyChanged(nameof(AllPlanView));
-            }
+            YearGroups = new ObservableCollection<YearGroup>(groups);
         }
 
         public ICommand TurnBackCommand { get; set; }
-
+        public ICommand UpdateSharedCurrentCommand { get; private set; }
         public AllPlanViewModel()
         {
+            GroupByYear();
             TurnBackCommand = new ViewModelCommand(ExecuteTurnBackCommand);
+            UpdateSharedCurrentCommand = new ViewModelCommand<NganSachModel>(UpdateSharedCurrent); ;
         }
+        private void UpdateSharedCurrent(NganSachModel nganSachModel)
+        {
+            SharedCurrentInstance = nganSachModel;
+            var mainViewModel = ViewModelLocator.Instance.MainViewModel;
+            if (mainViewModel != null)
+            {
+                mainViewModel.CurrentChildView = new PlanViewModel();
+            }
 
+        }
         private void ExecuteTurnBackCommand(object obj)
         {
             var mainViewModel = ViewModelLocator.Instance.MainViewModel;

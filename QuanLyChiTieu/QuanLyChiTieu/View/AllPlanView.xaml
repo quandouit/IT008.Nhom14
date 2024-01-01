@@ -5,12 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuanLyChiTieu.View"
              xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel"
+             xmlns:helper="clr-namespace:QuanLyChiTieu.Helper"
              mc:Ignorable="d" 
              d:DesignHeight="630" d:DesignWidth="1000">
     
     <UserControl.DataContext>
         <viewmodel:AllPlanViewModel/>
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <helper:MonthConverter x:Key="MonthConverter"/>
+    </UserControl.Resources>
+
 
     <Grid>
         <Grid Background="{StaticResource lightBackground}">
@@ -30,27 +36,51 @@
 
             <Border Grid.Row="1" 
                     Background="{StaticResource darkBackground}"
-                    CornerRadius="15">
-                <ScrollViewer Style="{StaticResource customScrollViewer}">
-                    <ItemsControl ItemsSource="{Binding SharedPlanListInstance}">
+                    CornerRadius="15"
+                    Margin="20">
+                <ScrollViewer Style="{StaticResource customScrollViewer}"
+                              Margin="10">
+                    
+                    <ItemsControl ItemsSource="{Binding YearGroups}"
+                                  Margin="0 0 -15 0">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding HSD.Year}"/>
 
-                                    <ItemsControl ItemsSource="{Binding}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Button Content="{Binding HSD.Month}"
-                                            Style="{StaticResource lightButtonStyle}"/>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                <Border Background="{StaticResource lightBackground}"
+                                            CornerRadius="10"
+                                            Margin="15 10">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Year}"
+                                                   FontSize="16"
+                                                   FontFamily="Monsterat"
+                                                   FontWeight="Bold"
+                                                   Foreground="{StaticResource darkFont}"
+                                                   Margin="20 15 0 10"/>
+                                        
+                                        <ItemsControl ItemsSource="{Binding Months}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
 
-                                </StackPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Button Content="{Binding HSD.Month, Converter={StaticResource MonthConverter}}"
+                                                            Style="{StaticResource darkButtonStyle}"
+                                                            FontSize="16"
+                                                            Margin="10 0 10 10"
+                                                            Command="{Binding DataContext.UpdateSharedCurrentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                            CommandParameter="{Binding}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    
                 </ScrollViewer>
             </Border>
 
