@@ -33,7 +33,7 @@ namespace QuanLyChiTieu.ViewModel
 
         public static NganSachModel SharedCurrent { get; set; }
 
-        protected void LoadAllNganSach()
+        public void LoadAllNganSach()
         {
             SharedPlanList = NganSachBUS.DanhSachNganSach();
             SharedPlanListInstance = SharedPlanList;

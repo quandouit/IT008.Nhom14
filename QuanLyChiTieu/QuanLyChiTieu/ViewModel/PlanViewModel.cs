@@ -221,10 +221,12 @@ namespace QuanLyChiTieu.ViewModel
             }
         }
         public ICommand ViewAllCommand { get; set; }
+        public ICommand ShowAddingView {  get; set; }
 
         public PlanViewModel()
         {
             UpdateToday();
+            LoadAllNganSach();
             if (SharedPlanList == null)
             {
                 LoadAllNganSach();
@@ -237,7 +239,17 @@ namespace QuanLyChiTieu.ViewModel
             UpdateUsed();
             UpdateRemain();
             ViewAllCommand = new ViewModelCommand(ExecuteViewAllCommand);
+            ShowAddingView = new ViewModelCommand(ExecuteShowAddingCommand);
+            
         }
+
+        private void ExecuteShowAddingCommand(object obj)
+        {
+            //AddingNewPlanViewModel addingNewPlanViewModel = new AddingNewPlanViewModel();
+            AddingNewPlan newPlanDialog = new AddingNewPlan(); //{ DataContext = addingNewPlanViewModel };
+            newPlanDialog.ShowDialog();
+        }
+
         private void ExecuteViewAllCommand(object obj)
         {
             var mainViewModel = ViewModelLocator.Instance.MainViewModel;

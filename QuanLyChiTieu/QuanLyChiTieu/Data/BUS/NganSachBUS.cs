@@ -78,5 +78,21 @@ namespace QuanLyChiTieu.Data.BUS
                 messageBox.ShowDialog();
             }    
         }
+
+        public static void SuaNganSach(NganSachModel nganSachMoi)
+        {
+            if (NganSachDAO.SuaNganSach(nganSachMoi) == 0)
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Sửa ngân sách thành công!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
+            else
+            {
+                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Sửa ngân sách thất bại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
+                messageBox.ShowDialog();
+            }
+        }
     }
 }

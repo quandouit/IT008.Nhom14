@@ -99,15 +99,6 @@
                       SelectedValue="{Binding Date.Year, Mode=OneWay}"
                       Foreground="{StaticResource darkButtonBackground}"/>
                 </StackPanel>
-                
-                <TextBlock FontFamily="Monsterat"
-                           Text="{Binding SelectedMonth}"
-                           FontSize="20"/>
-                
-                <TextBlock FontFamily="Monsterat"
-                           Text="{Binding SelectedYear}"
-                           FontSize="20"/>
-
             </StackPanel>
         </Grid>
     </Border>
