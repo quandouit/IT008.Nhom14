@@ -103,8 +103,6 @@ namespace QuanLyChiTieu.ViewModel
         public PlanViewModel()
         {
             UpdateToday();
-            LoadAllNganSach();
-
             if (SharedPlanList == null)
             {
                 LoadAllNganSach();
@@ -132,8 +130,11 @@ namespace QuanLyChiTieu.ViewModel
             newPlanDialog.ShowDialog();
             LoadAllNganSach();
             LoadCurrent(SharedCurrentInstance.HSD);
-            UpdateUsed();
-            UpdateRemain();
+            if (CheckStatus())
+            {
+                UpdateUsed();
+                UpdateRemain();
+            }
         }
 
         private void ExecuteViewAllCommand(object obj)
@@ -161,7 +162,7 @@ namespace QuanLyChiTieu.ViewModel
         }
         private bool CheckStatus()
         {
-            if (SharedCurrentInstance == null)
+            if (SharedCurrent == null)
             {
                 Notify = "Chưa có ngân sách nào trong tháng này";
                 Status = "Hidden";

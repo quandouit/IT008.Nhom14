@@ -164,6 +164,7 @@ namespace QuanLyChiTieu.ViewModel
         }
         private void ExecuteShowPlanViewCommand(object obj)
         {
+            SharePlanListViewModel.Reset();
             CurrentChildView = new PlanViewModel();
             ChildCaption = "Kế hoạch tài chính";
             ChildIcon = IconChar.Wallet;

@@ -127,7 +127,7 @@
                 </StackPanel>
 
                 <Button Grid.Row="1"
-                        Margin="0 20 0 50"
+                        Margin="0 0 0 50"
                         Content="Đổi mật khẩu" 
                         Style="{StaticResource darkButtonStyle}"
                         FontSize="16"
