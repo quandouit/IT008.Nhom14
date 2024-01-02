@@ -130,6 +130,7 @@ namespace QuanLyChiTieu.ViewModel
             newPlanDialog.ShowDialog();
             LoadAllNganSach();
             LoadCurrent(SharedCurrentInstance.HSD);
+            OnPropertyChanged("FormattedHSD");
             if (CheckStatus())
             {
                 UpdateUsed();
