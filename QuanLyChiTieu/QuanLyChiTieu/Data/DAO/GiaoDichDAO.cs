@@ -140,6 +140,8 @@ namespace QuanLyChiTieu.Data.DAO
                 sqlCmd.Parameters.Add(parameter4);
                 SqlParameter parameter5 = new SqlParameter("@NGAYTAO", obj.NgayTao);
                 sqlCmd.Parameters.Add(parameter5);
+                SqlParameter parameter6 = new SqlParameter("@MAGD", obj.MaGD);
+                sqlCmd.Parameters.Add(parameter6);
 
                 sqlCmd.ExecuteNonQuery();
             }
