@@ -24,10 +24,5 @@ namespace QuanLyChiTieu.View.CustomDialog
         {
             InitializeComponent();
         }
-
-        private void ComboBox_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
-        }
     }
 }

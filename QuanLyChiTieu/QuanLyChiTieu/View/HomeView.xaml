@@ -17,14 +17,14 @@
 
     <Grid Background="{StaticResource darkBackground}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="500"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
             <Border Grid.Row="0" 
