@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel" 
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:behavior="clr-namespace:QuanLyChiTieu.Behavior"
         mc:Ignorable="d"
         Height="500" Width="600"
         WindowStartupLocation="CenterScreen" 
@@ -54,16 +56,20 @@
             <StackPanel Grid.Row="1">
                 <StackPanel Margin="0, 50, 0, 0">
                     <TextBlock Text="Số tiền"
-                   FontSize="18"
-                   FontFamily = "Monsterat"
-                   FontWeight="Bold"
-                   Margin="150, 0, 0, 0"
-                   Foreground="{StaticResource darkButtonBackground}"/>
+                               FontSize="18"
+                               FontFamily = "Monsterat"
+                               FontWeight="Bold"
+                               Margin="150, 0, 0, 0"
+                               Foreground="{StaticResource darkButtonBackground}"/>
                     <TextBox Width="300"
                              Height="30"
                              Style="{StaticResource aLineTextBox}"
                              VerticalContentAlignment="Center"
-                             Text="{Binding TienNganSach}"/>
+                             Text="{Binding TienNganSach}">
+                        <i:Interaction.Behaviors>
+                            <behavior:DecimalInputBehavior/>
+                        </i:Interaction.Behaviors>
+                    </TextBox>
                 </StackPanel>
                 
                 <StackPanel Margin="0 20">
