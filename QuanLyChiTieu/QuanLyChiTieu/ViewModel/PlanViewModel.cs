@@ -170,7 +170,7 @@ namespace QuanLyChiTieu.ViewModel
                 return false;
             }
             Notify = "";
-            Status = "";
+            Status = "Visible";
             return true;
         }
     }
