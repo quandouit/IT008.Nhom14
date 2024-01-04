@@ -14,9 +14,10 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="Login" 
         Height="720"
-        Width="1080" Foreground="{StaticResource darkFont}">
+        Width="1080" Foreground="{StaticResource darkFont}"
+        Title="Eco-Wallet"
+        Icon="/Images/ColorBG.png">
 
     <Window.DataContext>
         <viewmodel:LoginViewModel/>
