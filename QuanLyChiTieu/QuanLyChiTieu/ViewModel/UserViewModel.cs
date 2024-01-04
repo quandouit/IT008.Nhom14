@@ -111,9 +111,14 @@ namespace QuanLyChiTieu.ViewModel
                 ConfirmPass = "";
                 return;
             }
-            //Đổi mật khẩu thành công => gọi hàm đăng xuất 
             if (NguoiDungBUS.DoiMatKhau(NewPassword))
-                ExecuteLogOut(obj);
+            {
+                LoginView loginView = new LoginView();
+                loginView.Show();
+
+                var mainWindow = obj as MainWindow;
+                mainWindow.Close();
+            }
         }
     }
 }
