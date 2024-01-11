@@ -31,7 +31,6 @@ namespace QuanLyChiTieu.ViewModel
 
             YearGroups = new ObservableCollection<YearGroup>(groups);
         }
-
         public ICommand TurnBackCommand { get; set; }
         public ICommand UpdateSharedCurrentCommand { get; private set; }
         public AllPlanViewModel()
@@ -48,7 +47,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 mainViewModel.CurrentChildView = new PlanViewModel();
             }
-
         }
         private void ExecuteTurnBackCommand(object obj)
         {

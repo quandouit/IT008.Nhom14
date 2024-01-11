@@ -34,7 +34,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 return childcurrent;
             }
-
             set
             {
                 childcurrent = value;
@@ -47,7 +46,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 return childcaption;
             }
-
             set
             {
                 childcaption = value;
@@ -70,7 +68,6 @@ namespace QuanLyChiTieu.ViewModel
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowManageViewCommand { get; }
         public ICommand ShowPlanViewCommand { get; }
-        public ICommand ShowAllPlanViewCommand { get; }
         public ICommand ShowUserViewCommand { get; }
         public ICommand MaximizeCommand { get; }
         public ICommand MinimizeCommand { get; }
@@ -101,7 +98,6 @@ namespace QuanLyChiTieu.ViewModel
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowManageViewCommand = new ViewModelCommand(ExecuteShowManageViewCommand);
             ShowPlanViewCommand = new ViewModelCommand(ExecuteShowPlanViewCommand);
-            ShowAllPlanViewCommand = new ViewModelCommand(ExecuteShowAllPlanViewCommand);
             ShowUserViewCommand = new ViewModelCommand(ExecuteShowUserViewCommand);
             MaximizeCommand = new ViewModelCommand(ExecuteMaximizeCommand);
             MinimizeCommand = new ViewModelCommand(ExecuteMinimizeCommand);
@@ -175,10 +171,6 @@ namespace QuanLyChiTieu.ViewModel
             CurrentChildView = new PlanViewModel();
             ChildCaption = "Kế hoạch tài chính";
             ChildIcon = IconChar.Wallet;
-        }
-        private void ExecuteShowAllPlanViewCommand(object obj)
-        {
-            CurrentChildView = new AllPlanViewModel();
         }
         private void ExecuteShowUserViewCommand(object obj)
         {

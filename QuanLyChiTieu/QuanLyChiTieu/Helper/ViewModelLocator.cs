@@ -13,5 +13,6 @@ namespace QuanLyChiTieu.Helper
         public static ViewModelLocator Instance => _instance ?? (_instance = new ViewModelLocator());
 
         public MainViewModel MainViewModel { get; set; }
+        public HomeViewModel HomeViewModel { get; set; }
     }
 }

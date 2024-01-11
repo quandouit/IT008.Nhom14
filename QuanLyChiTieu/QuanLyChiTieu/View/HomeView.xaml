@@ -22,6 +22,10 @@
             <child:YearChart/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type childviewmodel:ChooseYearViewModel}">
+            <child:ChooseYear/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type childviewmodel:MonthChartViewModel}">
             <child:MonthChart/>
         </DataTemplate>
@@ -75,7 +79,8 @@
             </Border>
 
             <ContentControl Content="{Binding YearChartView}"
-                            Grid.Row="1"/>
+                            Grid.Row="1"
+                            Margin="20 0 20 20"/>
         </Grid>
 
         <ContentControl Content="{Binding MonthChartView}"

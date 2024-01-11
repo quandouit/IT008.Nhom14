@@ -3,6 +3,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using QuanLyChiTieu.Data.BUS;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.Helper;
 using QuanLyChiTieu.View.CustomDialog;
 using System;
 using System.Collections.Generic;
@@ -28,31 +29,31 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(SoDu));
             }
         }
-        private ViewModelBase yearChartCurrent;
+        private ViewModelBase yearchartcurrent;
         public ViewModelBase YearChartView
         {
             get
             {
-                return yearChartCurrent;
+                return yearchartcurrent;
             }
 
             set
             {
-                yearChartCurrent = value;
+                yearchartcurrent = value;
                 OnPropertyChanged(nameof(YearChartView));
             }
         }
-        private ViewModelBase monthChartCurrent;
+        private ViewModelBase monthchartcurrent;
         public ViewModelBase MonthChartView
         {
             get
             {
-                return monthChartCurrent;
+                return monthchartcurrent;
             }
 
             set
             {
-                monthChartCurrent = value;
+                monthchartcurrent = value;
                 OnPropertyChanged(nameof(MonthChartView));
             }
         }
@@ -101,11 +102,6 @@ namespace QuanLyChiTieu.ViewModel
 
         public HomeViewModel()
         {
-            ShowYearViewCommand = new ViewModelCommand(ExecuteShowYearViewCommand);
-            ShowMonthViewCommand = new ViewModelCommand(ExecuteShowMonthViewCommand);
-            ExecuteShowYearViewCommand(null);
-            ExecuteShowMonthViewCommand(null);
-
             SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
 
             //Biểu đồ tròn phân tích các khoản chi
@@ -150,10 +146,15 @@ namespace QuanLyChiTieu.ViewModel
             {
                 PieChart2DataCanShow = false;
             }
-        }
 
+            ShowYearViewCommand = new ViewModelCommand(ExecuteShowYearViewCommand);
+            ShowMonthViewCommand = new ViewModelCommand(ExecuteShowMonthViewCommand);
+            ExecuteShowYearViewCommand(null);
+            ExecuteShowMonthViewCommand(null);
+        }
         private void ExecuteShowYearViewCommand(object obj)
         {
+            ViewModelLocator.Instance.HomeViewModel = this;
             YearChartView = new CustomDialogModel.YearChartViewModel();
         }
         private void ExecuteShowMonthViewCommand(object obj)

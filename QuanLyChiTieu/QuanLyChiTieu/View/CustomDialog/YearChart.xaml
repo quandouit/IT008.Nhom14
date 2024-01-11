@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:QuanLyChiTieu.View.CustomDialog"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:viewmodel="clr-namespace:QuanLyChiTieu.ViewModel.CustomDialogModel" 
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="540">
     
@@ -16,7 +16,6 @@
 
     <Border Background="{StaticResource lightBackground}"
             CornerRadius="15"
-            Margin="20 0 20 20"
             Padding="10">
 
         <Grid>
@@ -25,18 +24,39 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0"
-                       Text="Biến động thu chi trong năm:"
-                       Margin="30 15 0 10"
-                       FontSize="16"
-                       FontFamily="Monsterat"
-                       Foreground="{StaticResource darkFont}"/>
-            <ComboBox x:Name="yearComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="300,10,0,0"
-                  DisplayMemberPath="Year" SelectedValuePath="Year" SelectedValue="{Binding SelectedYear, Mode=TwoWay}">
-                <ComboBox.ItemsSource>
-                    <Binding Path="Years"/>
-                </ComboBox.ItemsSource>
-            </ComboBox>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="Biến động thu chi trong năm:"
+                           Grid.Column="0"
+                           Margin="30 15 0 10"
+                           FontSize="16"
+                           FontFamily="Monsterat"
+                           Foreground="{StaticResource darkFont}"/>
+
+                <ComboBox x:Name="yearComboBox"
+                          Grid.Column="1" 
+                          HorizontalAlignment="Left"
+                          Margin="10"
+                          Width="Auto"
+                          DisplayMemberPath="Year"
+                          SelectedValuePath="Year"
+                          SelectedValue="{Binding SelectedYear, Mode=TwoWay}">
+                    <ComboBox.ItemsSource>
+                        <Binding Path="Years"/>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+
+                <Button Grid.Column="2"
+                        Style="{StaticResource mixedButtonStyle}"
+                        Content="{Binding SelectedYear, Mode=TwoWay}"
+                        Command="{Binding ChooseYearCommand}"/>
+
+            </Grid>
 
             <lvc:CartesianChart Series="{Binding MyChartData}" 
                                 LegendLocation="None"

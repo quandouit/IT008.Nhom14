@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using QuanLyChiTieu.Data.BUS;
+using QuanLyChiTieu.Helper;
 using QuanLyChiTieu.Model;
 using QuanLyChiTieu.View.CustomDialog;
 using System;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
@@ -23,8 +25,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
     public class YearChartViewModel : ViewModelBase
     {
         //Xử lí ComboBox year
-        public ObservableCollection<YearItem> Years { get; set; } = new ObservableCollection<YearItem>();
-
+        public ObservableCollection<YearItem> Years { get; set; }
         private int selectedYear;
         public int SelectedYear
         {
@@ -35,13 +36,14 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 {
                     selectedYear = value;
                     // Handle the selected year change if needed
-
                     ShowChart();
                 }
             }
         }
+        public ICommand ChooseYearCommand { get; set; }
         public YearChartViewModel()
         {
+            Years = new ObservableCollection<YearItem>();
             // Populate the ComboBox with a range of years
             for (int y = 2000; y <= DateTime.Now.Year; y++)
             {
@@ -49,8 +51,14 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             }
 
             SelectedYear = DateTime.Now.Year;
-        }
 
+            ChooseYearCommand = new ViewModelCommand(ExecuteChooseYearCommand);
+        }
+        private void ExecuteChooseYearCommand(object obj)
+        {
+            var homeViewModel = ViewModelLocator.Instance.HomeViewModel;
+            homeViewModel.YearChartView = new ChooseYearViewModel();
+        }
         //Khai báo dữ liệu biểu đồ
         private int id = MainViewModel.currentUser.ID;
         private BindingList<GiaoDichModel> listGD
