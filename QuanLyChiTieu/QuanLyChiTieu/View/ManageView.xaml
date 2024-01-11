@@ -61,7 +61,7 @@
 
         <DataGrid Grid.Row="1"
                   x:Name="ManageDataGrid"
-                  ItemsSource="{Binding GiaoDichData, Mode=TwoWay}"
+                  ItemsSource="{Binding GiaoDichTable, Mode=TwoWay}"
                   Style="{StaticResource ManageDataGridStyle}"
                   CellStyle="{StaticResource ManageDataGridCellStyle}" 
                   ColumnHeaderStyle="{StaticResource ManageDataGridColumnHeaderStyle}"

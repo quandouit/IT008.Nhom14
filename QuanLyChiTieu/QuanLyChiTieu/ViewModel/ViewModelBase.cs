@@ -1,4 +1,5 @@
 ﻿using QuanLyChiTieu.Model;
+using QuanLyChiTieu.View.CustomDialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

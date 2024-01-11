@@ -184,6 +184,8 @@
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\EditDialogViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\InitMoneyViewModel.cs" />
+    <Compile Include="ViewModel\CustomDialogModel\MonthChartViewModel.cs" />
+    <Compile Include="ViewModel\CustomDialogModel\YearChartViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\YesNoDialogViewModel.cs" />
     <Compile Include="Behavior\DecimalInputBehavior.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -215,6 +217,12 @@
     </Compile>
     <Compile Include="View\CustomDialog\InitMoneyDialog.xaml.cs">
       <DependentUpon>InitMoneyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomDialog\MonthChart.xaml.cs">
+      <DependentUpon>MonthChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomDialog\YearChart.xaml.cs">
+      <DependentUpon>YearChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CustomDialog\YesNoDialog.xaml.cs">
       <DependentUpon>YesNoDialog.xaml</DependentUpon>
@@ -286,6 +294,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CustomDialog\InitMoneyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomDialog\MonthChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomDialog\YearChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

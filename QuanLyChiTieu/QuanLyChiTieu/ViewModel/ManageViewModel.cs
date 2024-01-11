@@ -21,14 +21,13 @@ namespace QuanLyChiTieu.ViewModel
     public class ManageViewModel : ViewModelBase
     {
         public bool IsAllSelected { get; set; }
-        private BindingList<GiaoDichModel> _giaoDichData;
-        public BindingList<GiaoDichModel> GiaoDichData
+        public BindingList<GiaoDichModel> GiaoDichTable
         {
-            get { return _giaoDichData; }
+            get { return MainViewModel.listGiaoDich; }
             set
             {
-                _giaoDichData = value;
-                OnPropertyChanged(nameof(GiaoDichData));
+                MainViewModel.listGiaoDich = value;
+                OnPropertyChanged(nameof(GiaoDichTable));
             }
         }
         public ICommand AddNewBillCommand { get; }
@@ -41,8 +40,6 @@ namespace QuanLyChiTieu.ViewModel
 
         public ManageViewModel()
         {
-            LoadGiaoDichData();
-
             AddNewBillCommand = new ViewModelCommand(ExecuteAddNewBillCommand);
             DeleteChoosenBillCommand = new ViewModelCommand(ExecuteDeleteChoosenBillCommand);
             ShowInfoBillCommand = new ViewModelCommand(ExecuteShowInfoBillCommand);
@@ -52,30 +49,29 @@ namespace QuanLyChiTieu.ViewModel
 
             UpdateIsAllSelectedCommand = new ViewModelCommand(ExecuteUpdateIsAllSelectedCommand);
         }
-
-        public void LoadGiaoDichData()
+        public void ReloadTable()
         {
-            GiaoDichData = new BindingList<GiaoDichModel>();
-            GiaoDichData = GiaoDichBUS.SapXepGanTruoc(GiaoDichBUS.LietKeGiaoDich());
+            GiaoDichTable = new BindingList<GiaoDichModel>();
+            GiaoDichTable = GiaoDichBUS.SapXepGanTruoc(GiaoDichBUS.LietKeGiaoDich());
         }
         private void ExecuteSortRecentFirstCommand(object obj)
         {
-            GiaoDichData = GiaoDichBUS.SapXepGanTruoc(GiaoDichData);
+            GiaoDichTable = GiaoDichBUS.SapXepGanTruoc(GiaoDichTable);
         }
         private void ExecuteSortRecentLastCommand(object obj)
         {
-            GiaoDichData = GiaoDichBUS.SapXepXaTruoc(GiaoDichData);
+            GiaoDichTable = GiaoDichBUS.SapXepXaTruoc(GiaoDichTable);
         }
         private void ExecuteAddNewBillCommand(object obj)
         {
             EditDialogViewModel viewModel = new EditDialogViewModel();
             EditDialog newBillDialog = new EditDialog { DataContext = viewModel };
             newBillDialog.ShowDialog();
-            LoadGiaoDichData();
+            ReloadTable();
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
         {
-            if (GiaoDichData.Any(gd => gd.IsChecked))
+            if (GiaoDichTable.Any(gd => gd.IsChecked))
             {
                 bool check = false;
                 YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Xác nhận", "Bạn có muốn xóa những giao dịch này không?");
@@ -91,8 +87,8 @@ namespace QuanLyChiTieu.ViewModel
 
                 if (check)
                 {
-                    GiaoDichBUS.XoaNhieuGiaoDich(GiaoDichData);
-                    LoadGiaoDichData();
+                    GiaoDichBUS.XoaNhieuGiaoDich(GiaoDichTable);
+                    ReloadTable();
                 }
             }
             else
@@ -110,7 +106,7 @@ namespace QuanLyChiTieu.ViewModel
                 DetailDialog detailDialog = new DetailDialog { DataContext = viewModel };
                 detailDialog.ShowDialog();
             }
-            LoadGiaoDichData();
+            ReloadTable();
         }
         private void ExecuteDeleteSingleBillCommand(object obj)
         {
@@ -132,7 +128,7 @@ namespace QuanLyChiTieu.ViewModel
                 {
                     GiaoDichBUS.XoaGiaoDich(selectedRow.MaGD);
                 }
-                LoadGiaoDichData();
+                ReloadTable();
             }
 
         }
@@ -141,7 +137,7 @@ namespace QuanLyChiTieu.ViewModel
             System.Windows.Controls.CheckBox checkBox = obj as System.Windows.Controls.CheckBox;
             if (checkBox.Name == "HeaderCheckBox")
             {
-                foreach (GiaoDichModel row in GiaoDichData)
+                foreach (GiaoDichModel row in GiaoDichTable)
                 {
                     row.IsChecked = IsAllSelected;
                     row.OnPropertyChanged(nameof(row.IsChecked));
@@ -149,7 +145,7 @@ namespace QuanLyChiTieu.ViewModel
             }
             else
             {
-                IsAllSelected = GiaoDichData.All(gd => gd.IsChecked);
+                IsAllSelected = GiaoDichTable.All(gd => gd.IsChecked);
                 OnPropertyChanged(nameof(IsAllSelected));
             }
         }

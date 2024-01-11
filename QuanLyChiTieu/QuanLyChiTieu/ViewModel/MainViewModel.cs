@@ -16,12 +16,15 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using QuanLyChiTieu.Helper;
+using QuanLyChiTieu.Model;
+using QuanLyChiTieu.Data.BUS;
 
 namespace QuanLyChiTieu.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
         public static NguoiDungDTO currentUser { get; set; }
+        public static BindingList<GiaoDichModel> listGiaoDich { get; set; }
         private ViewModelBase childcurrent;
         private string childcaption;
         private IconChar childicon;
@@ -93,6 +96,7 @@ namespace QuanLyChiTieu.ViewModel
                     System.Windows.Application.Current.MainWindow.Close();
                 }
             }
+            LoadListGiaoDich();
             SharePlanListViewModel.Reset();
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowManageViewCommand = new ViewModelCommand(ExecuteShowManageViewCommand);
@@ -109,12 +113,16 @@ namespace QuanLyChiTieu.ViewModel
             ExecuteShowHomeViewCommand(null);
         }
         public MainViewModel() { }
+        public void LoadListGiaoDich()
+        {
+            listGiaoDich = new BindingList<GiaoDichModel>();
+            listGiaoDich = GiaoDichBUS.SapXepGanTruoc(GiaoDichBUS.LietKeGiaoDich());
+        }
         private void ExecuteLButtonDownCommand(object obj)
         {
             WindowInteropHelper helper = new WindowInteropHelper(System.Windows.Application.Current.MainWindow);
             WindowsApiService.SendMessage(helper.Handle, 161, 2, 0);
         }
-
         private void ExecuteMouseEnterCommand(object parameter)
         {
             System.Windows.Application.Current.MainWindow.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
@@ -155,7 +163,6 @@ namespace QuanLyChiTieu.ViewModel
             ChildCaption = "Trang chủ";
             ChildIcon = IconChar.Home;
         }
-
         private void ExecuteShowManageViewCommand(object obj)
         {
             CurrentChildView = new ManageViewModel();

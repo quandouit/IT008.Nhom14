@@ -1,7 +1,9 @@
-﻿using LiveCharts;
+﻿using FontAwesome.Sharp;
+using LiveCharts;
 using LiveCharts.Wpf;
 using QuanLyChiTieu.Data.BUS;
 using QuanLyChiTieu.Data.DTO;
+using QuanLyChiTieu.View.CustomDialog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +11,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace QuanLyChiTieu.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
+        private ViewModelBase yearChartCurrent;
+        public ViewModelBase YearChartView
+        {
+            get
+            {
+                return yearChartCurrent;
+            }
+
+            set
+            {
+                yearChartCurrent = value;
+                OnPropertyChanged(nameof(YearChartView));
+            }
+        }
+        private ViewModelBase monthChartCurrent;
+        public ViewModelBase MonthChartView
+        {
+            get
+            {
+                return monthChartCurrent;
+            }
+
+            set
+            {
+                monthChartCurrent = value;
+                OnPropertyChanged(nameof(MonthChartView));
+            }
+        }
         private bool _myChartDataCanShow;
         public bool MyChartDataCanShow
         {
@@ -96,9 +127,18 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(Categories));
             }
         }
+        public ICommand ShowYearViewCommand { get; }
+        public ICommand ShowMonthViewCommand { get; }
 
         public HomeViewModel()
         {
+            ShowYearViewCommand = new ViewModelCommand(ExecuteShowYearViewCommand);
+            ShowMonthViewCommand = new ViewModelCommand(ExecuteShowMonthViewCommand);
+            ExecuteShowYearViewCommand(null);
+            ExecuteShowMonthViewCommand(null);
+
+            //Sủa lại phần sau
+
             int id = MainViewModel.currentUser.ID;
             SoDu = NguoiDungBUS.LaySoDu(id);
 
@@ -186,6 +226,15 @@ namespace QuanLyChiTieu.ViewModel
             {
                 PieChart2DataCanShow = false;
             }
+        }
+
+        private void ExecuteShowYearViewCommand(object obj)
+        {
+            YearChartView = new CustomDialogModel.YearChartViewModel();
+        }
+        private void ExecuteShowMonthViewCommand(object obj)
+        {
+            MonthChartView = new CustomDialogModel.MonthChartViewModel();
         }
     }
 }
