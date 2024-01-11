@@ -26,11 +26,17 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0"
-                       Text="So sánh thu chi"
+                       Text="Biến động thu chi trong năm:"
                        Margin="30 15 0 10"
                        FontSize="16"
                        FontFamily="Monsterat"
                        Foreground="{StaticResource darkFont}"/>
+            <ComboBox x:Name="yearComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="300,10,0,0"
+                  DisplayMemberPath="Year" SelectedValuePath="Year" SelectedValue="{Binding SelectedYear, Mode=TwoWay}">
+                <ComboBox.ItemsSource>
+                    <Binding Path="Years"/>
+                </ComboBox.ItemsSource>
+            </ComboBox>
 
             <lvc:CartesianChart Series="{Binding MyChartData}" 
                                 LegendLocation="None"

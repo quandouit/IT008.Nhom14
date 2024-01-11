@@ -18,6 +18,16 @@ namespace QuanLyChiTieu.ViewModel
 {
     public class HomeViewModel : ViewModelBase
     {
+        private decimal _soDu;
+        public decimal SoDu
+        {
+            get { return _soDu; }
+            set
+            {
+                _soDu = value;
+                OnPropertyChanged(nameof(SoDu));
+            }
+        }
         private ViewModelBase yearChartCurrent;
         public ViewModelBase YearChartView
         {
@@ -46,16 +56,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(MonthChartView));
             }
         }
-        private bool _myChartDataCanShow;
-        public bool MyChartDataCanShow
-        {
-            get { return _myChartDataCanShow; }
-            set
-            {
-                _myChartDataCanShow = value;
-                OnPropertyChanged(nameof(MyChartDataCanShow));
-            }
-        }
         private bool _pieChart1DataCanShow;
         public bool PieChart1DataCanShow
         {
@@ -74,26 +74,6 @@ namespace QuanLyChiTieu.ViewModel
             {
                 _pieChart2DataCanShow = value;
                 OnPropertyChanged(nameof(PieChart2DataCanShow));
-            }
-        }
-        private decimal _soDu;
-        public decimal SoDu
-        {
-            get { return _soDu; }
-            set
-            {
-                _soDu = value;
-                OnPropertyChanged(nameof(SoDu));
-            }
-        }
-        private SeriesCollection _myChartData;
-        public SeriesCollection MyChartData
-        {
-            get { return _myChartData; }
-            set
-            {
-                _myChartData = value;
-                OnPropertyChanged(nameof(MyChartData));
             }
         }
         private SeriesCollection _myPieChartData;
@@ -116,17 +96,6 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(MyPieChartData2));
             }
         }
-
-        private string[] _categories;
-        public string[] Categories
-        {
-            get { return _categories; }
-            set
-            {
-                _categories = value;
-                OnPropertyChanged(nameof(Categories));
-            }
-        }
         public ICommand ShowYearViewCommand { get; }
         public ICommand ShowMonthViewCommand { get; }
 
@@ -137,52 +106,7 @@ namespace QuanLyChiTieu.ViewModel
             ExecuteShowYearViewCommand(null);
             ExecuteShowMonthViewCommand(null);
 
-            //Sủa lại phần sau
-
-            int id = MainViewModel.currentUser.ID;
-            SoDu = NguoiDungBUS.LaySoDu(id);
-
-            //lấy tháng và năm hiện tại để lấy khoản thu chi;
-            int month = DateTime.Now.Month;
-            int year = DateTime.Now.Year;
-
-
-            decimal TongChiThangNay = NguoiDungBUS.LayTongChi(id, month, year);
-            decimal TongThuThangNay = NguoiDungBUS.LayTongThu(id, month, year);
-
-            //tìm tháng trước để lấy khoản thu chi
-            if (month == 1) { month = 12; year--; }
-            else month--;
-            decimal TongChiThangTruoc = NguoiDungBUS.LayTongChi(id, month, year);
-            decimal TongThuThangTruoc = NguoiDungBUS.LayTongThu(id, month, year);
-
-            ColumnSeries columnSeries1 = new ColumnSeries
-            {
-                Title = "Thu",
-                Values = new ChartValues<decimal> { TongThuThangTruoc, TongThuThangNay },
-                Fill = (Brush)System.Windows.Application.Current.Resources["greenUI"]
-            };
-            ColumnSeries columnSeries2 = new ColumnSeries
-            {
-                Title = "Chi",
-                Values = new ChartValues<decimal> { TongChiThangTruoc, TongChiThangNay },
-                Fill = (Brush)System.Windows.Application.Current.Resources["redUI"]
-            };
-
-            // Thêm chuỗi dữ liệu vào biểu đồ
-            MyChartData = new SeriesCollection { };
-            if ((int)(TongThuThangTruoc + TongThuThangNay + TongChiThangTruoc + TongChiThangNay) != 0)
-            {
-                // Nếu có dữ liệu, thêm chuỗi dữ liệu vào biểu đồ
-                MyChartData = new SeriesCollection { columnSeries1, columnSeries2 };
-                MyChartDataCanShow = true;
-            }
-            else
-            {
-                MyChartDataCanShow = false;
-            }
-
-            Categories = new[] { "Tháng trước", "Tháng này" };
+            SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
 
             //Biểu đồ tròn phân tích các khoản chi
             List<LoaiGiaoDichDTO> myList = GiaoDichBUS.PhanLoaiGiaoDichOUT();

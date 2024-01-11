@@ -40,7 +40,7 @@
                           Series="{Binding MyPieChartData}">
                 <lvc:PieChart.Style>
                     <Style TargetType="lvc:PieChart">
-                        <Style.Triggers>
+                        <Style.Triggers> 
                             <DataTrigger Binding="{Binding PieChart1DataCanShow, Mode=TwoWay}"
                                          Value="False">
                                 <Setter Property="Visibility" 
