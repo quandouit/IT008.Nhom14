@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
-    public class EditDialogViewModel : ViewModelBase
+    public class EditDialogViewModel : SharePlanListViewModel
     {
         public static bool _isUserInput;
         public static bool _isAutoFill;
