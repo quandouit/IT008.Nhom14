@@ -40,12 +40,17 @@
 
             <Button Style="{StaticResource winCtrButton}"
                     Tag="{StaticResource redUI}"
-                    Command="{Binding CloseCommand}"
+                    Command="{Binding BackToLogInCommmand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
                     Grid.Column="1"
                     Grid.Row="0"
-                    HorizontalAlignment="Right">
-                <fa:IconImage Icon="Xmark" Style="{StaticResource winCtrIcon}"/>
+                    HorizontalAlignment="Left"
+                    Height="15"
+                    Width="15"
+                    Margin="15 0">
+                <fa:IconImage Icon="ArrowLeft" 
+                              Style="{StaticResource winCtrIcon}" 
+                              Height="15" Width="15"/>
             </Button>
 
             <StackPanel Grid.Row="1"

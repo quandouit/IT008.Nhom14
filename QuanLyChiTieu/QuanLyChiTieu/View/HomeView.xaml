@@ -29,6 +29,10 @@
         <DataTemplate DataType="{x:Type childviewmodel:MonthChartViewModel}">
             <child:MonthChart/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type childviewmodel:ChooseMonthViewModel}">
+            <child:ChooseMonth/>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid Background="{StaticResource darkBackground}">
@@ -84,7 +88,8 @@
         </Grid>
 
         <ContentControl Content="{Binding MonthChartView}"
-                        Grid.Column="1"/>
+                        Grid.Column="1"
+                            Margin="20"/>
         
     </Grid>
 </UserControl>

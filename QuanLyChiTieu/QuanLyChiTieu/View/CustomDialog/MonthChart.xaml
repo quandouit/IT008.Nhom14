@@ -14,19 +14,46 @@
     </UserControl.DataContext>
     
     <Border CornerRadius="15"
-            Margin="20"
             Background="{StaticResource lightBackground}"
             Height="Auto">
-        
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0"
+                <TextBlock Text="Thống kê thu chi trong tháng:"
+                           Grid.Column="0"
+                           Margin="30 15 0 10"
+                           FontSize="16"
+                           FontFamily="Monsterat"
+                           Foreground="{StaticResource darkFont}"/>
+
+                <Button Grid.Column="1"
+                        Style="{StaticResource mixedButtonStyle}"
+                        Content="{Binding SelectedYear, Mode=TwoWay}"
+                        Command="{Binding ChooseMonthCommand}"
+                        Margin="20 0"/>
+
+            </Grid>
+
+            
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
                        Margin="0 40 0 0"
                        Text="Phân loại các khoản chi trong tháng"
                        FontSize="16"
@@ -34,24 +61,24 @@
                        Foreground="{StaticResource darkFont}"
                        HorizontalAlignment="Center"/>
 
-            <lvc:PieChart Grid.Row="1"
+                <lvc:PieChart Grid.Row="1"
                           Width="200"
                           Height="200"
                           Series="{Binding MyPieChartData}">
-                <lvc:PieChart.Style>
-                    <Style TargetType="lvc:PieChart">
-                        <Style.Triggers> 
-                            <DataTrigger Binding="{Binding PieChart1DataCanShow, Mode=TwoWay}"
+                    <lvc:PieChart.Style>
+                        <Style TargetType="lvc:PieChart">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PieChart1DataCanShow, Mode=TwoWay}"
                                          Value="False">
-                                <Setter Property="Visibility" 
+                                    <Setter Property="Visibility" 
                                         Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </lvc:PieChart.Style>
-            </lvc:PieChart>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </lvc:PieChart.Style>
+                </lvc:PieChart>
 
-            <TextBlock Text="Không có dữ liệu"
+                <TextBlock Text="Không có dữ liệu"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontSize="20"
@@ -59,20 +86,20 @@
                        FontFamily="Monsterat"
                        Foreground="{StaticResource darkFont}"
                        Grid.Row="1">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding PieChart1DataCanShow, Mode=TwoWay}"
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PieChart1DataCanShow, Mode=TwoWay}"
                                          Value="True">
-                                <Setter Property="Visibility" 
+                                    <Setter Property="Visibility" 
                                         Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
 
-            <TextBlock Grid.Row="2"
+                <TextBlock Grid.Row="2"
                        Margin="0 40 0 0"
                        Text="Phân loại các khoản thu trong tháng"
                        FontSize="16"
@@ -80,24 +107,24 @@
                        Foreground="{StaticResource darkFont}"
                        HorizontalAlignment="Center"/>
 
-            <lvc:PieChart Grid.Row="3"
+                <lvc:PieChart Grid.Row="3"
                           Width="200"
                           Height="200"
                           Series="{Binding MyPieChartData2}">
-                <lvc:PieChart.Style>
-                    <Style TargetType="lvc:PieChart">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding PieChart2DataCanShow, Mode=TwoWay}"
+                    <lvc:PieChart.Style>
+                        <Style TargetType="lvc:PieChart">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PieChart2DataCanShow, Mode=TwoWay}"
                                      Value="False">
-                                <Setter Property="Visibility" 
+                                    <Setter Property="Visibility" 
                                     Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </lvc:PieChart.Style>
-            </lvc:PieChart>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </lvc:PieChart.Style>
+                </lvc:PieChart>
 
-            <TextBlock Text="Không có dữ liệu"
+                <TextBlock Text="Không có dữ liệu"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        FontSize="20"
@@ -105,18 +132,19 @@
                        FontFamily="Monsterat"
                        Foreground="{StaticResource darkFont}"
                        Grid.Row="3">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding PieChart2DataCanShow, Mode=TwoWay}"
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PieChart2DataCanShow, Mode=TwoWay}"
                                          Value="True">
-                                <Setter Property="Visibility" 
+                                    <Setter Property="Visibility" 
                                         Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
         </Grid>
     </Border>
     

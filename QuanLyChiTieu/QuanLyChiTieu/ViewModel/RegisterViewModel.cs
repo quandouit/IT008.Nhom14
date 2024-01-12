@@ -76,24 +76,15 @@ namespace QuanLyChiTieu.ViewModel
                 UpdatePasswordConfirmationError();
             }
         }
-        public ICommand CloseCommand { get; }
         public ICommand BackToLogInCommmand { get; }
         public ICommand TrySignUpCommmand { get; }
         public RegisterViewModel()
         {
             user = new NguoiDungDTO();
             PasswordConfirmationError = "";
-            CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             BackToLogInCommmand = new ViewModelCommand(ExecuteBackToLogInCommmand);
             TrySignUpCommmand = new ViewModelCommand(ExecuteTrySignUpCommmand);
 
-        }
-        private void ExecuteCloseCommand(object obj)
-        {
-            if (obj is Window window)
-            {
-                window.Close();
-            }
         }
         private void ExecuteBackToLogInCommmand(object obj)
         {

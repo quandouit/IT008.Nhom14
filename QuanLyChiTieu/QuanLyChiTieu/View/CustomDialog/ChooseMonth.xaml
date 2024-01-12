@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="QuanLyChiTieu.View.CustomDialog.ChooseYear"
+﻿<UserControl x:Class="QuanLyChiTieu.View.CustomDialog.ChooseMonth"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,11 +8,11 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="540">
-
-    <UserControl.DataContext>
-        <viewmodel:ChooseYearViewModel/>
-    </UserControl.DataContext>
     
+    <UserControl.DataContext>
+        <viewmodel:ChooseMonthViewModel/>
+    </UserControl.DataContext>
+
     <Border Background="{StaticResource lightBackground}"
             CornerRadius="15"
             Padding="10">
@@ -24,32 +24,32 @@
             </Grid.RowDefinitions>
 
             <Border Margin="20 10" Grid.Row="0" 
-                    HorizontalAlignment="Right">
+                HorizontalAlignment="Right">
                 <Button Style="{StaticResource darkButtonStyle}"
-                        Content="Quay lại"
-                        Command="{Binding TurnBackCommand}"
-                        FontSize="14"/>
+                    Content="Quay lại"
+                    Command="{Binding TurnBackCommand}"
+                    FontSize="14"/>
             </Border>
 
             <ScrollViewer Style="{StaticResource customScrollViewer}"
-                          Grid.Row="1"
-                          Margin="10">
+                      Grid.Row="1"
+                      Margin="10">
 
                 <ItemsControl ItemsSource="{Binding YearGroups}"
-                              Margin="0 0 -15 0">
+                          Margin="0 0 -15 0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
 
                             <Border Background="{StaticResource lightBackground}"
-                            CornerRadius="10"
-                            Margin="15 10">
+                        CornerRadius="10"
+                        Margin="15 10">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="{Binding Year}"
-                                       FontSize="20"
-                                       FontFamily="Monsterat"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource darkFont}"
-                                       Margin="20 15 0 10"/>
+                                   FontSize="20"
+                                   FontFamily="Monsterat"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource darkFont}"
+                                   Margin="20 15 0 10"/>
 
                                     <ItemsControl ItemsSource="{Binding Months}">
                                         <ItemsControl.ItemsPanel>
@@ -61,11 +61,11 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Button Content="{Binding HSD.Month, Converter={StaticResource MonthConverter}}"
-                                                Style="{StaticResource darkButtonStyle}"
-                                                FontSize="16"
-                                                Margin="10 0 10 10"
-                                                Command="{Binding DataContext.UpdateSharedCurrentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                CommandParameter="{Binding}"/>
+                                            Style="{StaticResource darkButtonStyle}"
+                                            FontSize="16"
+                                            Margin="10 0 10 10"
+                                            Command="{Binding DataContext.UpdateSharedCurrentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding}"/>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
@@ -76,7 +76,6 @@
                 </ItemsControl>
 
             </ScrollViewer>
-
         </Grid>
     </Border>
     

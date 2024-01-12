@@ -180,6 +180,7 @@
     <Compile Include="ViewModel\AllPlanViewModel.cs" />
     <Compile Include="Helper\CalendarExtensions.cs" />
     <Compile Include="ViewModel\CustomDialogModel\AddingNewPlanViewModel.cs" />
+    <Compile Include="ViewModel\CustomDialogModel\ChooseMonthViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\ChooseYearViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\CustomMessageBoxViewModel.cs" />
     <Compile Include="ViewModel\CustomDialogModel\DetailDialogViewModel.cs" />
@@ -206,6 +207,9 @@
     </Compile>
     <Compile Include="View\CustomDialog\AddingNewPlan.xaml.cs">
       <DependentUpon>AddingNewPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomDialog\ChooseMonth.xaml.cs">
+      <DependentUpon>ChooseMonth.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CustomDialog\ChooseYear.xaml.cs">
       <DependentUpon>ChooseYear.xaml</DependentUpon>
@@ -282,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CustomDialog\AddingNewPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomDialog\ChooseMonth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
