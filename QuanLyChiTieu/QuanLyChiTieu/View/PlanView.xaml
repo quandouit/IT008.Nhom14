@@ -127,7 +127,7 @@
                                    FontWeight="Bold"
                                    Foreground="{StaticResource darkButtonBackground}"/>
 
-                        <TextBlock Text="{Binding 546.TienNS, Mode=TwoWay, StringFormat={}{0:N0}}"
+                        <TextBlock Text="{Binding SharedCurrentInstance.TienNS, Mode=TwoWay, StringFormat={}{0:N0}}"
                                    Grid.Row="0" 
                                    Grid.Column="1"
                                    FontSize="20"

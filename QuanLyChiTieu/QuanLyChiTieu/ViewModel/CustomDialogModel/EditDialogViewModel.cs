@@ -13,10 +13,11 @@ using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.View.CustomDialog;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
-    public class EditDialogViewModel : ViewModelBase
+    public class EditDialogViewModel : SharePlanListViewModel
     {
         public static bool _isUserInput;
         public static bool _isAutoFill;
@@ -40,6 +41,19 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 }
             }
         }
+        private DateTime _selectedDate;
+        public DateTime SelectedDate
+        {
+            get { return _selectedDate; }
+            set
+            {
+                _selectedDate = value;
+                GiaoDichMoi.NgayTao = _selectedDate;
+                OnPropertyChanged("SelectedDate");
+                LoadTienConLai();
+                
+            }
+        }
         private decimal _soDu;
         public decimal SoDu
         {
@@ -48,6 +62,16 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             {
                 _soDu = value;
                 OnPropertyChanged(nameof(SoDu));
+            }
+        }
+        private decimal _tienConLai;
+        public decimal TienConLai
+        {
+            get { return _tienConLai; }
+            set
+            {
+                _tienConLai = value;
+                OnPropertyChanged(nameof(TienConLai));
             }
         }
         public BindingList<LoaiGiaoDichModel> LoaiGiaoDichData { get; set; }
@@ -73,6 +97,20 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
             LoadLoaiGiaoDichData();
+            LoadTienConLai();
+        }
+
+        private void LoadTienConLai()
+        {
+            DateTime date = GiaoDichMoi.NgayTao;
+            if (SharedPlanList == null)
+            {
+                LoadAllNganSach();
+            }
+            LoadCurrent(date);
+            decimal TienNS = SharedCurrentInstance.TienNS;
+            decimal TienDaDung = NguoiDungBUS.LayTongChi(MainViewModel.currentUser.ID, date.Month, date.Year);
+            TienConLai = TienNS - TienDaDung;
         }
 
         public EditDialogViewModel(GiaoDichModel input)
@@ -91,6 +129,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             _isEditing = true;
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
+            SelectedDate = DateTime.Today;
             LoadLoaiGiaoDichData();
             SelectedLoaiGD = LoaiGiaoDichData.FirstOrDefault(x => x.MaLoaiGD == GiaoDichMoi.MaLoaiGD);
         }
