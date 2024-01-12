@@ -57,95 +57,13 @@ namespace QuanLyChiTieu.ViewModel
                 OnPropertyChanged(nameof(MonthChartView));
             }
         }
-        private bool _pieChart1DataCanShow;
-        public bool PieChart1DataCanShow
-        {
-            get { return _pieChart1DataCanShow; }
-            set
-            {
-                _pieChart1DataCanShow = value;
-                OnPropertyChanged(nameof(PieChart1DataCanShow));
-            }
-        }
-        private bool _pieChart2DataCanShow;
-        public bool PieChart2DataCanShow
-        {
-            get { return _pieChart2DataCanShow; }
-            set
-            {
-                _pieChart2DataCanShow = value;
-                OnPropertyChanged(nameof(PieChart2DataCanShow));
-            }
-        }
-        private SeriesCollection _myPieChartData;
-        public SeriesCollection MyPieChartData
-        {
-            get { return _myPieChartData; }
-            set
-            {
-                _myPieChartData = value;
-                OnPropertyChanged(nameof(MyPieChartData));
-            }
-        }
-        private SeriesCollection _myPieChartData2;
-        public SeriesCollection MyPieChartData2
-        {
-            get { return _myPieChartData2; }
-            set
-            {
-                _myPieChartData2 = value;
-                OnPropertyChanged(nameof(MyPieChartData2));
-            }
-        }
+        
         public ICommand ShowYearViewCommand { get; }
         public ICommand ShowMonthViewCommand { get; }
 
         public HomeViewModel()
         {
             SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
-
-            //Biểu đồ tròn phân tích các khoản chi
-            List<LoaiGiaoDichDTO> myList = GiaoDichBUS.PhanLoaiGiaoDichOUT();
-
-            if (myList.Count > 0)
-            {
-                MyPieChartData = new SeriesCollection();
-                foreach (LoaiGiaoDichDTO item in myList)
-                {
-                    PieSeries pie = new PieSeries
-                    {
-                        Title = item.TenLoaiGD,
-                        Values = new ChartValues<double> { (double)item.SumTIEN }
-                    };
-                    MyPieChartData.Add(pie);
-                }
-                PieChart1DataCanShow = true;
-            }
-            else
-            {
-                PieChart1DataCanShow = false;
-            }
-
-            //Biểu đồ tròn phân tích các khoản thu
-            myList = GiaoDichBUS.PhanLoaiGiaoDichIN();
-            if (myList.Count > 0)
-            {
-                MyPieChartData2 = new SeriesCollection();
-                foreach (LoaiGiaoDichDTO item in myList)
-                {
-                    PieSeries pie = new PieSeries
-                    {
-                        Title = item.TenLoaiGD,
-                        Values = new ChartValues<double> { (double)item.SumTIEN }
-                    };
-                    MyPieChartData2.Add(pie);
-                }
-                PieChart2DataCanShow = true;
-            }
-            else
-            {
-                PieChart2DataCanShow = false;
-            }
 
             ShowYearViewCommand = new ViewModelCommand(ExecuteShowYearViewCommand);
             ShowMonthViewCommand = new ViewModelCommand(ExecuteShowMonthViewCommand);

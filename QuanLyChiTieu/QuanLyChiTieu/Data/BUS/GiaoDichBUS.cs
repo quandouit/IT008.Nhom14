@@ -131,10 +131,10 @@ namespace QuanLyChiTieu.Data.BUS
                 messageBox.ShowDialog();
             }
         }
-        public static List<LoaiGiaoDichDTO> PhanLoaiGiaoDichOUT()
+        public static List<LoaiGiaoDichDTO> PhanLoaiGiaoDichOUT(int month, int year)
         {
             List<LoaiGiaoDichDTO> result = new List<LoaiGiaoDichDTO>();
-            DataTable loaiGiaoDichData = GiaoDichDAO.PhanLoaiGiaoDichOUT();
+            DataTable loaiGiaoDichData = GiaoDichDAO.PhanLoaiGiaoDichOUT(month, year);
 
             for (int i = 0; i < loaiGiaoDichData.Rows.Count; i++)
             {
@@ -148,10 +148,10 @@ namespace QuanLyChiTieu.Data.BUS
             }
             return result;
         }
-        public static List<LoaiGiaoDichDTO> PhanLoaiGiaoDichIN()
+        public static List<LoaiGiaoDichDTO> PhanLoaiGiaoDichIN(int month, int year)
         {
             List<LoaiGiaoDichDTO> result = new List<LoaiGiaoDichDTO>();
-            DataTable loaiGiaoDichData = GiaoDichDAO.PhanLoaiGiaoDichIN();
+            DataTable loaiGiaoDichData = GiaoDichDAO.PhanLoaiGiaoDichIN(month, year);
 
             for (int i = 0; i < loaiGiaoDichData.Rows.Count; i++)
             {

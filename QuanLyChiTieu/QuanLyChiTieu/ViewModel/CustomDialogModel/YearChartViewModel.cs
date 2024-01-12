@@ -60,7 +60,6 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             homeViewModel.YearChartView = new ChooseYearViewModel();
         }
         //Khai báo dữ liệu biểu đồ
-        private int id = MainViewModel.currentUser.ID;
         private BindingList<GiaoDichModel> listGD
         {
             get { return MainViewModel.listGiaoDich; }
@@ -97,19 +96,20 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 OnPropertyChanged(nameof(Categories));
             }
         }
-        private bool haveValue = false;
+        private bool haveValue;
         private void ShowChart()
         {
+            haveValue = false;
             //Xử lí biểu đồ
             LineSeries lineOUT = new LineSeries
             {
-                Title = "OUT",
+                Title = "Chi: ",
                 Values = new ChartValues<decimal> { getOUT(1), getOUT(2), getOUT(3), getOUT(4), getOUT(5), getOUT(6), getOUT(7), getOUT(8), getOUT(9), getOUT(10), getOUT(11), getOUT(12) },
                 Stroke = Brushes.Red
             };
             LineSeries lineIN = new LineSeries
             {
-                Title = "IN",
+                Title = "Thu: ",
                 Values = new ChartValues<decimal> { getIN(1), getIN(2), getIN(3), getIN(4), getIN(5), getIN(6), getIN(7), getIN(8), getIN(9), getIN(10), getIN(11), getIN(12), },
                 Stroke = Brushes.Green
             };

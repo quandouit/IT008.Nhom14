@@ -160,7 +160,7 @@ namespace QuanLyChiTieu.Data.DAO
             }
             return 0;
         }
-        public static DataTable PhanLoaiGiaoDichOUT()
+        public static DataTable PhanLoaiGiaoDichOUT(int month, int year)
         {
             try
             {
@@ -176,9 +176,9 @@ namespace QuanLyChiTieu.Data.DAO
                                      "\r\nGROUP BY GIAODICH.MALOAIGD, TENLOAIGD";
                 SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
-                SqlParameter parameterM = new SqlParameter("@MONTH", DateTime.Now.Month);
+                SqlParameter parameterM = new SqlParameter("@MONTH", month);
                 sqlCmd.Parameters.Add(parameterM);
-                SqlParameter parameterY = new SqlParameter("@YEAR", DateTime.Now.Year);
+                SqlParameter parameterY = new SqlParameter("@YEAR", year);
                 sqlCmd.Parameters.Add(parameterY);
 
                 var reader = sqlCmd.ExecuteReader();
@@ -202,7 +202,7 @@ namespace QuanLyChiTieu.Data.DAO
                 CloseConn();
             }
         }
-        public static DataTable PhanLoaiGiaoDichIN()
+        public static DataTable PhanLoaiGiaoDichIN(int month, int year)
         {
             try
             {
@@ -218,9 +218,9 @@ namespace QuanLyChiTieu.Data.DAO
                                      "\r\nGROUP BY GIAODICH.MALOAIGD, TENLOAIGD";
                 SqlParameter parameterTK = new SqlParameter("@ID", MainViewModel.currentUser.ID);
                 sqlCmd.Parameters.Add(parameterTK);
-                SqlParameter parameterM = new SqlParameter("@MONTH", DateTime.Now.Month);
+                SqlParameter parameterM = new SqlParameter("@MONTH", month);
                 sqlCmd.Parameters.Add(parameterM);
-                SqlParameter parameterY = new SqlParameter("@YEAR", DateTime.Now.Year);
+                SqlParameter parameterY = new SqlParameter("@YEAR", year);
                 sqlCmd.Parameters.Add(parameterY);
 
                 var reader = sqlCmd.ExecuteReader();
