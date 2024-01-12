@@ -139,13 +139,40 @@
                                    FontWeight="Bold"
                                    Margin="5 10"/>
                     </StackPanel>
-
-                    <Calendar x:Name="calNgayGD" 
-                              Height="Auto" 
-                              Margin="0 10"
-                              SelectedDate="{Binding Path=GiaoDichMoi.NgayTao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              helper:CalendarExtensions.AutoReleaseMouse="True"/>
-
+                    <StackPanel>
+                        <Calendar x:Name="calNgayGD" 
+                                  Height="Auto" 
+                                  Margin="0 10"
+                                  SelectedDate="{Binding Path=GiaoDichMoi.NgayTao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  helper:CalendarExtensions.AutoReleaseMouse="True"/>
+                        <StackPanel Margin="0, 20, 0, 0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Số dư: "
+                                           FontSize="16"
+                                           FontFamily="Monsterat"
+                                           Foreground="{StaticResource darkFont}" 
+                                           FontWeight="Bold"
+                                           Padding="0, 0, 0, 5"/>
+                                <TextBlock Text="{Binding SoDu}"
+                                           FontSize="16"
+                                           FontFamily="Monsterat"
+                                           Foreground="{StaticResource darkFont}" 
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="NS còn lại: "
+                                           FontSize="16"
+                                           FontFamily="Monsterat"
+                                           Foreground="{StaticResource darkFont}" 
+                                           FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ConLai}"
+                                           FontSize="16"
+                                           FontFamily="Monsterat"
+                                           Foreground="{StaticResource darkFont}" 
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>
