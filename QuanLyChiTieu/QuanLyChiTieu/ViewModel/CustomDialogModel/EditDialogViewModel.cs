@@ -40,6 +40,16 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 }
             }
         }
+        private decimal _soDu;
+        public decimal SoDu
+        {
+            get { return _soDu; }
+            set
+            {
+                _soDu = value;
+                OnPropertyChanged(nameof(SoDu));
+            }
+        }
         public BindingList<LoaiGiaoDichModel> LoaiGiaoDichData { get; set; }
         public ICommand AutoFillNameCommand { get; set; }
         public ICommand CloseCommand { get; }
@@ -47,6 +57,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 
         public EditDialogViewModel()
         {
+            SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
             GiaoDichMoi = new GiaoDichDTO
             {
                 ID = MainViewModel.currentUser.ID,
