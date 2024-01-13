@@ -25,6 +25,19 @@ namespace QuanLyChiTieu.ViewModel
         private string _phoneNumber;
         private string _newPassword;
         private string _confirmPass;
+        public string PhoneNumberLengthError { get; private set; }
+        private void UpdatePhoneNumberLengthError()
+        {
+            if (!string.IsNullOrEmpty(_phoneNumber) && _phoneNumber.Length != 10)
+            {
+                PhoneNumberLengthError = "Số điện thoại phải bao gồm 10 số!";
+            }
+            else
+            {
+                PhoneNumberLengthError = "";
+            }
+            OnPropertyChanged("PhoneNumberLengthError");
+        }
         public string PasswordConfirmationError { get; private set; }
         private void UpdatePasswordConfirmationError()
         {
@@ -54,6 +67,7 @@ namespace QuanLyChiTieu.ViewModel
             {
                 _phoneNumber = value;
                 OnPropertyChanged("PhoneNumber");
+                UpdatePhoneNumberLengthError();
             }
         }
         public string NewPassword
@@ -106,66 +120,57 @@ namespace QuanLyChiTieu.ViewModel
 
                 return;
             }
-            if (!string.IsNullOrWhiteSpace(UserName))
+            if (!string.IsNullOrEmpty(_phoneNumber) && _phoneNumber.Length != 10)
             {
-                if (!string.IsNullOrWhiteSpace(PhoneNumber))
+                CustomMessageBoxViewModel dialogPhoneCheck = new CustomMessageBoxViewModel("Lỗi số điện thoại", "Số điện thoại phải bao gồm 10 số");
+                CustomMessageBox messagePhoneCheck = new CustomMessageBox { DataContext = dialogPhoneCheck };
+                messagePhoneCheck.ShowDialog();
+
+                return;
+            }
+            if (!string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(PhoneNumber) && !string.IsNullOrEmpty(NewPassword))
+            {
+                user.TaiKhoan = UserName;
+                user.Sdt = PhoneNumber;
+                user.MatKhau = NewPassword;
+                user.TongTien = -9999999999;
+                int result = NguoiDungBUS.ThemNguoiDung(user);
+
+                if (result == 0)
                 {
-                    if (!string.IsNullOrEmpty(NewPassword))
+                    CustomMessageBoxViewModel dialogSuccess = new CustomMessageBoxViewModel("Thành công", "Đăng ký tài khoản thành công, hãy đăng nhập lại để hoàn thành đăng ký");
+                    CustomMessageBox messageSuccess = new CustomMessageBox { DataContext = dialogSuccess };
+                    messageSuccess.ShowDialog();
+
+                    LoginView loginView = new LoginView();
+                    loginView.Show();
+
+                    if (obj is Window window)
                     {
-                        user.TaiKhoan = UserName;
-                        user.Sdt = PhoneNumber;
-                        user.MatKhau = NewPassword;
-                        user.TongTien = -9999999999;
-                        int result = NguoiDungBUS.ThemNguoiDung(user);
-
-                        if (result == 0)
-                        {
-                            CustomMessageBoxViewModel dialogSuccess = new CustomMessageBoxViewModel("Thành công", "Đăng ký tài khoản thành công, hãy đăng nhập lại để hoàn thành đăng ký");
-                            CustomMessageBox messageSuccess = new CustomMessageBox { DataContext = dialogSuccess };
-                            messageSuccess.ShowDialog();
-
-                            LoginView loginView = new LoginView();
-                            loginView.Show();
-
-                            if (obj is Window window)
-                            {
-                                window.Close();
-                            }
-                        }
-                        else if (result == 2)
-                        {
-                            CustomMessageBoxViewModel dialogUsername = new CustomMessageBoxViewModel("Lỗi tên đăng nhập", "Tên đăng nhập đã tồn tại, vui lòng thử lại");
-                            CustomMessageBox messageUsername = new CustomMessageBox { DataContext = dialogUsername };
-                            messageUsername.ShowDialog();
-
-                            UserName = "";
-                            PhoneNumber = "";
-                            NewPassword = "";
-                            ConfirmPass = "";
-                        }
-                        else if (result == 3)
-                        {
-                            CustomMessageBoxViewModel dialogPhone = new CustomMessageBoxViewModel("Lỗi số điện thoại", "Số điện thoại đã tồn tại, vui lòng thử lại");
-                            CustomMessageBox messagePhone = new CustomMessageBox { DataContext = dialogPhone };
-                            messagePhone.ShowDialog();
-                            
-                            UserName = "";
-                            PhoneNumber = "";
-                            NewPassword = "";
-                            ConfirmPass = "";
-                        }
-                        else
-                        {
-                            CustomMessageBoxViewModel dialogData = new CustomMessageBoxViewModel("Lỗi database", "Có lỗi xảy ra trong quá trình đăng ký, vui lòng thử lại sau");
-                            CustomMessageBox messageData = new CustomMessageBox { DataContext = dialogData };
-                            messageData.ShowDialog();
-                            
-                            UserName = "";
-                            PhoneNumber = "";
-                            NewPassword = "";
-                            ConfirmPass = "";
-                        }
+                        window.Close();
                     }
+                }
+                else if (result == 2)
+                {
+                    CustomMessageBoxViewModel dialogUsername = new CustomMessageBoxViewModel("Lỗi tên đăng nhập", "Tên đăng nhập đã tồn tại, vui lòng thử lại");
+                    CustomMessageBox messageUsername = new CustomMessageBox { DataContext = dialogUsername };
+                    messageUsername.ShowDialog();
+
+                    UserName = "";
+                }
+                else if (result == 3)
+                {
+                    CustomMessageBoxViewModel dialogPhone = new CustomMessageBoxViewModel("Lỗi số điện thoại", "Số điện thoại đã tồn tại, vui lòng thử lại");
+                    CustomMessageBox messagePhone = new CustomMessageBox { DataContext = dialogPhone };
+                    messagePhone.ShowDialog();
+                            
+                    PhoneNumber = "";
+                }
+                else
+                {
+                    CustomMessageBoxViewModel dialogData = new CustomMessageBoxViewModel("Lỗi database", "Có lỗi xảy ra trong quá trình đăng ký, vui lòng thử lại sau");
+                    CustomMessageBox messageData = new CustomMessageBox { DataContext = dialogData };
+                    messageData.ShowDialog();
                 }
                 return;
             }

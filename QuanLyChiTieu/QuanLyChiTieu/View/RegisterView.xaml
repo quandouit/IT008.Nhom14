@@ -32,7 +32,7 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="100"/>
@@ -47,7 +47,7 @@
                     HorizontalAlignment="Left"
                     Height="15"
                     Width="15"
-                    Margin="15 0">
+                    Margin="15 15 0 0">
                 <fa:IconImage Icon="ArrowLeft" 
                               Style="{StaticResource winCtrIcon}" 
                               Height="15" Width="15"/>
@@ -100,19 +100,35 @@
                                FontSize="16"
                                FontFamily="Monsterat"
                                Foreground="{StaticResource darkFont}"/>
-                    
-                    <TextBox Height ="25" 
+
+                    <TextBox Height="25" 
                              FontSize="16"
-                             Style="{StaticResource aLineTextBox}"
                              Margin="10"
-                             Text="{Binding PhoneNumber, Mode=TwoWay}">
+                             Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        
                         <i:Interaction.Behaviors>
                             <behavior:NumericInputBehavior/>
                         </i:Interaction.Behaviors>
+                        
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource aLineTextBox}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding PhoneNumberLengthError}" Value="Số điện thoại phải bao gồm 10 số!">
+                                        <Setter Property="BorderBrush" Value="{StaticResource redUI}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
                     </TextBox>
+
+                    <TextBlock Text="{Binding PhoneNumberLengthError}"
+                               Foreground="{StaticResource redUI}"
+                               FontSize="12"
+                               HorizontalAlignment="Right"
+                               Height="18"/>
                 </StackPanel>
 
-                <StackPanel Margin="0 10">
+                <StackPanel Margin="0 0 0 10">
                     <TextBlock Text="Mật khẩu"
                                FontSize="16"
                                FontFamily="Monsterat"
