@@ -123,7 +123,6 @@ namespace QuanLyChiTieu.Data.DAO
             try
             {
                 OpenConn();
-
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;

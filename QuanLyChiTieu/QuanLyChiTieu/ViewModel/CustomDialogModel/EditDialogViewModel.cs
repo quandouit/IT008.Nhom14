@@ -115,6 +115,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 
         public EditDialogViewModel(GiaoDichModel input)
         {
+            SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
             GiaoDichMoi = new GiaoDichDTO
             {
                 MaGD = input.MaGD,
@@ -131,6 +132,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
             SelectedDate = DateTime.Today;
             LoadLoaiGiaoDichData();
+            LoadTienConLai();
             SelectedLoaiGD = LoaiGiaoDichData.FirstOrDefault(x => x.MaLoaiGD == GiaoDichMoi.MaLoaiGD);
         }
         public void LoadLoaiGiaoDichData()
@@ -174,19 +176,77 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             }
         }
 
+        void KhongDuSoDu(bool IsEditing)
+        {
+            YesNoDialogViewModel dialogViewModel;
+            dialogViewModel = new YesNoDialogViewModel("Không đủ số dư", "Có vẻ số dư của bạn không đủ " +
+                                "để thực hiện giao dịch này, bạn có muốn thực hiện?");
+            dialogViewModel.DialogClosed += result =>
+            {
+                if (result == DialogResult.OK)
+                {
+                    if (IsEditing)
+                        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                    else
+                        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                }
+            };
+            YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+            messageBox.ShowDialog();
+        }
+
+        void KhongDuNganSach(bool IsEditing)
+        {
+            YesNoDialogViewModel dialogViewModel;
+            dialogViewModel = new YesNoDialogViewModel("Không đủ ngân sách", "Bạn sẽ vượt quá ngân sách tháng nếu thực hiện giao dịch này" +
+                ", bạn vẫn muốn tiếp tục?");
+            dialogViewModel.DialogClosed += result =>
+            {
+                if (result == DialogResult.OK)
+                {
+                    if (IsEditing)
+                        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                    else
+                        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                }
+            };
+            YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+            messageBox.ShowDialog();
+        }
+
         private void ExecuteAddCommand(object obj)
         {
             if (GiaoDichMoi.IsFilled())
-                    {
+            {
                 if (obj is Window window)
                 {
                     if (_isEditing)
                     {
-                        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                        GiaoDichModel gdHT = MainViewModel.listGiaoDich.FirstOrDefault(x => x.MaGD == GiaoDichMoi.MaGD);
+
+                        if (SoDu + gdHT.Tien - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuSoDu(_isEditing);
+                        }
+                        else if (TienConLai + gdHT.Tien - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuNganSach(_isEditing);
+                        }
+                        else
+                            GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
                     }
                     else
                     {
-                        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                        if (SoDu - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuSoDu(_isEditing);
+                        }
+                        else if (TienConLai - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuNganSach(_isEditing);
+                        }
+                        else
+                            GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
                     }
                     window.Close();
                 }
