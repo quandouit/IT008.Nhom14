@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,54 +19,38 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
-    public class YearItem
-    {
-        public int Year { get; set; }
-    }
     public class YearChartViewModel : ViewModelBase
     {
-        //Xử lí ComboBox year
-        public ObservableCollection<YearItem> Years { get; set; }
-        private int selectedYear;
+        public decimal SumIn { get; set; }
+        public decimal SumOut { get; set; }
         public int SelectedYear
         {
-            get { return selectedYear; }
+            get { return ViewModelLocator.Instance.HomeViewModel.Year; }
             set
             {
-                if (selectedYear != value)
+                if (ViewModelLocator.Instance.HomeViewModel.Year != value)
                 {
-                    selectedYear = value;
-                    // Handle the selected year change if needed
-                    ShowChart();
+                    ViewModelLocator.Instance.HomeViewModel.Year = value;
                 }
             }
         }
         public ICommand ChooseYearCommand { get; set; }
         public YearChartViewModel()
         {
-            Years = new ObservableCollection<YearItem>();
-            // Populate the ComboBox with a range of years
-            for (int y = 2000; y <= DateTime.Now.Year; y++)
+            SumIn = 0;
+            SumOut = 0;
+            if (ViewModelLocator.Instance.HomeViewModel.Year == 0)
             {
-                Years.Add(new YearItem { Year = y });
+                SelectedYear = DateTime.Now.Year;
             }
-
-            SelectedYear = DateTime.Now.Year;
-
             ChooseYearCommand = new ViewModelCommand(ExecuteChooseYearCommand);
+            ShowChart();
         }
         private void ExecuteChooseYearCommand(object obj)
         {
             var homeViewModel = ViewModelLocator.Instance.HomeViewModel;
             homeViewModel.YearChartView = new ChooseYearViewModel();
         }
-        //Khai báo dữ liệu biểu đồ
-        private BindingList<GiaoDichModel> listGD
-        {
-            get { return MainViewModel.listGiaoDich; }
-            set { } //read_only
-        }
-
         private bool _myChartDataCanShow;
         public bool MyChartDataCanShow
         {
@@ -134,10 +119,13 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         private decimal getOUT(int month)
         {
             decimal rt = 0;
-            foreach (GiaoDichModel item in listGD)
+            foreach (GiaoDichModel item in MainViewModel.listGiaoDich)
             {
-                if (item.TrangThai == "OUT" && item.NgayTao.Month == month && item.NgayTao.Year == selectedYear)
+                if (item.TrangThai == "OUT" && item.NgayTao.Month == month && item.NgayTao.Year == SelectedYear)
+                {
                     rt += item.Tien;
+                    SumOut += item.Tien;
+                }
             }
             if (rt != 0) haveValue = true;
             return rt;
@@ -145,10 +133,13 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         private decimal getIN(int month)
         {
             decimal rt = 0;
-            foreach (GiaoDichModel item in listGD)
+            foreach (GiaoDichModel item in MainViewModel.listGiaoDich)
             {
-                if (item.TrangThai == "IN" && item.NgayTao.Month == month && item.NgayTao.Year == selectedYear)
+                if (item.TrangThai == "IN" && item.NgayTao.Month == month && item.NgayTao.Year == SelectedYear)
+                {
                     rt += item.Tien;
+                    SumIn += item.Tien;
+                }
             }
             if (rt != 0) haveValue = true;
             return rt;

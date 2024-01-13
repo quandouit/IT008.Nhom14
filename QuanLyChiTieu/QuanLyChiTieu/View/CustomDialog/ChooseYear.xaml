@@ -33,46 +33,28 @@
 
             <ScrollViewer Style="{StaticResource customScrollViewer}"
                           Grid.Row="1"
-                          Margin="10">
+                          Margin="20">
 
-                <ItemsControl ItemsSource="{Binding YearGroups}"
+                <ItemsControl ItemsSource="{Binding ListYear}"
                               Margin="0 0 -15 0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-
-                            <Border Background="{StaticResource lightBackground}"
-                            CornerRadius="10"
-                            Margin="15 10">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Year}"
-                                       FontSize="20"
-                                       FontFamily="Monsterat"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource darkFont}"
-                                       Margin="20 15 0 10"/>
-
-                                    <ItemsControl ItemsSource="{Binding Months}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Button Content=""
-                                                Style="{StaticResource darkButtonStyle}"
-                                                FontSize="16"
-                                                Margin="10 0 10 10"/>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
-                            </Border>
+                            <Button Content="{Binding}"
+                                    Style="{StaticResource darkButtonStyle}"
+                                    FontSize="16"
+                                    Padding="10 5"
+                                    Margin="5"
+                                    Command="{Binding Path=DataContext.ChangeYearCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                    CommandParameter="{Binding}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
             </ScrollViewer>
 
         </Grid>

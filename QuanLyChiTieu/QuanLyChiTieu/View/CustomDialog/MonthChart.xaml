@@ -28,7 +28,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="0 10 0 0">
+            <Grid Grid.Row="0" Margin="0 20 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -36,8 +36,8 @@
 
                 <TextBlock Text="Thống kê thu chi trong tháng:"
                            Grid.Column="0"
-                           Margin="30 15 0 10"
-                           FontSize="16"
+                           Margin="40 10 0 10"
+                           FontSize="20"
                            FontFamily="Monsterat"
                            Foreground="{StaticResource darkFont}"/>
 
@@ -58,8 +58,8 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0"
-                           Margin="0 40 0 0"
-                           Text="Phân loại các khoản chi trong tháng"
+                           Margin="0 20 0 0"
+                           Text="Phân loại các khoản chi"
                            FontSize="16"
                            FontFamily="Monsterat"
                            Foreground="{StaticResource darkFont}"
@@ -104,8 +104,8 @@
                 </TextBlock>
 
                 <TextBlock Grid.Row="2"
-                       Margin="0 40 0 0"
-                       Text="Phân loại các khoản thu trong tháng"
+                       Margin="0 20 0 0"
+                       Text="Phân loại các khoản thu"
                        FontSize="16"
                        FontFamily="Monsterat"
                        Foreground="{StaticResource darkFont}"
