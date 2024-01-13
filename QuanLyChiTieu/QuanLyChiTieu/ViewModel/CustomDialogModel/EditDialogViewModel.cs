@@ -13,6 +13,7 @@ using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.View.CustomDialog;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
@@ -40,6 +41,19 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 }
             }
         }
+        private DateTime _selectedDate;
+        public DateTime SelectedDate
+        {
+            get { return _selectedDate; }
+            set
+            {
+                _selectedDate = value;
+                GiaoDichMoi.NgayTao = _selectedDate;
+                OnPropertyChanged("SelectedDate");
+                LoadTienConLai();
+                
+            }
+        }
         private decimal _soDu;
         public decimal SoDu
         {
@@ -48,6 +62,16 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             {
                 _soDu = value;
                 OnPropertyChanged(nameof(SoDu));
+            }
+        }
+        private decimal _tienConLai;
+        public decimal TienConLai
+        {
+            get { return _tienConLai; }
+            set
+            {
+                _tienConLai = value;
+                OnPropertyChanged(nameof(TienConLai));
             }
         }
         public BindingList<LoaiGiaoDichModel> LoaiGiaoDichData { get; set; }
@@ -73,10 +97,25 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
             LoadLoaiGiaoDichData();
+            LoadTienConLai();
+        }
+
+        private void LoadTienConLai()
+        {
+            DateTime date = GiaoDichMoi.NgayTao;
+            if (SharedPlanList == null)
+            {
+                LoadAllNganSach();
+            }
+            LoadCurrent(date);
+            decimal TienNS = SharedCurrentInstance.TienNS;
+            decimal TienDaDung = NguoiDungBUS.LayTongChi(MainViewModel.currentUser.ID, date.Month, date.Year);
+            TienConLai = TienNS - TienDaDung;
         }
 
         public EditDialogViewModel(GiaoDichModel input)
         {
+            SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
             GiaoDichMoi = new GiaoDichDTO
             {
                 MaGD = input.MaGD,
@@ -91,7 +130,9 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             _isEditing = true;
             CloseCommand = new ViewModelCommand(ExecuteCloseCommand);
             AddCommand = new ViewModelCommand(ExecuteAddCommand);
+            SelectedDate = DateTime.Today;
             LoadLoaiGiaoDichData();
+            LoadTienConLai();
             SelectedLoaiGD = LoaiGiaoDichData.FirstOrDefault(x => x.MaLoaiGD == GiaoDichMoi.MaLoaiGD);
         }
         public void LoadLoaiGiaoDichData()
@@ -135,19 +176,77 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             }
         }
 
+        void KhongDuSoDu(bool IsEditing)
+        {
+            YesNoDialogViewModel dialogViewModel;
+            dialogViewModel = new YesNoDialogViewModel("Không đủ số dư", "Có vẻ số dư của bạn không đủ " +
+                                "để thực hiện giao dịch này, bạn có muốn thực hiện?");
+            dialogViewModel.DialogClosed += result =>
+            {
+                if (result == DialogResult.OK)
+                {
+                    if (IsEditing)
+                        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                    else
+                        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                }
+            };
+            YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+            messageBox.ShowDialog();
+        }
+
+        void KhongDuNganSach(bool IsEditing)
+        {
+            YesNoDialogViewModel dialogViewModel;
+            dialogViewModel = new YesNoDialogViewModel("Không đủ ngân sách", "Bạn sẽ vượt quá ngân sách tháng nếu thực hiện giao dịch này" +
+                ", bạn vẫn muốn tiếp tục?");
+            dialogViewModel.DialogClosed += result =>
+            {
+                if (result == DialogResult.OK)
+                {
+                    if (IsEditing)
+                        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                    else
+                        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                }
+            };
+            YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
+            messageBox.ShowDialog();
+        }
+
         private void ExecuteAddCommand(object obj)
         {
             if (GiaoDichMoi.IsFilled())
-                    {
+            {
                 if (obj is Window window)
                 {
                     if (_isEditing)
                     {
-                        GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                        GiaoDichModel gdHT = MainViewModel.listGiaoDich.FirstOrDefault(x => x.MaGD == GiaoDichMoi.MaGD);
+
+                        if (SoDu + gdHT.Tien - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuSoDu(_isEditing);
+                        }
+                        else if (TienConLai + gdHT.Tien - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuNganSach(_isEditing);
+                        }
+                        else
+                            GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
                     }
                     else
                     {
-                        GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                        if (SoDu - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuSoDu(_isEditing);
+                        }
+                        else if (TienConLai - GiaoDichMoi.Tien < 0)
+                        {
+                            KhongDuNganSach(_isEditing);
+                        }
+                        else
+                            GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
                     }
                     window.Close();
                 }
