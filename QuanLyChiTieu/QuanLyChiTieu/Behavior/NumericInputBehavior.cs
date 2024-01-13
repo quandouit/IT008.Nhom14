@@ -54,5 +54,4 @@ namespace QuanLyChiTieu.Behavior
             return Array.TrueForAll<Char>(text.ToCharArray(), delegate (Char c) { return Char.IsDigit(c) || Char.IsControl(c); });
         }
     }
-
 }

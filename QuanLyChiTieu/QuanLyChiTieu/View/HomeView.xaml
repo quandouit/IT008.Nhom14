@@ -71,7 +71,7 @@
                         <fa:IconImage Icon="Wallet"
                                       Height="30"/>
 
-                        <TextBlock Text="{Binding SoDu, StringFormat={}{0:N0}}"
+                        <TextBlock Text="{Binding SoDu, Mode=TwoWay, StringFormat={}{0:N0}}"
                                    Margin="15 5"
                                    FontSize="24"
                                    FontFamily="Monsterat"

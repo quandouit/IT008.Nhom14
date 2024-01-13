@@ -17,8 +17,27 @@ using System.Windows.Media;
 
 namespace QuanLyChiTieu.ViewModel
 {
+    public class MonthYear
+    {
+        public int Month { get; set; }
+        public int Year { get; set; }
+        public MonthYear(int month = 0, int year = 0) 
+        {
+            Month = month;
+            Year = year;
+        }
+        public bool isEmpty()
+        {
+            if (Month == 0 && Year == 0) 
+                return true; 
+            return false;
+        }
+    }
     public class HomeViewModel : ViewModelBase
     {
+        public int Year { get; set; }
+        public MonthYear MonthWithYear { get; set; }
+
         private decimal _soDu;
         public decimal SoDu
         {
@@ -63,6 +82,8 @@ namespace QuanLyChiTieu.ViewModel
 
         public HomeViewModel()
         {
+            Year = 0;
+            MonthWithYear = new MonthYear();
             SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
 
             ShowYearViewCommand = new ViewModelCommand(ExecuteShowYearViewCommand);

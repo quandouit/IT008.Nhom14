@@ -55,31 +55,14 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 OnPropertyChanged(nameof(MyPieChartData2));
             }
         }
-        private int selectedYear;
-        public int SelectedYear
+        public MonthYear SelectedMonth
         {
-            get { return selectedYear; }
+            get { return ViewModelLocator.Instance.HomeViewModel.MonthWithYear; }
             set
             {
-                if (selectedYear != value)
+                if (ViewModelLocator.Instance.HomeViewModel.MonthWithYear != value)
                 {
-                    selectedYear = value;
-                    // Handle the selected year change if needed
-                    ShowChart(selectedMonth, selectedYear);
-                }
-            }
-        }
-        private int selectedMonth;
-        public int SelectedMonth
-        {
-            get { return selectedMonth; }
-            set
-            {
-                if (selectedMonth != value)
-                {
-                    selectedMonth = value;
-                    // Handle the selected year change if needed
-                    ShowChart(selectedMonth, selectedYear);
+                    ViewModelLocator.Instance.HomeViewModel.MonthWithYear = value;
                 }
             }
         }
@@ -87,21 +70,21 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         public MonthChartViewModel()
         {
             ChooseMonthCommand = new ViewModelCommand(ExecuteChooseMonthCommand);
-
-            //mặc định tháng/năm là thời gian hiện tại
-            //thay đổi tháng hoặc năm sẽ cập nhật lại biểu đồ
-            SelectedMonth = DateTime.Now.Month;
-            SelectedYear = DateTime.Now.Year;
+            if (ViewModelLocator.Instance.HomeViewModel.MonthWithYear.isEmpty())
+            {
+                SelectedMonth = new MonthYear(DateTime.Now.Month, DateTime.Now.Year);
+            }
+            ShowChart(SelectedMonth);
         }
         private void ExecuteChooseMonthCommand(object obj)
         {
             var homeViewModel = ViewModelLocator.Instance.HomeViewModel;
             homeViewModel.MonthChartView = new ChooseMonthViewModel();
         }
-        private void ShowChart(int month, int year)
+        private void ShowChart(MonthYear obj)
         {
             //Biểu đồ tròn phân tích các khoản chi
-            List<LoaiGiaoDichDTO> myList = GiaoDichBUS.PhanLoaiGiaoDichOUT(month, year);
+            List<LoaiGiaoDichDTO> myList = GiaoDichBUS.PhanLoaiGiaoDichOUT(obj.Month, obj.Year);
 
             if (myList.Count > 0)
             {
@@ -123,7 +106,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             }
 
             //Biểu đồ tròn phân tích các khoản thu
-            myList = GiaoDichBUS.PhanLoaiGiaoDichIN(month, year);
+            myList = GiaoDichBUS.PhanLoaiGiaoDichIN(obj.Month, obj.Year);
             if (myList.Count > 0)
             {
                 MyPieChartData2 = new SeriesCollection();
@@ -142,8 +125,6 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             {
                 PieChart2DataCanShow = false;
             }
-
         }
-
     }
 }

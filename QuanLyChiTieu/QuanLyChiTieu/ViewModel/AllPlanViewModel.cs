@@ -37,7 +37,7 @@ namespace QuanLyChiTieu.ViewModel
         {
             GroupByYear();
             TurnBackCommand = new ViewModelCommand(ExecuteTurnBackCommand);
-            UpdateSharedCurrentCommand = new ViewModelCommand<NganSachModel>(UpdateSharedCurrent); ;
+            UpdateSharedCurrentCommand = new ViewModelCommand<NganSachModel>(UpdateSharedCurrent);
         }
         private void UpdateSharedCurrent(NganSachModel nganSachModel)
         {

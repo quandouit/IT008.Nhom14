@@ -60,12 +60,10 @@
 
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Button Content="{Binding HSD.Month, Converter={StaticResource MonthConverter}}"
+                                                <Button Content=""
                                                 Style="{StaticResource darkButtonStyle}"
                                                 FontSize="16"
-                                                Margin="10 0 10 10"
-                                                Command="{Binding DataContext.UpdateSharedCurrentCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
-                                                CommandParameter="{Binding}"/>
+                                                Margin="10 0 10 10"/>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>

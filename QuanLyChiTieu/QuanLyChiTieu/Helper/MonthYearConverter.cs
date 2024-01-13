@@ -8,13 +8,13 @@ using System.Windows.Data;
 
 namespace QuanLyChiTieu.Helper
 {
-    public class MonthConverter : IValueConverter
+    public class MonthYearConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int month)
+            if (value is ViewModel.MonthYear obj)
             {
-                return $"Tháng {month:D2}";
+                return $"{obj.Month:D2}/{obj.Year}";
             }
             return Binding.DoNothing;
         }

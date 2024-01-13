@@ -2,6 +2,7 @@
 using QuanLyChiTieu.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,49 +11,58 @@ using System.Windows.Input;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
-    public class ThangNam
+    public class MonthYearGroup
     {
-        public int Thang { get; set; }
-        public int Nam { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is ThangNam)
-            {
-                var other = obj as ThangNam;
-                return this.Thang == other.Thang && this.Nam == other.Nam;
-            }
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return Thang * 10000 + Nam;
-        }
+        public int Year { get; set; }
+        public ObservableCollection<MonthYear> Months { get; set; }
     }
     public class ChooseMonthViewModel : ViewModelBase
     {
-        public List<ThangNam> DanhSachThang {  get; set; }
+        public List<MonthYear> ListMonthYear {  get; set; }
+        public ObservableCollection<MonthYearGroup> ListMonthYearGroup { get; set; }
+        public void GetList()
+        {
+            ListMonthYear = MainViewModel.listGiaoDich
+                .Select(gd => new MonthYear { Month = gd.NgayTao.Month, Year = gd.NgayTao.Year })
+                .GroupBy(tn => new { tn.Month, tn.Year })
+                .Select(g => g.First())
+                .OrderByDescending(tn => tn.Year)
+                .ThenBy(tn => tn.Month)
+                .ToList();
+        }
+        public void GroupByYear()
+        {
+            var groups = ListMonthYear
+                .GroupBy(tn => tn.Year)
+                .Select(g => new MonthYearGroup
+                {
+                    Year = g.Key,
+                    Months = new ObservableCollection<MonthYear>(g.OrderBy(tn => tn.Month))
+                })
+                .ToList();
+
+            ListMonthYearGroup = new ObservableCollection<MonthYearGroup>(groups);
+        }
         public ICommand TurnBackCommand { get; set; }
+        public ICommand UpdateMonthCommand { get; private set; }
         public ChooseMonthViewModel()
         {
-            DanhSachThang = new List<ThangNam>();
-            DanhSachThang = GetUniqueThangNam(MainViewModel.listGiaoDich);
+            GetList();
+            GroupByYear();
             TurnBackCommand = new ViewModelCommand(ExecuteTurnBackCommand);
+            UpdateMonthCommand = new ViewModelCommand<MonthYear>(ExecuteUpdateMonthCommand); ;
+        }
+        private void ExecuteUpdateMonthCommand(MonthYear obj)
+        {
+            ViewModelLocator.Instance.HomeViewModel.MonthWithYear = obj;
+
+            var homeViewModel = ViewModelLocator.Instance.HomeViewModel;
+            homeViewModel.MonthChartView = new MonthChartViewModel();
         }
         private void ExecuteTurnBackCommand(object obj)
         {
             var homeViewModel = ViewModelLocator.Instance.HomeViewModel;
             homeViewModel.MonthChartView = new MonthChartViewModel();
-        }
-        public List<ThangNam> GetUniqueThangNam(BindingList<GiaoDichModel> listgiaodich)
-        {
-            HashSet<ThangNam> result = new HashSet<ThangNam>();
-            foreach (GiaoDichModel giaodich in listgiaodich)
-            {
-                result.Add(new ThangNam { Thang = giaodich.NgayTao.Month, Nam = giaodich.NgayTao.Year });
-            }
-            return result.ToList();
         }
     }
 }

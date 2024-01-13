@@ -172,6 +172,7 @@
     <Compile Include="Data\DTO\NganSachDTO.cs" />
     <Compile Include="Data\DTO\NguoiDungDTO.cs" />
     <Compile Include="Helper\MonthConverter.cs" />
+    <Compile Include="Helper\MonthYearConverter.cs" />
     <Compile Include="Helper\ViewModelLocator.cs" />
     <Compile Include="Helper\WindowsApiService.cs" />
     <Compile Include="Model\GiaoDichModel.cs" />
