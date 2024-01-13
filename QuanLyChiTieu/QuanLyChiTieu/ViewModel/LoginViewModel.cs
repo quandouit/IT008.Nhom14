@@ -69,7 +69,7 @@ namespace QuanLyChiTieu.ViewModel
             }
 
             NguoiDungDTO currentUser = LoginBUS.Try_Login(loginUser);
-            if (currentUser.ID != 0)
+            if (currentUser.ID > 0)
             {
                 MainViewModel viewModel = new MainViewModel(currentUser);
                 MainWindow mainWindow = new MainWindow { DataContext = viewModel };
@@ -80,7 +80,7 @@ namespace QuanLyChiTieu.ViewModel
                 var loginWindow = obj as Window;
                 loginWindow.Close();
             }
-            else
+            else if (currentUser.ID == 0)
             {
                 CustomMessageBoxViewModel messageViewModel = new CustomMessageBoxViewModel("Thông báo", "Tên đăng nhập hoặc mật khẩu sai!");
                 CustomMessageBox messageBox = new CustomMessageBox { DataContext = messageViewModel };
@@ -88,6 +88,13 @@ namespace QuanLyChiTieu.ViewModel
 
                 Password = "";
             }
+            else
+            {
+                CustomMessageBoxViewModel messageViewModel = new CustomMessageBoxViewModel("Thông báo", "Đăng nhập xảy ra lỗi, vui lòng thử lại!");
+                CustomMessageBox messageBox = new CustomMessageBox { DataContext = messageViewModel };
+                messageBox.ShowDialog();
+            } 
+                
         }
         private void ExecuteCloseCommand(object obj)
         {

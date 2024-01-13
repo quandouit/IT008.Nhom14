@@ -16,10 +16,17 @@ namespace QuanLyChiTieu.Data.DAO
     {
         public static NguoiDungDTO Try_Login(NguoiDungDTO user)
         {
-            NguoiDungDTO rt = new NguoiDungDTO();
+            NguoiDungDTO rt = new NguoiDungDTO
+            {
+                ID = 0,
+                TaiKhoan = null,
+                MatKhau = null,
+                Sdt = null,
+                TongTien = 0
+            };
             try
             {
-                OpenConn();
+                OpenConn(); 
 
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
@@ -43,14 +50,6 @@ namespace QuanLyChiTieu.Data.DAO
                             rt.Sdt = reader.GetString(3);
                             rt.TongTien = reader.GetDecimal(4);
                         }
-                    }   
-                    else
-                    {
-                        rt.ID = 0;
-                        rt.TaiKhoan = null;
-                        rt.MatKhau = null;
-                        rt.Sdt = null;
-                        rt.TongTien = 0;
                     }    
                 }    
             }
@@ -61,7 +60,8 @@ namespace QuanLyChiTieu.Data.DAO
                 CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
                 messageBox.ShowDialog();
 
-                return null;
+                rt.ID = -1;
+                return rt;
             }
             finally
             {
