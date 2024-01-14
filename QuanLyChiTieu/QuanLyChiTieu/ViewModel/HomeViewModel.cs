@@ -35,6 +35,7 @@ namespace QuanLyChiTieu.ViewModel
     }
     public class HomeViewModel : ViewModelBase
     {
+        public static List<LoaiGiaoDichDTO> ListLoaiGiaoDich { get; private set; }
         public int Year { get; set; }
         public MonthYear MonthWithYear { get; set; }
 
@@ -82,6 +83,7 @@ namespace QuanLyChiTieu.ViewModel
 
         public HomeViewModel()
         {
+            ListLoaiGiaoDich = GiaoDichBUS.LietKeLoaiGiaoDich();
             Year = 0;
             MonthWithYear = new MonthYear();
             SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);

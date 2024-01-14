@@ -13,5 +13,15 @@ namespace QuanLyChiTieu.Data.DTO
         public string TenLoaiGD { get; set; }
         public string TrangThai { get; set; }
         public decimal SumTIEN { get; set; }
+        public LoaiGiaoDichDTO DeepCopy()
+        {
+            return new LoaiGiaoDichDTO
+            {
+                MaLoaiGD = this.MaLoaiGD,
+                SumTIEN = this.SumTIEN,
+                TrangThai = this.TrangThai
+            };
+        }
     }
 }
+

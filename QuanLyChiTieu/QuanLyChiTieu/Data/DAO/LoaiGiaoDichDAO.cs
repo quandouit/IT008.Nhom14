@@ -39,5 +39,33 @@ namespace QuanLyChiTieu.Data.DAO
                 CloseConn();
             }
         }
+        public static DataTable LietKeLoaiGiaoDichDayDu()
+        {
+            try
+            {
+                OpenConn();
+
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.Connection = sqlCon;
+                sqlCmd.CommandText = "SELECT MALOAIGD, TENLOAIGD, TRANGTHAI FROM LOAIGIAODICH";
+
+                var reader = sqlCmd.ExecuteReader();
+
+                var dt = new DataTable();
+                dt.Load(reader);
+                reader.Close();
+                return dt;
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                CloseConn();
+            }
+        }
     }
 }
