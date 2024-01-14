@@ -20,7 +20,7 @@ namespace QuanLyChiTieu.Data.DAO
                 SqlCommand sqlCmd = new SqlCommand();
                 sqlCmd.CommandType = CommandType.Text;
                 sqlCmd.Connection = sqlCon;
-                sqlCmd.CommandText = "SELECT MALOAIGD, TENLOAIGD FROM LOAIGIAODICH";
+                sqlCmd.CommandText = "SELECT MALOAIGD, TENLOAIGD, TRANGTHAI FROM LOAIGIAODICH";
 
                 var reader = sqlCmd.ExecuteReader();
 
