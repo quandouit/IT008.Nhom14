@@ -66,7 +66,10 @@ namespace QuanLyChiTieu.ViewModel
         {
             EditDialogViewModel viewModel = new EditDialogViewModel();
             EditDialog newBillDialog = new EditDialog { DataContext = viewModel };
+            var mainWindow = (MainWindow)System.Windows.Application.Current.MainWindow;
+            mainWindow.Hide();
             newBillDialog.ShowDialog();
+            mainWindow.Show();
             ReloadTable();
         }
         private void ExecuteDeleteChoosenBillCommand(object obj)
@@ -104,7 +107,10 @@ namespace QuanLyChiTieu.ViewModel
             {
                 DetailDialogViewModel viewModel = new DetailDialogViewModel(selectedRow);
                 DetailDialog detailDialog = new DetailDialog { DataContext = viewModel };
+                var mainWindow = (MainWindow)System.Windows.Application.Current.MainWindow;
+                mainWindow.Hide();
                 detailDialog.ShowDialog();
+                mainWindow.Show();
             }
             ReloadTable();
         }

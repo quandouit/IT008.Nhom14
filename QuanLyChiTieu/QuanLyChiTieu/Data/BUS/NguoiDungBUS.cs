@@ -42,17 +42,7 @@ namespace QuanLyChiTieu.Data.BUS
         {
             if (NguoiDungDAO.DoiSotien(money, input.ID) == 0)
             {
-                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thành công", "Khởi tạo tài khoản thành công");
-                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
-                messageBox.ShowDialog();
-
                 return true;
-            }
-            else
-            {
-                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Thất bại", "Khởi tạo tài khoản thất bại!");
-                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
-                messageBox.ShowDialog();
             }
             return false;
         }

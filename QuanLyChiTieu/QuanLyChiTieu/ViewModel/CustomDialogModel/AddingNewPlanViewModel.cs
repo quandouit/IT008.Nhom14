@@ -119,7 +119,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             NganSachMoi.HSD = new DateTime(SelectedYear, SelectedMonth, 1);
             if (NganSachMoi.IsFilled())
             {
-                if (SharePlanListViewModel.SharedPlanList.Any(item => item.HSD == NganSachMoi.HSD))
+                if (SharedPlanList.Any(item => item.HSD == NganSachMoi.HSD))
                 {
                     bool check = false;
                     YesNoDialogViewModel dialogViewModel = new YesNoDialogViewModel("Ngân sách đã tồn tại", "Tháng hiện bạn chọn đã có sẵn một ngân sách, bạn có muốn thay thế không?");
@@ -146,7 +146,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 else
                 {
                     NganSachBUS.ThemNganSach(NganSachMoi);
-                    SharePlanListViewModel.SharedPlanList.Add(NganSachMoi);
+                    SharedPlanList.Add(NganSachMoi);
                     LoadCurrent(NganSachMoi.HSD);
                     if (obj is System.Windows.Window window)
                     {

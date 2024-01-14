@@ -12,8 +12,6 @@ using QuanLyChiTieu.Model;
 using QuanLyChiTieu.Data.DTO;
 using QuanLyChiTieu.View.CustomDialog;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 {
@@ -81,6 +79,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
 
         public EditDialogViewModel()
         {
+
             SoDu = NguoiDungBUS.LaySoDu(MainViewModel.currentUser.ID);
             GiaoDichMoi = new GiaoDichDTO
             {

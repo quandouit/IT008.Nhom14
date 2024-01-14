@@ -42,7 +42,10 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 EditDialogViewModel viewModel = new EditDialogViewModel(GiaoDich);
                 EditDialog editDialog = new EditDialog { DataContext = viewModel };
                 window.Close();
+                var mainWindow = (MainWindow)System.Windows.Application.Current.MainWindow;
+                mainWindow.Hide();
                 editDialog.ShowDialog();
+                mainWindow.Show();
             }
         }
     }

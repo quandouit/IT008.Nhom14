@@ -71,13 +71,15 @@ namespace QuanLyChiTieu.ViewModel
             NguoiDungDTO currentUser = LoginBUS.Try_Login(loginUser);
             if (currentUser.ID > 0)
             {
+                var loginWindow = obj as Window;
+                loginWindow.Hide();
+
                 MainViewModel viewModel = new MainViewModel(currentUser);
                 MainWindow mainWindow = new MainWindow { DataContext = viewModel };
                 System.Windows.Application.Current.MainWindow = mainWindow;
                 ViewModelLocator.Instance.MainViewModel = viewModel;
                 mainWindow.Show();
 
-                var loginWindow = obj as Window;
                 loginWindow.Close();
             }
             else if (currentUser.ID == 0)

@@ -127,7 +127,10 @@ namespace QuanLyChiTieu.ViewModel
         private void ExecuteShowAddingCommand(object obj)
         {
             AddingNewPlan newPlanDialog = new AddingNewPlan();
+            var mainWindow = (MainWindow)System.Windows.Application.Current.MainWindow;
+            mainWindow.Hide();
             newPlanDialog.ShowDialog();
+            mainWindow.Show();
             LoadAllNganSach();
             LoadCurrent(SharedCurrentInstance.HSD);
             OnPropertyChanged("FormattedHSD");
