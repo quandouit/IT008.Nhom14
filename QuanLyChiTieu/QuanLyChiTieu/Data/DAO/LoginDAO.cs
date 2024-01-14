@@ -56,10 +56,6 @@ namespace QuanLyChiTieu.Data.DAO
 
             catch (Exception ex)
             {
-                CustomMessageBoxViewModel dialogViewModel = new CustomMessageBoxViewModel("Lỗi database", ex.Message);
-                CustomMessageBox messageBox = new CustomMessageBox { DataContext = dialogViewModel };
-                messageBox.ShowDialog();
-
                 rt.ID = -1;
                 return rt;
             }
