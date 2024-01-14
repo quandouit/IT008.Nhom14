@@ -160,7 +160,7 @@
                                            FontWeight="Bold"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="NS còn lại: "
+                                <TextBlock Text="Ngân sách còn lại: "
                                            FontSize="16"
                                            FontFamily="Monsterat"
                                            Foreground="{StaticResource darkFont}" 

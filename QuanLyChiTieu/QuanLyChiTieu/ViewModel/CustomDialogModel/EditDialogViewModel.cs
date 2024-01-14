@@ -20,6 +20,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
         public static bool _isUserInput;
         public static bool _isAutoFill;
         private bool _isEditing;
+        private bool _isHasBudget;
         public GiaoDichDTO GiaoDichMoi { get; set; }
         private LoaiGiaoDichModel _selectedLoaiGD;
         public LoaiGiaoDichModel SelectedLoaiGD
@@ -107,9 +108,19 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                 LoadAllNganSach();
             }
             LoadCurrent(date);
-            decimal TienNS = SharedCurrentInstance.TienNS;
-            decimal TienDaDung = NguoiDungBUS.LayTongChi(MainViewModel.currentUser.ID, date.Month, date.Year);
-            TienConLai = TienNS - TienDaDung;
+            if (SharedCurrentInstance != null)
+            {
+                decimal TienNS = SharedCurrentInstance.TienNS;
+                decimal TienDaDung = NguoiDungBUS.LayTongChi(MainViewModel.currentUser.ID, date.Month, date.Year);
+                TienConLai = TienNS - TienDaDung;
+                _isHasBudget = true;
+            }
+            else
+            {
+                TienConLai = 0;
+                _isHasBudget = false;
+            }    
+            
         }
 
         public EditDialogViewModel(GiaoDichModel input)
@@ -221,15 +232,14 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             {
                 if (obj is Window window)
                 {
-                    bool flag = true;
                     if (_isEditing)
                     {
                         GiaoDichModel gdHT = MainViewModel.listGiaoDich.FirstOrDefault(x => x.MaGD == GiaoDichMoi.MaGD);
-                        if (SoDu + gdHT.Tien - GiaoDichMoi.Tien < 0)
+                        if (SelectedLoaiGD.TrangThai == "OUT" && SoDu + gdHT.Tien - GiaoDichMoi.Tien < 0)
                         {
                             KhongDuSoDu(_isEditing, window);
                         }
-                        else if (TienConLai + gdHT.Tien - GiaoDichMoi.Tien < 0)
+                        else if (SelectedLoaiGD.TrangThai == "OUT" && _isHasBudget == true && TienConLai + gdHT.Tien - GiaoDichMoi.Tien < 0 )
                         {
                             KhongDuNganSach(_isEditing, window);
                         }
@@ -241,13 +251,13 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                     }
                     else
                     {
-                        if (SoDu - GiaoDichMoi.Tien < 0)
+                        if (SelectedLoaiGD.TrangThai == "OUT" && SoDu - GiaoDichMoi.Tien < 0)
                         {
                             KhongDuSoDu(_isEditing, window);
                         }
-                        else if (TienConLai - GiaoDichMoi.Tien < 0)
+                        else if (_isHasBudget == true && TienConLai - GiaoDichMoi.Tien < 0)
                         {
-                            KhongDuNganSach(_isEditing, window);
+                            KhongDuNganSach(SelectedLoaiGD.TrangThai == "OUT" && _isEditing, window);
                         }
                         else
                         {

@@ -24,7 +24,8 @@ namespace QuanLyChiTieu.Data.BUS
                 LoaiGiaoDichModel temp = new LoaiGiaoDichModel
                 {
                     TenLoaiGD = giaoDichData.Rows[i]["TENLOAIGD"].ToString(),
-                    MaLoaiGD = int.Parse(giaoDichData.Rows[i]["MALOAIGD"].ToString())
+                    MaLoaiGD = int.Parse(giaoDichData.Rows[i]["MALOAIGD"].ToString()),
+                    TrangThai = giaoDichData.Rows[i]["TRANGTHAI"].ToString()
                 };
 
                 result.Add(temp);

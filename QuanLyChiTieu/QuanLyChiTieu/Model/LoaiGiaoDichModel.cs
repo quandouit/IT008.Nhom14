@@ -18,5 +18,6 @@ namespace QuanLyChiTieu.Model
         public LoaiGiaoDichModel() { }
         public int MaLoaiGD { get; set; }
         public string TenLoaiGD { get; set; }
+        public string TrangThai { get; set; }
     }
 }
