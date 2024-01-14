@@ -175,7 +175,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             }
         }
 
-        void KhongDuSoDu(bool IsEditing)
+        void KhongDuSoDu(bool IsEditing, Window window)
         {
             YesNoDialogViewModel dialogViewModel;
             dialogViewModel = new YesNoDialogViewModel("Không đủ số dư", "Có vẻ số dư của bạn không đủ " +
@@ -188,13 +188,14 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                         GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
                     else
                         GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                    window.Close();
                 }
             };
             YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
             messageBox.ShowDialog();
         }
 
-        void KhongDuNganSach(bool IsEditing)
+        void KhongDuNganSach(bool IsEditing, Window window)
         {
             YesNoDialogViewModel dialogViewModel;
             dialogViewModel = new YesNoDialogViewModel("Không đủ ngân sách", "Bạn sẽ vượt quá ngân sách tháng nếu thực hiện giao dịch này" +
@@ -207,6 +208,7 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
                         GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
                     else
                         GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                    window.Close();
                 }
             };
             YesNoDialog messageBox = new YesNoDialog { DataContext = dialogViewModel };
@@ -219,35 +221,40 @@ namespace QuanLyChiTieu.ViewModel.CustomDialogModel
             {
                 if (obj is Window window)
                 {
+                    bool flag = true;
                     if (_isEditing)
                     {
                         GiaoDichModel gdHT = MainViewModel.listGiaoDich.FirstOrDefault(x => x.MaGD == GiaoDichMoi.MaGD);
-
                         if (SoDu + gdHT.Tien - GiaoDichMoi.Tien < 0)
                         {
-                            KhongDuSoDu(_isEditing);
+                            KhongDuSoDu(_isEditing, window);
                         }
                         else if (TienConLai + gdHT.Tien - GiaoDichMoi.Tien < 0)
                         {
-                            KhongDuNganSach(_isEditing);
+                            KhongDuNganSach(_isEditing, window);
                         }
                         else
+                        {
                             GiaoDichBUS.SuaGiaoDich(GiaoDichMoi);
+                            window.Close();
+                        }   
                     }
                     else
                     {
                         if (SoDu - GiaoDichMoi.Tien < 0)
                         {
-                            KhongDuSoDu(_isEditing);
+                            KhongDuSoDu(_isEditing, window);
                         }
                         else if (TienConLai - GiaoDichMoi.Tien < 0)
                         {
-                            KhongDuNganSach(_isEditing);
+                            KhongDuNganSach(_isEditing, window);
                         }
                         else
+                        {
                             GiaoDichBUS.ThemGiaoDich(GiaoDichMoi);
+                            window.Close();
+                        }  
                     }
-                    window.Close();
                 }
             }
             else
